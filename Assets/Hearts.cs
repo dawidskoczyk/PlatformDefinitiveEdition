@@ -9,7 +9,45 @@ public class Hearts : MonoBehaviour
     void Start()
     {
         kontener.GetComponent<RectTransform>().sizeDelta = new Vector2(45 * maxHp, 50);
-        for (int i = 0; i<maxHp; i++)
+        RefreshUI();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J)) 
+        {
+            AddHp(1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SubHp(1);
+        }
+    }
+
+    void AddHp(int hp)
+    {
+        if (currentHp < maxHp)
+        {
+            currentHp += hp;
+        }
+
+        RefreshUI();
+    }
+
+    void SubHp(int hp)
+    {
+        if (currentHp > 0)
+        {
+            currentHp -= hp;
+        }
+
+        RefreshUI();
+    }
+
+    void RefreshUI()
+    {
+        for (int i = 0; i < maxHp; i++)
         {
             if (i < currentHp)
             {
@@ -20,11 +58,5 @@ public class Hearts : MonoBehaviour
                 kontener.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

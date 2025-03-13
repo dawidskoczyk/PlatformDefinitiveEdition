@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
     bool isLocked = false;
-    [SerializeField] float maxSpeed = 5f;
+    bool jumpReady = true;
+    [SerializeField] float maxSpeed = 4f;
     SpriteRenderer spriteRenderer;
     [SerializeField] Sprite jumpSprite;
     [SerializeField] Sprite fallSprite;
     [SerializeField] LayerMask whatIsGround;
+    int jumpCounter = 0;
     public enum PlayerState { Idle, Run, Attack, Die, Jump }
     void Start()
     {
@@ -59,7 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         isLocked = true;
         animator.Play("Shoot_Animation");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         isLocked = false;
     }
 
@@ -75,16 +77,39 @@ public class PlayerController : MonoBehaviour
     }
     void Jump()
     {
-        spriteRenderer.sprite = jumpSprite;
-        if (Input.GetKey(KeyCode.Space) && GroundCheck()) rb.AddForce(new Vector2(rb.linearVelocityX, 0.5f)* 0.5f, ForceMode2D.Impulse);
-        if (rb.linearVelocityY <0) spriteRenderer.sprite = fallSprite;
+            if (Input.GetKeyDown(KeyCode.Space) && GroundCheck() && jumpCounter == 0)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
+                rb.AddForce(new Vector2(0, 5f), ForceMode2D.Impulse);
+                jumpCounter = 1;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && jumpCounter == 1)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
+                rb.AddForce(new Vector2(0, 5f), ForceMode2D.Impulse);
+                jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
+            }
+
+        if (!GroundCheck())
+        {
+            rb.AddForce(new Vector2(Input.GetAxis("Horizontal"), 0),ForceMode2D.Force);
+            Vector2 clampedVelocity = rb.linearVelocity;
+            clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed, maxSpeed);
+            rb.linearVelocity = clampedVelocity;
+        }
+
+            //to nie dzia³a trzeba zrobiæ animacje
+        if (rb.linearVelocity.y < 0)
+            spriteRenderer.sprite = fallSprite;
+        else if (rb.linearVelocity.y > 0)
+            spriteRenderer.sprite = jumpSprite;
     }
     void EvaluateState()
     {
-        if (!Input.anyKey) ChangeCharacterState(PlayerState.Idle);
+        if (!Input.anyKey && GroundCheck()) ChangeCharacterState(PlayerState.Idle);
         else if (Input.GetKeyDown(KeyCode.Mouse0)) ChangeCharacterState(PlayerState.Attack);
-        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)) ChangeCharacterState(PlayerState.Run);
         else if (Input.GetKeyDown(KeyCode.Space)) ChangeCharacterState(PlayerState.Jump);
+        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && GroundCheck()) ChangeCharacterState(PlayerState.Run);
     }
     void ChangeCharacterState(PlayerState playerState)
     {
@@ -92,10 +117,26 @@ public class PlayerController : MonoBehaviour
     }
     bool GroundCheck()
     {
-       return Physics2D.Raycast(transform.position, new Vector2 (0,-1), 0.65f , whatIsGround);
+        bool centerHit = Physics2D.Raycast(transform.position, Vector2.down, 0.65f, whatIsGround);
+
+        bool leftHit = Physics2D.Raycast(new Vector2(transform.position.x - 0.3f, transform.position.y), Vector2.down, 0.65f, whatIsGround);
+
+        bool leftHit1 = Physics2D.Raycast(new Vector2(transform.position.x - 0.15f, transform.position.y), Vector2.down, 0.65f, whatIsGround);
+
+        bool rightHit = Physics2D.Raycast(new Vector2(transform.position.x + 0.3f, transform.position.y), Vector2.down, 0.65f, whatIsGround);
+
+        bool rightHit1 = Physics2D.Raycast(new Vector2(transform.position.x + 0.15f, transform.position.y), Vector2.down, 0.65f, whatIsGround);
+
+        return centerHit || leftHit || rightHit || leftHit1 || rightHit1;
     }
-    private void OnDrawGizmos()
+    void OnDrawGizmos()
     {
-        Gizmos.DrawLine(transform.position, Vector2.down);
+        Debug.DrawRay(transform.position, Vector2.down * 0.65f, Color.red);
+        Debug.DrawRay(new Vector2(transform.position.x - 0.3f, transform.position.y), Vector2.down * 0.65f, Color.green);
+        Debug.DrawRay(new Vector2(transform.position.x + 0.3f, transform.position.y), Vector2.down * 0.65f, Color.blue);
+    }
+    void ChangeJumpReady()
+    {
+        jumpReady = !jumpReady;   
     }
 }

@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
     bool isLocked = false;
-    bool jumpReady = true;
     [SerializeField] float maxSpeed = 2f;
     SpriteRenderer spriteRenderer;
     [SerializeField] Sprite jumpSprite;
@@ -17,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float smoothTime = 0.2f;
     int jumpCounter = 0;
     bool wallJump = false;
+    //bool jumpClicked = false;
     public enum PlayerState { Idle, Run, Attack, Die, Jump }
     void Start()
     {
@@ -52,23 +52,30 @@ public class PlayerController : MonoBehaviour
                 //OnDie();
                 break;
             case PlayerState.Jump:
+               
                 StopAllCoroutines();
                 Jump();
                 break;
             default:
                 break;
         }
-
+    }
+    private void FixedUpdate()
+    {
+        // jak testowa³em fixed update to skok nie dzia³a³
+       
     }
     IEnumerator Attack()
     {
         isLocked = true;
         animator.Play("Shoot_Animation");
-        rb.linearVelocity = new Vector2(0, 0);
         rb.gravityScale = 0;
-        yield return new WaitForSeconds(0.5f);
+        Vector2 savedVelocity = rb.linearVelocity;
+        rb.linearVelocity = new Vector2 (0, 0);
+        yield return new WaitForSeconds(0.3f);
         isLocked = false;
         rb.gravityScale = 1f;
+        rb.linearVelocity = savedVelocity;
         if (!GroundCheck()) ChangeCharacterState(PlayerState.Jump);
     }
 
@@ -120,13 +127,19 @@ public class PlayerController : MonoBehaviour
             else
             {
                 rb.gravityScale = 1;
-                rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 0.5f, 0), ForceMode2D.Force);
-
+                rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 4f, 0), ForceMode2D.Force);
                 Vector2 currentVelocity = rb.linearVelocity;
                 Vector2 clampedVelocity = currentVelocity;
-                clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -(maxSpeed * 0.5f), (maxSpeed * 0.5f));
-                Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, smoothTime * Time.deltaTime);
+
+                // U¿yj bardziej rozs¹dnej wartoœci mno¿nika, np. 0.5f dla powietrza
+                clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed * 0.5f, maxSpeed * 0.5f);
+
+                // U¿yj wartoœci smoothTime, która zapewni zauwa¿aln¹ zmianê
+                Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, smoothTime/10 * Time.deltaTime);
                 rb.linearVelocity = lerpedVelocity;
+
+                // Debug - wyœwietlanie wartoœci w konsoli, aby zobaczyæ, czy ograniczenie dzia³a
+                Debug.Log($"Current: {currentVelocity.x}, Clamped: {clampedVelocity.x}, Lerped: {lerpedVelocity.x}");
             }
         }
 
@@ -168,11 +181,11 @@ public class PlayerController : MonoBehaviour
     bool WallCheck()
     {
         bool centerHit = Physics2D.Raycast(transform.position, Vector2.right, 0.65f, whatIsGround);
-        bool upHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.2f), Vector2.right, 0.65f, whatIsGround);
-        bool downHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.2f), Vector2.right, 0.65f, whatIsGround);
-        bool upHit1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.2f), Vector2.left, 0.65f, whatIsGround);
-        bool downHit1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.2f), Vector2.left, 0.65f, whatIsGround);
-        bool centerHit1 = Physics2D.Raycast(transform.position, Vector2.left, 0.65f, whatIsGround);
+        bool upHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.2f), Vector2.right, 0.6f, whatIsGround);
+        bool downHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.2f), Vector2.right, 0.6f, whatIsGround);
+        bool upHit1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.2f), Vector2.left, 0.6f, whatIsGround);
+        bool downHit1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.2f), Vector2.left, 0.6f, whatIsGround);
+        bool centerHit1 = Physics2D.Raycast(transform.position, Vector2.left, 0.6f, whatIsGround);
         return centerHit || upHit || downHit || centerHit1 || upHit1 || downHit1;
     }
     void OnDrawGizmos()

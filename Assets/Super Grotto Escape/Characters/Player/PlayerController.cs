@@ -97,8 +97,14 @@ public class PlayerController : MonoBehaviour
     void Run()
     {
         animator.Play("Run_Animation");
-        if (Input.GetKey(KeyCode.A) && GroundCheck()) rb.AddForce(new Vector2(-moveSpeed, 0), ForceMode2D.Force);
-        if (Input.GetKey(KeyCode.D) && GroundCheck()) rb.AddForce(new Vector2(moveSpeed, 0), ForceMode2D.Force);
+        if (Input.GetKey(KeyCode.A) && GroundCheck())
+        {
+            rb.AddForce(new Vector2(-moveSpeed, 0), ForceMode2D.Force);
+        }
+        if (Input.GetKey(KeyCode.D) && GroundCheck())
+        {
+            rb.AddForce(new Vector2(moveSpeed, 0), ForceMode2D.Force);
+        }
 
         Vector2 currentVelocity = rb.linearVelocity;
         Vector2 clampedVelocity = currentVelocity;

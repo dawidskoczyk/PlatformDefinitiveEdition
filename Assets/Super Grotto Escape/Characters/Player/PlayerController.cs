@@ -5,10 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] PlayerState state;
+    PlayerState currentState;
+    PlayerState previousState;
     Animator animator;
     Rigidbody2D rb;
-    bool isLocked = false;
+    [SerializeField] bool isLocked = false;
     [SerializeField] float maxSpeed = 2f;
+    [SerializeField] float jumpPower = 6f;
+    [SerializeField] float moveSpeed = 4f;
     SpriteRenderer spriteRenderer;
     [SerializeField] Sprite jumpSprite;
     [SerializeField] Sprite fallSprite;
@@ -16,8 +20,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float smoothTime = 0.2f;
     int jumpCounter = 0;
     bool wallJump = false;
+    bool canChangeState = true;
     //bool jumpClicked = false;
     public enum PlayerState { Idle, Run, Attack, Die, Jump }
+
+
     void Start()
     {
         state = PlayerState.Idle;
@@ -29,7 +36,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isLocked) return;
+
+        
+       
+    }
+
+    private void FixedUpdate()
+    {
+        if (isLocked)
+            return;
 
         EvaluateState();
 
@@ -52,27 +67,27 @@ public class PlayerController : MonoBehaviour
                 //OnDie();
                 break;
             case PlayerState.Jump:
-               
                 StopAllCoroutines();
                 Jump();
+                
                 break;
             default:
                 break;
         }
-    }
-    private void FixedUpdate()
-    {
-        // jak testowa³em fixed update to skok nie dzia³a³
-       
+        //Invoke(nameof(Unlocked), 0.2f);
+        
+
     }
     IEnumerator Attack()
     {
         isLocked = true;
+
         animator.Play("Shoot_Animation");
         rb.gravityScale = 0;
         Vector2 savedVelocity = rb.linearVelocity;
         rb.linearVelocity = new Vector2 (0, 0);
         yield return new WaitForSeconds(0.3f);
+
         isLocked = false;
         rb.gravityScale = 1f;
         rb.linearVelocity = savedVelocity;
@@ -82,29 +97,32 @@ public class PlayerController : MonoBehaviour
     void Run()
     {
         animator.Play("Run_Animation");
-        if (Input.GetKey(KeyCode.A) && GroundCheck()) rb.AddForce(new Vector2(-2f, 0), ForceMode2D.Force);
-        if (Input.GetKey(KeyCode.D) && GroundCheck()) rb.AddForce(new Vector2(2f, 0), ForceMode2D.Force);
+        if (Input.GetKey(KeyCode.A) && GroundCheck()) rb.AddForce(new Vector2(-moveSpeed, 0), ForceMode2D.Force);
+        if (Input.GetKey(KeyCode.D) && GroundCheck()) rb.AddForce(new Vector2(moveSpeed, 0), ForceMode2D.Force);
 
         Vector2 currentVelocity = rb.linearVelocity;
         Vector2 clampedVelocity = currentVelocity;
         clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed, maxSpeed);
-        Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, smoothTime * Time.deltaTime);
+        Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, 10);
         rb.linearVelocity = lerpedVelocity;
     }
     void Jump()
     {
         //jeszcze do przerobienia case kiedy postaæ biegnie, spada z platformy i dotyka œciany, bo wtedy siê jej nie ³apie bo ³apanie œciany jest w stanie skoku. \
         //Bêdzie trzeba ca³¹ obs³ugê œcian jakoœ przenieœæ albo obs³u¿yæ ten wyj¹tek kopiuj¹c fragment kodu do stanu run
+
+        //dodac maxjumps - max liczba mozliwych skokow
         if (Input.GetKeyDown(KeyCode.Space) && GroundCheck() && jumpCounter == 0)
         {
+            print("skok");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
-            rb.AddForce(new Vector2(0, 6f), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 1;
         }
         else if (Input.GetKeyDown(KeyCode.Space) && jumpCounter == 1)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
-            rb.AddForce(new Vector2(0, 6f), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
         }
         else if (Input.GetKeyDown(KeyCode.Space) && WallCheck())
@@ -112,7 +130,7 @@ public class PlayerController : MonoBehaviour
             wallJump = true;
             rb.gravityScale = 1;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
-            rb.AddForce(new Vector2(Input.GetAxis("Horizontal")*3f, 6f), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(Input.GetAxis("Horizontal")*3f, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
             Invoke(nameof(ChangeJumpReady),0.2f);
         }
@@ -127,7 +145,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 rb.gravityScale = 1;
-                rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 4f, 0), ForceMode2D.Force);
+                rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeed, 0), ForceMode2D.Force);
                 Vector2 currentVelocity = rb.linearVelocity;
                 Vector2 clampedVelocity = currentVelocity;
 
@@ -135,7 +153,7 @@ public class PlayerController : MonoBehaviour
                 clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed * 0.5f, maxSpeed * 0.5f);
 
                 // U¿yj wartoœci smoothTime, która zapewni zauwa¿aln¹ zmianê
-                Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, smoothTime/10 * Time.deltaTime);
+                Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, 10); //smoothTime + Time.deltaTime);
                 rb.linearVelocity = lerpedVelocity;
 
                 // Debug - wyœwietlanie wartoœci w konsoli, aby zobaczyæ, czy ograniczenie dzia³a
@@ -149,21 +167,38 @@ public class PlayerController : MonoBehaviour
         else if (rb.linearVelocity.y > 0)
             spriteRenderer.sprite = jumpSprite;
     }
+
     void EvaluateState()
     {
-        if (!Input.anyKey && GroundCheck()) ChangeCharacterState(PlayerState.Idle);
-        else if (Input.GetKeyDown(KeyCode.Mouse0)) ChangeCharacterState(PlayerState.Attack);
-        else if (Input.GetKeyDown(KeyCode.Space)) ChangeCharacterState(PlayerState.Jump);
-        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && GroundCheck() && rb.linearVelocityY<1f) ChangeCharacterState(PlayerState.Run);
+        if (!Input.anyKey && GroundCheck())
+        {
+            ChangeCharacterState(PlayerState.Idle);
+        }
+        else if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            ChangeCharacterState(PlayerState.Attack);
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ChangeCharacterState(PlayerState.Jump);
+        }
+        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && GroundCheck() && rb.linearVelocityY < 1f)
+        {
+            ChangeCharacterState(PlayerState.Run);
+        }
     }
+
     void ChangeCharacterState(PlayerState playerState)
     {
         state = playerState;
+        //isLocked = true;
     }
+
     void ChangeJumpReady()
     {
         wallJump = false;
     }
+
     bool GroundCheck()
     {
         bool centerHit = Physics2D.Raycast(transform.position, Vector2.down, 0.65f, whatIsGround);
@@ -178,6 +213,7 @@ public class PlayerController : MonoBehaviour
 
         return centerHit || leftHit || rightHit || leftHit1 || rightHit1;
     }
+
     bool WallCheck()
     {
         bool centerHit = Physics2D.Raycast(transform.position, Vector2.right, 0.65f, whatIsGround);
@@ -188,6 +224,7 @@ public class PlayerController : MonoBehaviour
         bool centerHit1 = Physics2D.Raycast(transform.position, Vector2.left, 0.6f, whatIsGround);
         return centerHit || upHit || downHit || centerHit1 || upHit1 || downHit1;
     }
+
     void OnDrawGizmos()
     {
         Debug.DrawRay(transform.position, Vector2.down * 0.65f, Color.red);
@@ -229,4 +266,16 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawLine(start, start + direction);
         }
     }
+
+    void UnlockStateChange()
+    {
+        canChangeState = true;
+    }
+
+    void Unlocked()
+    {
+        isLocked = false;
+    }
 }
+
+

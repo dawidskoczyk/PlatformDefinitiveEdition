@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     int jumpCounter = 0;
     bool wallJump = false;
     bool canChangeState = true;
+    bool jump = false;
+    float horizontalInput;
     //bool jumpClicked = false;
     public enum PlayerState { Idle, Run, Attack, Die, Jump }
 
@@ -36,27 +38,27 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
-       
+          TakeInputs();
+        if (isLocked)
+            return;
+        EvaluateState();
     }
 
     private void FixedUpdate()
     {
-        if (isLocked)
-            return;
 
-        EvaluateState();
+
 
         switch (state)
         {
             case PlayerState.Idle:
                 animator.Play("idle-Animation");
                 rb.linearVelocity = new Vector2(0, rb.linearVelocityY);
-                StopAllCoroutines();
+                rb.linearDamping = 5;
+                rb.gravityScale = 1;
+                //StopAllCoroutines();
                 break;
             case PlayerState.Run:
-                StopAllCoroutines();
                 Run();
                 break;
             case PlayerState.Attack:
@@ -67,7 +69,6 @@ public class PlayerController : MonoBehaviour
                 //OnDie();
                 break;
             case PlayerState.Jump:
-                StopAllCoroutines();
                 Jump();
                 
                 break;
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
     void Run()
     {
+        rb.linearDamping = 5;
         animator.Play("Run_Animation");
         if (Input.GetKey(KeyCode.A) && GroundCheck())
         {
@@ -118,20 +120,28 @@ public class PlayerController : MonoBehaviour
         //Bêdzie trzeba ca³¹ obs³ugê œcian jakoœ przenieœæ albo obs³u¿yæ ten wyj¹tek kopiuj¹c fragment kodu do stanu run
 
         //dodac maxjumps - max liczba mozliwych skokow
-        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck() && jumpCounter == 0)
+
+        if (rb.linearVelocityY < -1)
+            animator.Play("fall");
+        else
+            animator.Play("jump");
+
+        rb.linearDamping = 2;
+        if (jump && GroundCheck() && jumpCounter == 0)
         {
             print("skok");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 1;
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && jumpCounter == 1)
+        else if (jump && jumpCounter == 1)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
+           
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && WallCheck())
+        else if (jump && (WallCheckLeft() || WallCheckRight()))
         {
             wallJump = true;
             rb.gravityScale = 1;
@@ -139,11 +149,10 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(Input.GetAxis("Horizontal")*3f, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
             Invoke(nameof(ChangeJumpReady),0.2f);
+            
         }
 
-        if (!GroundCheck())
-        {
-            if (WallCheck() && !wallJump)
+            if ((WallCheckLeft() || WallCheckRight()) && (horizontalInput != 0) && !wallJump)
             {
                 rb.gravityScale = 0.3f;
                 rb.linearVelocity = new Vector2(0, 0);
@@ -165,13 +174,9 @@ public class PlayerController : MonoBehaviour
                 // Debug - wyœwietlanie wartoœci w konsoli, aby zobaczyæ, czy ograniczenie dzia³a
                 Debug.Log($"Current: {currentVelocity.x}, Clamped: {clampedVelocity.x}, Lerped: {lerpedVelocity.x}");
             }
-        }
-
-        //to nie dzia³a trzeba zrobiæ animacje
-        if (rb.linearVelocity.y < 0)
-            spriteRenderer.sprite = fallSprite;
-        else if (rb.linearVelocity.y > 0)
-            spriteRenderer.sprite = jumpSprite;
+        
+        jump = false;
+       
     }
 
     void EvaluateState()
@@ -184,14 +189,22 @@ public class PlayerController : MonoBehaviour
         {
             ChangeCharacterState(PlayerState.Attack);
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (jump )
         {
-            ChangeCharacterState(PlayerState.Jump);
+            ChangeCharacterState(PlayerState.Jump );
         }
-        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && GroundCheck() && rb.linearVelocityY < 1f)
+        else if (horizontalInput != 0 && GroundCheck() && rb.linearVelocityY < 0.1f && rb.linearVelocityY > -0.1f && state != PlayerState.Jump)
         {
             ChangeCharacterState(PlayerState.Run);
         }
+    }
+
+    void TakeInputs()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+
+        if (!jump)
+            jump = Input.GetKeyDown(KeyCode.Space);
     }
 
     void ChangeCharacterState(PlayerState playerState)
@@ -207,49 +220,81 @@ public class PlayerController : MonoBehaviour
 
     bool GroundCheck()
     {
-        bool centerHit = Physics2D.Raycast(transform.position, Vector2.down, 0.65f, whatIsGround);
-
-        bool leftHit = Physics2D.Raycast(new Vector2(transform.position.x - 0.3f, transform.position.y), Vector2.down, 0.65f, whatIsGround);
-
-        bool leftHit1 = Physics2D.Raycast(new Vector2(transform.position.x - 0.15f, transform.position.y), Vector2.down, 0.65f, whatIsGround);
-
-        bool rightHit = Physics2D.Raycast(new Vector2(transform.position.x + 0.3f, transform.position.y), Vector2.down, 0.65f, whatIsGround);
-
-        bool rightHit1 = Physics2D.Raycast(new Vector2(transform.position.x + 0.15f, transform.position.y), Vector2.down, 0.65f, whatIsGround);
-
-        return centerHit || leftHit || rightHit || leftHit1 || rightHit1;
+        return Physics2D.BoxCast(transform.position - new Vector3(0,0.4f,0), new Vector2(0.8f, 0.3f),0f, Vector2.down, 0.4f, whatIsGround);
     }
 
-    bool WallCheck()
+    bool WallCheckRight()
     {
-        bool centerHit = Physics2D.Raycast(transform.position, Vector2.right, 0.65f, whatIsGround);
-        bool upHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.2f), Vector2.right, 0.6f, whatIsGround);
-        bool downHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.2f), Vector2.right, 0.6f, whatIsGround);
-        bool upHit1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + 0.2f), Vector2.left, 0.6f, whatIsGround);
-        bool downHit1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.2f), Vector2.left, 0.6f, whatIsGround);
-        bool centerHit1 = Physics2D.Raycast(transform.position, Vector2.left, 0.6f, whatIsGround);
-        return centerHit || upHit || downHit || centerHit1 || upHit1 || downHit1;
+        return Physics2D.BoxCast(transform.position - new Vector3(0, 0.1f, 0), new Vector2(0.3f, 0.8f), 0f, Vector2.right, 0.4f, whatIsGround);
     }
 
-    void OnDrawGizmos()
+    bool WallCheckLeft()
     {
-        Debug.DrawRay(transform.position, Vector2.down * 0.65f, Color.red);
-        Debug.DrawRay(new Vector2(transform.position.x - 0.3f, transform.position.y), Vector2.down * 0.65f, Color.green);
-        Debug.DrawRay(new Vector2(transform.position.x + 0.3f, transform.position.y), Vector2.down * 0.65f, Color.blue);
+        return Physics2D.BoxCast(transform.position - new Vector3(0, 0.1f, 0), new Vector2(0.3f, 0.8f), 0f, Vector2.left, 0.4f, whatIsGround);
+    }
+        void OnDrawGizmos()
+    {
+        // Pozycja pocz¹tkowa boxa
+        Vector3 origin = transform.position - new Vector3(0, 0.4f, 0);
 
-        // Definiowanie kolorów dla promieni (zielony gdy nie ma kolizji, czerwony gdy jest kolizja)
-        Color noHitColor = new Color(0, 1, 0, 0.5f); // Zielony pó³przezroczysty
-        Color hitColor = new Color(1, 0, 0, 0.5f);   // Czerwony pó³przezroczysty
+        //// Rysowanie BoxCast
+        //DrawBoxCastGizmo(origin, 0.8f, 0.2f, 0.1f);
 
-        // Prawe promienie
-        DrawRayWithHitCheck(transform.position, Vector2.right * 0.65f, whatIsGround, noHitColor, hitColor);
-        DrawRayWithHitCheck(new Vector2(transform.position.x, transform.position.y + 0.2f), Vector2.right * 0.65f, whatIsGround, noHitColor, hitColor);
-        DrawRayWithHitCheck(new Vector2(transform.position.x, transform.position.y - 0.2f), Vector2.right * 0.65f, whatIsGround, noHitColor, hitColor);
+        // Pozycja pocz¹tkowa BoxCast
+        Vector3 origin1 = transform.position - new Vector3(0, 0.1f,0);
 
-        // Lewe promienie
-        DrawRayWithHitCheck(transform.position, Vector2.left * 0.65f, whatIsGround, noHitColor, hitColor);
-        DrawRayWithHitCheck(new Vector2(transform.position.x, transform.position.y + 0.2f), Vector2.left * 0.65f, whatIsGround, noHitColor, hitColor);
-        DrawRayWithHitCheck(new Vector2(transform.position.x, transform.position.y - 0.2f), Vector2.left * 0.65f, whatIsGround, noHitColor, hitColor);
+        // Wymiary BoxCast
+        float width = 0.3f;
+        float height = 0.8f;
+
+        // Kierunek i odleg³oœæ rzutu
+        Vector3 direction = Vector3.right;
+        float distance = 0.4f;
+
+        // Rysowanie górnego raya
+        Vector3 topRayStart = origin1 + new Vector3(0, height / 2, 0);
+        Vector3 topRayEnd = topRayStart + direction * distance;
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(topRayStart, topRayEnd);
+
+        // Rysowanie dolnego raya
+        Vector3 bottomRayStart = origin1 - new Vector3(0, height / 2, 0);
+        Vector3 bottomRayEnd = bottomRayStart + direction * distance;
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(bottomRayStart, bottomRayEnd);
+
+        // Opcjonalnie - linie ³¹cz¹ce koñce rayów dla lepszej wizualizacji
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(topRayStart, bottomRayStart);
+        Gizmos.DrawLine(topRayEnd, bottomRayEnd);
+
+        // Pozycja pocz¹tkowa BoxCast (z przesuniêciem o 0.1f w dó³)
+        Vector3 leftOrigin = transform.position - new Vector3(0, 0.1f, 0);
+
+        // Wymiary BoxCast
+        float leftWidth = 0.3f;
+        float leftHeight = 0.8f;
+
+        // Kierunek i odleg³oœæ rzutu
+        Vector3 leftDirection = Vector2.left;
+        float leftDistance = 0.4f;
+
+        // Rysowanie górnego raya
+        Vector3 leftTopRayStart = leftOrigin + new Vector3(0, leftHeight / 2, 0);
+        Vector3 leftTopRayEnd = leftTopRayStart + leftDirection * leftDistance;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(leftTopRayStart, leftTopRayEnd);
+
+        // Rysowanie dolnego raya
+        Vector3 leftBottomRayStart = leftOrigin - new Vector3(0, leftHeight / 2, 0);
+        Vector3 leftBottomRayEnd = leftBottomRayStart + leftDirection * leftDistance;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(leftBottomRayStart, leftBottomRayEnd);
+
+        // Opcjonalnie - linie ³¹cz¹ce koñce rayów dla lepszej wizualizacji
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(leftTopRayStart, leftBottomRayStart);
+        Gizmos.DrawLine(leftTopRayEnd, leftBottomRayEnd);
     }
 
     private void DrawRayWithHitCheck(Vector2 start, Vector2 direction, LayerMask layer, Color noHitColor, Color hitColor)
@@ -282,6 +327,37 @@ public class PlayerController : MonoBehaviour
     {
         isLocked = false;
     }
+
+    private void DrawBoxCastGizmo(Vector3 origin, float width, float height, float distance)
+    {
+        // Narysuj box w pozycji pocz¹tkowej
+        Gizmos.color = Color.green;
+        Vector3 boxSize = new Vector3(width, height, 0.01f);
+        Gizmos.DrawWireCube(origin, boxSize);
+
+        // Narysuj box w pozycji koñcowej
+        Gizmos.color = Color.red;
+        Vector3 endPosition = origin + Vector3.down * distance;
+        Gizmos.DrawWireCube(endPosition, boxSize);
+
+        // Narysuj linie ³¹cz¹ce rogi obu boxów
+        Gizmos.color = Color.yellow;
+        Vector3 topLeft = origin + new Vector3(-width / 2, height / 2, 0);
+        Vector3 topRight = origin + new Vector3(width / 2, height / 2, 0);
+        Vector3 bottomLeft = origin + new Vector3(-width / 2, -height / 2, 0);
+        Vector3 bottomRight = origin + new Vector3(width / 2, -height / 2, 0);
+
+        Vector3 endTopLeft = endPosition + new Vector3(-width / 2, height / 2, 0);
+        Vector3 endTopRight = endPosition + new Vector3(width / 2, height / 2, 0);
+        Vector3 endBottomLeft = endPosition + new Vector3(-width / 2, -height / 2, 0);
+        Vector3 endBottomRight = endPosition + new Vector3(width / 2, -height / 2, 0);
+
+        Gizmos.DrawLine(topLeft, endTopLeft);
+        Gizmos.DrawLine(topRight, endTopRight);
+        Gizmos.DrawLine(bottomLeft, endBottomLeft);
+        Gizmos.DrawLine(bottomRight, endBottomRight);
+    }
+
 }
 
 

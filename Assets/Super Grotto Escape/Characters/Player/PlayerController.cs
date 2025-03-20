@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -21,12 +22,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Sprite fallSprite;
     [SerializeField] LayerMask whatIsGround;
     [SerializeField] float smoothTime = 0.2f;
+    [SerializeField] float distanceToWall = 0.5f;
+    [SerializeField] float groundXSize = 0.6f;
 
     [SerializeField]int jumpCounter = 0;
     bool wallJump = false;
     bool canChangeState = true;
     [SerializeField]bool jump = false;
-    float horizontalInput;
+    [SerializeField]float horizontalInput;
+    [SerializeField] bool groudnededed;
+    [SerializeField] float boxCastXMiniOffset;
 
 
 
@@ -42,7 +47,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-
         TakeInputs();
 
         if (isLocked) // aktualnie znaczy - jesli gracz atakuje
@@ -50,18 +54,18 @@ public class PlayerController : MonoBehaviour
 
         EvaluateState();
 
-        if (state != PlayerState.Jump)//(GroundCheck())
+        if (state == PlayerState.Idle)//(GroundCheck())
         {
             //print("ground");
             //jump = false;
             jumpCounter = 0;
-
         }
+
     }
 
     private void FixedUpdate()
     {
-
+        groudnededed = GroundCheck();
         switch (state)
         {
             case PlayerState.Idle:
@@ -154,19 +158,19 @@ public class PlayerController : MonoBehaviour
             // /\ wcale nie, oznacza rest liczby mo¿liwych skokow (chyba)
            
         }
-        else if (jump && (WallCheckLeft() || WallCheckRight()))
+        else if (jump && horizontalInput != 0 && (WallCheckLeft() || WallCheckRight()))
         {
             print("wall jump");
             wallJump = true;
             rb.gravityScale = 1;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
-            rb.AddForce(new Vector2(Input.GetAxis("Horizontal")*3f, jumpPower), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * -100f, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
             Invoke(nameof(ChangeJumpReady), 0.2f);
             
         }
 
-        if ((WallCheckLeft() || WallCheckRight()) && (horizontalInput != 0) && !wallJump)
+        if (((WallCheckLeft() && horizontalInput == -1) || (WallCheckRight() && horizontalInput == 1)) && !wallJump)
         {
             print("wall slide");
             rb.gravityScale = 0.3f;
@@ -190,6 +194,9 @@ public class PlayerController : MonoBehaviour
             //// Debug - wyœwietlanie wartoœci w konsoli, aby zobaczyæ, czy ograniczenie dzia³a
             //Debug.Log($"Current: {currentVelocity.x}, Clamped: {clampedVelocity.x}, Lerped: {lerpedVelocity.x}");
         }
+
+        //if (GroundCheck())
+        //    state = PlayerState.Idle;
         
         jump = false;
        
@@ -207,9 +214,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (jump)
         {
-            ChangeCharacterState(PlayerState.Jump );
+            ChangeCharacterState(PlayerState.Jump);
         }
-        else if (horizontalInput != 0 && GroundCheck() && rb.linearVelocityY < 0.1f && rb.linearVelocityY > -0.1f && state != PlayerState.Jump)
+        else if (horizontalInput != 0 && GroundCheck() && rb.linearVelocityY < 0.1f && rb.linearVelocityY > -0.1f)// && state != PlayerState.Jump)
         {
             ChangeCharacterState(PlayerState.Run);
         }
@@ -217,7 +224,7 @@ public class PlayerController : MonoBehaviour
 
     void TakeInputs()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
 
         if (!jump)
             jump = Input.GetKeyDown(KeyCode.Space);
@@ -236,104 +243,21 @@ public class PlayerController : MonoBehaviour
 
     bool GroundCheck()
     {
-        return Physics2D.BoxCast(transform.position - new Vector3(0,0.4f,0), new Vector2(0.8f, 0.3f),0f, Vector2.down, 0.4f, whatIsGround);
+        return Physics2D.BoxCast(transform.position - new Vector3(-GetComponent<BoxCollider2D>().offset.x + boxCastXMiniOffset,0.4f,0), new Vector2(groundXSize, 0.3f),0f, Vector2.down, 0.4f, whatIsGround);
     }
 
     bool WallCheckRight()
     {
-        return Physics2D.BoxCast(transform.position - new Vector3(0, 0.1f, 0), new Vector2(0.3f, 0.8f), 0f, Vector2.right, 0.4f, whatIsGround);
+        return Physics2D.Raycast(transform.position, transform.right, distanceToWall, whatIsGround);
+        //return Physics2D.BoxCast(transform.position - new Vector3(0, 0.1f, 0), new Vector2(0.3f, 0.8f), 0f, Vector2.right, 0.4f, whatIsGround);
     }
 
     bool WallCheckLeft()
     {
-        return Physics2D.BoxCast(transform.position - new Vector3(0, 0.1f, 0), new Vector2(0.3f, 0.8f), 0f, Vector2.left, 0.4f, whatIsGround);
+        return Physics2D.Raycast(transform.position, -transform.right, distanceToWall, whatIsGround);
+        //return Physics2D.BoxCast(transform.position - new Vector3(0, 0.1f, 0), new Vector2(0.3f, 0.8f), 0f, Vector2.left, 0.4f, whatIsGround);
     }
     
-    void OnDrawGizmos()
-    {
-        // Pozycja pocz¹tkowa boxa
-        Vector3 origin = transform.position - new Vector3(0, 0.4f, 0);
-
-        //// Rysowanie BoxCast
-        //DrawBoxCastGizmo(origin, 0.8f, 0.2f, 0.1f);
-
-        // Pozycja pocz¹tkowa BoxCast
-        Vector3 origin1 = transform.position - new Vector3(0, 0.1f,0);
-
-        // Wymiary BoxCast
-        float width = 0.3f;
-        float height = 0.8f;
-
-        // Kierunek i odleg³oœæ rzutu
-        Vector3 direction = Vector3.right;
-        float distance = 0.4f;
-
-        // Rysowanie górnego raya
-        Vector3 topRayStart = origin1 + new Vector3(0, height / 2, 0);
-        Vector3 topRayEnd = topRayStart + direction * distance;
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(topRayStart, topRayEnd);
-
-        // Rysowanie dolnego raya
-        Vector3 bottomRayStart = origin1 - new Vector3(0, height / 2, 0);
-        Vector3 bottomRayEnd = bottomRayStart + direction * distance;
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(bottomRayStart, bottomRayEnd);
-
-        // Opcjonalnie - linie ³¹cz¹ce koñce rayów dla lepszej wizualizacji
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(topRayStart, bottomRayStart);
-        Gizmos.DrawLine(topRayEnd, bottomRayEnd);
-
-        // Pozycja pocz¹tkowa BoxCast (z przesuniêciem o 0.1f w dó³)
-        Vector3 leftOrigin = transform.position - new Vector3(0, 0.1f, 0);
-
-        // Wymiary BoxCast
-        float leftWidth = 0.3f;
-        float leftHeight = 0.8f;
-
-        // Kierunek i odleg³oœæ rzutu
-        Vector3 leftDirection = Vector2.left;
-        float leftDistance = 0.4f;
-
-        // Rysowanie górnego raya
-        Vector3 leftTopRayStart = leftOrigin + new Vector3(0, leftHeight / 2, 0);
-        Vector3 leftTopRayEnd = leftTopRayStart + leftDirection * leftDistance;
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(leftTopRayStart, leftTopRayEnd);
-
-        // Rysowanie dolnego raya
-        Vector3 leftBottomRayStart = leftOrigin - new Vector3(0, leftHeight / 2, 0);
-        Vector3 leftBottomRayEnd = leftBottomRayStart + leftDirection * leftDistance;
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(leftBottomRayStart, leftBottomRayEnd);
-
-        // Opcjonalnie - linie ³¹cz¹ce koñce rayów dla lepszej wizualizacji
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(leftTopRayStart, leftBottomRayStart);
-        Gizmos.DrawLine(leftTopRayEnd, leftBottomRayEnd);
-    }
-
-    private void DrawRayWithHitCheck(Vector2 start, Vector2 direction, LayerMask layer, Color noHitColor, Color hitColor)
-    {
-        RaycastHit2D hit = Physics2D.Raycast(start, direction.normalized, direction.magnitude, layer);
-
-        if (hit.collider != null)
-        {
-            // Jeœli jest kolizja, narysuj czerwony promieñ do punktu kolizji
-            Gizmos.color = hitColor;
-            Gizmos.DrawLine(start, hit.point);
-
-            // Narysuj ma³¹ sferê w miejscu kolizji
-            Gizmos.DrawSphere(hit.point, 0.05f);
-        }
-        else
-        {
-            // Jeœli nie ma kolizji, narysuj zielony promieñ na pe³n¹ d³ugoœæ
-            Gizmos.color = noHitColor;
-            Gizmos.DrawLine(start, start + direction);
-        }
-    }
 
     void UnlockStateChange()
     {
@@ -345,34 +269,10 @@ public class PlayerController : MonoBehaviour
         isLocked = false;
     }
 
-    private void DrawBoxCastGizmo(Vector3 origin, float width, float height, float distance)
+    void OnDrawGizmos()
     {
-        // Narysuj box w pozycji pocz¹tkowej
-        Gizmos.color = Color.green;
-        Vector3 boxSize = new Vector3(width, height, 0.01f);
-        Gizmos.DrawWireCube(origin, boxSize);
-
-        // Narysuj box w pozycji koñcowej
-        Gizmos.color = Color.red;
-        Vector3 endPosition = origin + Vector3.down * distance;
-        Gizmos.DrawWireCube(endPosition, boxSize);
-
-        // Narysuj linie ³¹cz¹ce rogi obu boxów
-        Gizmos.color = Color.yellow;
-        Vector3 topLeft = origin + new Vector3(-width / 2, height / 2, 0);
-        Vector3 topRight = origin + new Vector3(width / 2, height / 2, 0);
-        Vector3 bottomLeft = origin + new Vector3(-width / 2, -height / 2, 0);
-        Vector3 bottomRight = origin + new Vector3(width / 2, -height / 2, 0);
-
-        Vector3 endTopLeft = endPosition + new Vector3(-width / 2, height / 2, 0);
-        Vector3 endTopRight = endPosition + new Vector3(width / 2, height / 2, 0);
-        Vector3 endBottomLeft = endPosition + new Vector3(-width / 2, -height / 2, 0);
-        Vector3 endBottomRight = endPosition + new Vector3(width / 2, -height / 2, 0);
-
-        Gizmos.DrawLine(topLeft, endTopLeft);
-        Gizmos.DrawLine(topRight, endTopRight);
-        Gizmos.DrawLine(bottomLeft, endBottomLeft);
-        Gizmos.DrawLine(bottomRight, endBottomRight);
+        Debug.DrawRay(transform.position, transform.right * distanceToWall, Color.cyan);
+        Debug.DrawRay(transform.position, -transform.right * distanceToWall, Color.cyan);
     }
 
 }

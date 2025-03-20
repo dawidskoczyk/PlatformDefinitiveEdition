@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public enum PlayerState { Idle, Run, Attack, Die, Jump }
+
     [SerializeField] PlayerState state;
     PlayerState currentState;
     PlayerState previousState;
     Animator animator;
     Rigidbody2D rb;
+
     [SerializeField] bool isLocked = false;
     [SerializeField] float maxSpeed = 2f;
     [SerializeField] float jumpPower = 6f;
@@ -18,13 +21,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Sprite fallSprite;
     [SerializeField] LayerMask whatIsGround;
     [SerializeField] float smoothTime = 0.2f;
-    int jumpCounter = 0;
+
+    [SerializeField]int jumpCounter = 0;
     bool wallJump = false;
     bool canChangeState = true;
-    bool jump = false;
+    [SerializeField]bool jump = false;
     float horizontalInput;
-    //bool jumpClicked = false;
-    public enum PlayerState { Idle, Run, Attack, Die, Jump }
+
 
 
     void Start()
@@ -38,16 +41,26 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-          TakeInputs();
-        if (isLocked)
+        
+
+        TakeInputs();
+
+        if (isLocked) // aktualnie znaczy - jesli gracz atakuje
             return;
+
         EvaluateState();
+
+        if (state != PlayerState.Jump)//(GroundCheck())
+        {
+            //print("ground");
+            //jump = false;
+            jumpCounter = 0;
+
+        }
     }
 
     private void FixedUpdate()
     {
-
-
 
         switch (state)
         {
@@ -70,15 +83,12 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Jump:
                 Jump();
-                
                 break;
             default:
                 break;
         }
-        //Invoke(nameof(Unlocked), 0.2f);
-        
-
     }
+
     IEnumerator Attack()
     {
         isLocked = true;
@@ -93,6 +103,7 @@ public class PlayerController : MonoBehaviour
         rb.gravityScale = 1f;
         rb.linearVelocity = savedVelocity;
         if (!GroundCheck()) ChangeCharacterState(PlayerState.Jump);
+        else ChangeCharacterState(PlayerState.Idle);
     }
 
     void Run()
@@ -126,54 +137,59 @@ public class PlayerController : MonoBehaviour
         else
             animator.Play("jump");
 
-        rb.linearDamping = 2;
-        if (jump && GroundCheck() && jumpCounter == 0)
+        rb.linearDamping = 5;
+        if (jump && GroundCheck())// && jumpCounter == 0)
         {
-            print("skok");
+            print("jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 1;
         }
         else if (jump && jumpCounter == 1)
         {
+            print("double jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
+            // /\ wcale nie, oznacza rest liczby mo¿liwych skokow (chyba)
            
         }
         else if (jump && (WallCheckLeft() || WallCheckRight()))
         {
+            print("wall jump");
             wallJump = true;
             rb.gravityScale = 1;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(Input.GetAxis("Horizontal")*3f, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
-            Invoke(nameof(ChangeJumpReady),0.2f);
+            Invoke(nameof(ChangeJumpReady), 0.2f);
             
         }
 
-            if ((WallCheckLeft() || WallCheckRight()) && (horizontalInput != 0) && !wallJump)
-            {
-                rb.gravityScale = 0.3f;
-                rb.linearVelocity = new Vector2(0, 0);
-            }
-            else
-            {
-                rb.gravityScale = 1;
-                rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeed, 0), ForceMode2D.Force);
-                Vector2 currentVelocity = rb.linearVelocity;
-                Vector2 clampedVelocity = currentVelocity;
+        if ((WallCheckLeft() || WallCheckRight()) && (horizontalInput != 0) && !wallJump)
+        {
+            print("wall slide");
+            rb.gravityScale = 0.3f;
+            rb.linearVelocity = new Vector2(0, 0);
+        }
+        else
+        {
+            print("jump else");
+            rb.gravityScale = 1;
+            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeed, 0), ForceMode2D.Force);
+            Vector2 currentVelocity = rb.linearVelocity;
+            Vector2 clampedVelocity = currentVelocity;
 
-                // U¿yj bardziej rozs¹dnej wartoœci mno¿nika, np. 0.5f dla powietrza
-                clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed * 0.5f, maxSpeed * 0.5f);
+            //// U¿yj bardziej rozs¹dnej wartoœci mno¿nika, np. 0.5f dla powietrza
+            //clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed * 0.5f, maxSpeed * 0.5f);
 
-                // U¿yj wartoœci smoothTime, która zapewni zauwa¿aln¹ zmianê
-                Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, 10); //smoothTime + Time.deltaTime);
-                rb.linearVelocity = lerpedVelocity;
+            //// U¿yj wartoœci smoothTime, która zapewni zauwa¿aln¹ zmianê
+            //Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, 10); //smoothTime + Time.deltaTime);
+            //rb.linearVelocity = lerpedVelocity;
 
-                // Debug - wyœwietlanie wartoœci w konsoli, aby zobaczyæ, czy ograniczenie dzia³a
-                Debug.Log($"Current: {currentVelocity.x}, Clamped: {clampedVelocity.x}, Lerped: {lerpedVelocity.x}");
-            }
+            //// Debug - wyœwietlanie wartoœci w konsoli, aby zobaczyæ, czy ograniczenie dzia³a
+            //Debug.Log($"Current: {currentVelocity.x}, Clamped: {clampedVelocity.x}, Lerped: {lerpedVelocity.x}");
+        }
         
         jump = false;
        
@@ -189,7 +205,7 @@ public class PlayerController : MonoBehaviour
         {
             ChangeCharacterState(PlayerState.Attack);
         }
-        else if (jump )
+        else if (jump)
         {
             ChangeCharacterState(PlayerState.Jump );
         }
@@ -232,7 +248,8 @@ public class PlayerController : MonoBehaviour
     {
         return Physics2D.BoxCast(transform.position - new Vector3(0, 0.1f, 0), new Vector2(0.3f, 0.8f), 0f, Vector2.left, 0.4f, whatIsGround);
     }
-        void OnDrawGizmos()
+    
+    void OnDrawGizmos()
     {
         // Pozycja pocz¹tkowa boxa
         Vector3 origin = transform.position - new Vector3(0, 0.4f, 0);

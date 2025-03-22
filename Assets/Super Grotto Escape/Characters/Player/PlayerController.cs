@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 1;
         }
-        else if (jump && jumpCounter == 1)
+        else if (jump && jumpCounter == 1 && (!WallCheckLeft() || !WallCheckRight()) )
         {
             print("double jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
@@ -160,11 +160,17 @@ public class PlayerController : MonoBehaviour
         }
         else if (jump && horizontalInput != 0 && (WallCheckLeft() || WallCheckRight()))
         {
-            print("wall jump");
+            print("wall jump"); // i tu te¿ trzeba pomyœleæ nad czasem kojota,
             wallJump = true;
+            //if(jumpCounter == 1) jumpCounter = 0; //po dotkniêciu œciany ka¿dy skok to double jump
             rb.gravityScale = 1;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
-            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * -100f, jumpPower), ForceMode2D.Impulse);
+
+            if((horizontalInput == -1 && WallCheckLeft()) ||(horizontalInput == 1 && WallCheckRight()))
+                rb.AddForce(new Vector2(horizontalInput * -30f, jumpPower), ForceMode2D.Impulse);
+            else
+                rb.AddForce(new Vector2(horizontalInput * 30f, jumpPower), ForceMode2D.Impulse);
+
             jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
             Invoke(nameof(ChangeJumpReady), 0.2f);
             
@@ -173,6 +179,7 @@ public class PlayerController : MonoBehaviour
         if (((WallCheckLeft() && horizontalInput == -1) || (WallCheckRight() && horizontalInput == 1)) && !wallJump)
         {
             print("wall slide");
+            //if (jumpCounter == 1) jumpCounter = 0;
             rb.gravityScale = 0.3f;
             rb.linearVelocity = new Vector2(0, 0);
         }

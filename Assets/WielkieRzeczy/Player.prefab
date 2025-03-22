@@ -210,8 +210,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   smoothTime: 1
+  distanceToWall: 0.5
+  groundXSize: 0.6
   jumpCounter: 0
   jump: 0
+  horizontalInput: 0
+  groudnededed: 0
+  boxCastXMiniOffset: 0
 --- !u!70 &4942055510377147837
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

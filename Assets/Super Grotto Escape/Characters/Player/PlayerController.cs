@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 1;
         }
-        else if (jump && jumpCounter == 1 && (!WallCheckLeft() || !WallCheckRight()) )
+        else if (jump && jumpCounter == 1 && !(WallCheckLeft() || WallCheckRight()))
         {
             print("double jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹

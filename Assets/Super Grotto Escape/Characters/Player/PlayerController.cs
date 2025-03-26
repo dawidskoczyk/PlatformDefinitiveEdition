@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -31,9 +32,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]bool jump = false;
     [SerializeField]float horizontalInput;
     [SerializeField] bool groudnededed;
+    [SerializeField] bool doubleJumpAfterWall;
     [SerializeField] float boxCastXMiniOffset;
-
-
+    [SerializeField] GameObject shoot1;
+    [SerializeField] Transform gunSpot;
+    [SerializeField] float shootSpeed;
+    bool canAttack = false;
 
     void Start()
     {
@@ -73,6 +77,7 @@ public class PlayerController : MonoBehaviour
                 rb.linearVelocity = new Vector2(0, rb.linearVelocityY);
                 rb.linearDamping = 5;
                 rb.gravityScale = 1;
+                doubleJumpAfterWall = true;
                 //StopAllCoroutines();
                 break;
             case PlayerState.Run:
@@ -95,19 +100,24 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Attack()
     {
+        //canAttack = false;
+        print(canAttack);
         isLocked = true;
-
         animator.Play("Shoot_Animation");
-        rb.gravityScale = 0;
         Vector2 savedVelocity = rb.linearVelocity;
-        rb.linearVelocity = new Vector2 (0, 0);
+        rb.linearVelocity = Vector2.zero;
         yield return new WaitForSeconds(0.3f);
-
-        isLocked = false;
-        rb.gravityScale = 1f;
+        GameObject sh1 = Instantiate(shoot1, gunSpot.position, Quaternion.identity);
+        Vector2 shootDirection = spriteRenderer.flipX ? Vector2.left: Vector2.right;
+        sh1.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootSpeed, ForceMode2D.Impulse);
         rb.linearVelocity = savedVelocity;
+       
+        isLocked = false;
+        
         if (!GroundCheck()) ChangeCharacterState(PlayerState.Jump);
         else ChangeCharacterState(PlayerState.Idle);
+
+        canAttack = false;
     }
 
     void Run()
@@ -151,12 +161,14 @@ public class PlayerController : MonoBehaviour
         }
         else if (jump && jumpCounter == 1 && !(WallCheckLeft() || WallCheckRight()))
         {
+            if(!doubleJumpAfterWall)  return; 
             print("double jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
+            doubleJumpAfterWall = false;
             // /\ wcale nie, oznacza rest liczby mo¿liwych skokow (chyba)
-           
+
         }
         else if (jump && horizontalInput != 0 && (WallCheckLeft() || WallCheckRight()))
         {
@@ -171,7 +183,7 @@ public class PlayerController : MonoBehaviour
             else
                 rb.AddForce(new Vector2(horizontalInput * 30f, jumpPower), ForceMode2D.Impulse);
 
-            jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
+            jumpCounter = 1; // Oznacza, ¿e wykorzystaliœmy oba skoki
             Invoke(nameof(ChangeJumpReady), 0.2f);
             
         }
@@ -215,7 +227,7 @@ public class PlayerController : MonoBehaviour
         {
             ChangeCharacterState(PlayerState.Idle);
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0))
+        else if (canAttack)
         {
             ChangeCharacterState(PlayerState.Attack);
         }
@@ -231,8 +243,11 @@ public class PlayerController : MonoBehaviour
 
     void TakeInputs()
     {
+        if(!canAttack)
+        canAttack = Input.GetKeyDown(KeyCode.Mouse0);
         horizontalInput = Input.GetAxisRaw("Horizontal");
-
+        if(horizontalInput < 0) {spriteRenderer.flipX = true; }
+        else if (horizontalInput > 0) { spriteRenderer.flipX = false; }
         if (!jump)
             jump = Input.GetKeyDown(KeyCode.Space);
     }

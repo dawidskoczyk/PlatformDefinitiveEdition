@@ -4,9 +4,10 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
-    public enum PlayerState { Idle, Run, Attack, Die, Jump }
+    public enum PlayerState { Idle, Run, Attack, Die, Jump, DashAttack }
 
     [SerializeField] PlayerState state;
     PlayerState currentState;
@@ -37,8 +38,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject shoot1;
     [SerializeField] Transform gunSpot;
     [SerializeField] float shootSpeed;
-    bool canAttack = false;
-
+    [SerializeField] bool canAttack = false;
+    [SerializeField] bool dashAttack = false;
+    [SerializeField] float chargeTimer = 0f;
     void Start()
     {
         state = PlayerState.Idle;
@@ -86,6 +88,10 @@ public class PlayerController : MonoBehaviour
                 if (!isLocked)
                     StartCoroutine(Attack());
                 break;
+            case PlayerState.DashAttack:
+                if (!isLocked)
+                    StartCoroutine(DashAttack());
+                break;
             case PlayerState.Die:
                 StopAllCoroutines();
                 //OnDie();
@@ -100,6 +106,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Attack()
     {
+        if (dashAttack)
+            yield return null;
         //canAttack = false;
         isLocked = true;
         print("attack");
@@ -125,6 +133,64 @@ public class PlayerController : MonoBehaviour
         else ChangeCharacterState(PlayerState.Idle);
 
         canAttack = false;
+    }
+
+    IEnumerator MeleeAttack()
+    {
+
+        yield return new WaitForSeconds(0.3f);
+    }
+
+    IEnumerator DashAttack()
+    {
+        isLocked = true;
+        rb.gravityScale = 0.1f;
+        // Charging duration (adjust as needed)
+        float chargeDuration = 1f;
+
+        // Charge visual or gameplay feedback can be added here
+        while (chargeTimer < chargeDuration)
+        {
+            // Optional: Add charging mechanics
+            // For example, visual charge effect, building up power, etc.
+            chargeTimer += Time.deltaTime;
+            if (Input.GetMouseButtonUp(0)) // Left mouse button
+            {
+                break;
+            }
+            // Allow cancellation during charge
+            if (Input.GetKeyUp(KeyCode.Mouse1))
+            {
+                // Reset state if canceled
+                isLocked = false;
+                dashAttack = false;
+                ChangeCharacterState(PlayerState.Idle);
+                yield break;
+            }
+            yield return null;
+        }
+
+        // Determine dash direction
+        Vector3 shootDirection;
+        shootDirection = Input.mousePosition;
+        shootDirection.z = 0.0f;
+        shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
+        shootDirection = shootDirection - transform.position;
+        shootDirection.Normalize(); // Ensure consistent dash speed
+
+        // Perform dash with potentially increased force based on charge time
+        float dashForce = 500f * (1f + (chargeTimer / chargeDuration));
+        rb.AddForce(shootDirection * dashForce, ForceMode2D.Impulse);
+
+        // Dash duration
+        yield return new WaitForSeconds(0.3f);
+        rb.gravityScale = 1f;
+        // Reset states
+        isLocked = false;
+        dashAttack = false;
+        ChangeCharacterState(PlayerState.Idle);
+        if (!GroundCheck()) ChangeCharacterState(PlayerState.Jump);
+        chargeTimer = 0f;
     }
 
     void Run()
@@ -158,7 +224,7 @@ public class PlayerController : MonoBehaviour
         else
             animator.Play("jump");
 
-        rb.linearDamping = 5;
+        rb.linearDamping = 2;
         if (jump && GroundCheck())// && jumpCounter == 0)
         {
             print("jump");
@@ -234,7 +300,12 @@ public class PlayerController : MonoBehaviour
         {
             ChangeCharacterState(PlayerState.Idle);
         }
-        else if (canAttack && !isLocked)
+        else if (dashAttack && !isLocked)
+        {
+            ChangeCharacterState(PlayerState.DashAttack);
+            canAttack = false;
+        }
+        else if (canAttack && !isLocked )
         {
             ChangeCharacterState(PlayerState.Attack);
         }
@@ -252,6 +323,9 @@ public class PlayerController : MonoBehaviour
     {
         if(!canAttack)
             canAttack = Input.GetKeyDown(KeyCode.Mouse0);
+
+        if (!dashAttack)
+            dashAttack = Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.Mouse1);
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
         if(horizontalInput < 0) {spriteRenderer.flipX = true; }

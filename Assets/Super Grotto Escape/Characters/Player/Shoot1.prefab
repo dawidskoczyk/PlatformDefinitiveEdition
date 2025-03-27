@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8376704445230853973}
   - component: {fileID: 161625799569187803}
   - component: {fileID: 30886881312712540}
+  - component: {fileID: -3598716389570033828}
   m_Layer: 0
   m_Name: Shoot1
   m_TagString: Untagged
@@ -155,7 +156,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -176,3 +177,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0.00000010280885, y: -0.012576969}
   m_Size: {x: 0.41615465, y: 0.18977234}
   m_Direction: 1
+--- !u!114 &-3598716389570033828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8734017430371138061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501d357ca73c9b649adf039a5d4a46a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

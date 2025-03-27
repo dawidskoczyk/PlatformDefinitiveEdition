@@ -1650,6 +1650,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 387955707724019395, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 838349910823390270, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 892618014632073147, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -1725,6 +1733,10 @@ PrefabInstance:
     - target: {fileID: 5906866604545623231, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
       propertyPath: distanceToWall
       value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8355099577178010881, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.464
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

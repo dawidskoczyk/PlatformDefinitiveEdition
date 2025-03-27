@@ -51,11 +51,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-        TakeInputs();
-
         if (isLocked) // aktualnie znaczy - jesli gracz atakuje
             return;
 
+        TakeInputs();
         EvaluateState();
 
         if (state == PlayerState.Idle)//(GroundCheck())
@@ -84,7 +83,8 @@ public class PlayerController : MonoBehaviour
                 Run();
                 break;
             case PlayerState.Attack:
-                StartCoroutine(Attack());
+                if (!isLocked)
+                    StartCoroutine(Attack());
                 break;
             case PlayerState.Die:
                 StopAllCoroutines();
@@ -101,15 +101,22 @@ public class PlayerController : MonoBehaviour
     IEnumerator Attack()
     {
         //canAttack = false;
-        print(canAttack);
         isLocked = true;
+        print("attack");
         animator.Play("Shoot_Animation");
         Vector2 savedVelocity = rb.linearVelocity;
         rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0;
         yield return new WaitForSeconds(0.3f);
-        GameObject sh1 = Instantiate(shoot1, gunSpot.position, Quaternion.identity);
+       
+        //strza³
+        Vector2 shotPosition = spriteRenderer.flipX ? transform.TransformPoint(new Vector2(-gunSpot.localPosition.x, gunSpot.localPosition.y)) : gunSpot.position;
+        GameObject sh1 = Instantiate(shoot1, shotPosition, Quaternion.identity);
         Vector2 shootDirection = spriteRenderer.flipX ? Vector2.left: Vector2.right;
         sh1.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootSpeed, ForceMode2D.Impulse);
+        if(spriteRenderer.flipX) sh1.GetComponent<SpriteRenderer>().flipX = true;
+
+        rb.gravityScale = 1;
         rb.linearVelocity = savedVelocity;
        
         isLocked = false;
@@ -227,7 +234,7 @@ public class PlayerController : MonoBehaviour
         {
             ChangeCharacterState(PlayerState.Idle);
         }
-        else if (canAttack)
+        else if (canAttack && !isLocked)
         {
             ChangeCharacterState(PlayerState.Attack);
         }
@@ -244,7 +251,8 @@ public class PlayerController : MonoBehaviour
     void TakeInputs()
     {
         if(!canAttack)
-        canAttack = Input.GetKeyDown(KeyCode.Mouse0);
+            canAttack = Input.GetKeyDown(KeyCode.Mouse0);
+
         horizontalInput = Input.GetAxisRaw("Horizontal");
         if(horizontalInput < 0) {spriteRenderer.flipX = true; }
         else if (horizontalInput > 0) { spriteRenderer.flipX = false; }

@@ -222,6 +222,9 @@ MonoBehaviour:
   shoot1: {fileID: 0}
   gunSpot: {fileID: 0}
   shootSpeed: 0
+  canAttack: 0
+  dashAttack: 0
+  chargeTimer: 0
 --- !u!70 &4942055510377147837
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

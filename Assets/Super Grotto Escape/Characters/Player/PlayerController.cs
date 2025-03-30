@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]int jumpCounter = 0;
     bool wallJump = false;
     bool canChangeState = true;
-    [SerializeField]bool jump = false;
-    [SerializeField]float horizontalInput;
+    [SerializeField] bool jump = false;
+    [SerializeField] float horizontalInput;
     [SerializeField] bool groudnededed;
     [SerializeField] bool doubleJumpAfterWall;
     [SerializeField] float boxCastXMiniOffset;
@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool canAttack = false;
     [SerializeField] bool dashAttack = false;
     [SerializeField] float chargeTimer = 0f;
+    [SerializeField] bool slam;
+    [SerializeField] bool upAttack;
+
     void Start()
     {
         state = PlayerState.Idle;
@@ -86,7 +89,8 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Attack:
                 if (!isLocked)
-                    StartCoroutine(Attack());
+                    StartCoroutine(MeleeAttack());
+                //StartCoroutine(Attack());
                 break;
             case PlayerState.DashAttack:
                 if (!isLocked)
@@ -137,8 +141,34 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MeleeAttack()
     {
+        isLocked = true;
+       
+        if (upAttack) {
+            Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1), new Vector2(1, 1), 0);
+            Debug.Log("up hit : " + hitCollider);
+            upAttack = false;
+        }else if (slam)
+        {
+            Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, -1), new Vector2(1, 1), 0);
+            Debug.Log("down hit : " + hitCollider);
+            slam = false;
+        }
+        else if (spriteRenderer.flipX)
+        {
+            Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(-1, 0), new Vector2(1, 1), 0);
+            Debug.Log("left hit : " + hitCollider);
+
+        }
+        else
+        {
+            Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(1, 0), new Vector2(1, 1), 0);
+            Debug.Log("right hit : " + hitCollider);
+            
+        }
 
         yield return new WaitForSeconds(0.3f);
+        isLocked = false;
+        canAttack = false;
     }
 
     IEnumerator DashAttack()
@@ -220,7 +250,11 @@ public class PlayerController : MonoBehaviour
         //dodac maxjumps - max liczba mozliwych skokow
 
         if (rb.linearVelocityY < -1)
+        {
             animator.Play("fall");
+            rb.linearDamping = 3;
+          
+        }   
         else
             animator.Play("jump");
 
@@ -275,6 +309,13 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeed, 0), ForceMode2D.Force);
             Vector2 currentVelocity = rb.linearVelocity;
             Vector2 clampedVelocity = currentVelocity;
+            if (slam)
+            {
+                rb.AddForce(new Vector2(0, -jumpPower), ForceMode2D.Impulse);
+                slam = false;
+                Collider2D hitCollider = Physics2D.OverlapBox(transform.position - new Vector3(0, 1f), new Vector2(2, -1), 0f);
+                Debug.Log("SLam : " + hitCollider);
+            }
 
             //// U¿yj bardziej rozs¹dnej wartoœci mno¿nika, np. 0.5f dla powietrza
             //clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed * 0.5f, maxSpeed * 0.5f);
@@ -332,6 +373,10 @@ public class PlayerController : MonoBehaviour
         else if (horizontalInput > 0) { spriteRenderer.flipX = false; }
         if (!jump)
             jump = Input.GetKeyDown(KeyCode.Space);
+        if (!slam)
+            slam = Input.GetKeyDown(KeyCode.S);
+        if (!upAttack)
+            upAttack = Input.GetKeyDown(KeyCode.W);
     }
 
     void ChangeCharacterState(PlayerState playerState)
@@ -377,6 +422,8 @@ public class PlayerController : MonoBehaviour
     {
         Debug.DrawRay(transform.position, transform.right * distanceToWall, Color.cyan);
         Debug.DrawRay(transform.position, -transform.right * distanceToWall, Color.cyan);
+
+        Gizmos.DrawWireCube(transform.position - new Vector3(0,1f) , new Vector2(2, 1));
     }
 
 }

@@ -225,6 +225,8 @@ MonoBehaviour:
   canAttack: 0
   dashAttack: 0
   chargeTimer: 0
+  slam: 0
+  upAttack: 0
 --- !u!70 &4942055510377147837
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

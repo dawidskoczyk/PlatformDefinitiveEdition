@@ -1,0 +1,780 @@
+fileFormatVersion: 2
+guid: 071bc823550462e4db5b5b4e5c34857f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3787567709706132062
+    second: NeonSigns_AlphabetRed_On_0
+  - first:
+      213: -6014503803372059176
+    second: NeonSigns_AlphabetRed_On_1
+  - first:
+      213: -2996000051991934690
+    second: NeonSigns_AlphabetRed_On_2
+  - first:
+      213: 5257893187880826123
+    second: NeonSigns_AlphabetRed_On_3
+  - first:
+      213: 4303845145009008251
+    second: NeonSigns_AlphabetRed_On_4
+  - first:
+      213: 8761178957870624519
+    second: NeonSigns_AlphabetRed_On_5
+  - first:
+      213: 7340235474611278688
+    second: NeonSigns_AlphabetRed_On_6
+  - first:
+      213: 4754750452665565911
+    second: NeonSigns_AlphabetRed_On_7
+  - first:
+      213: 3560675986017014469
+    second: NeonSigns_AlphabetRed_On_8
+  - first:
+      213: 123907277206440037
+    second: NeonSigns_AlphabetRed_On_9
+  - first:
+      213: -3007843641934637603
+    second: NeonSigns_AlphabetRed_On_10
+  - first:
+      213: -3380754919944011255
+    second: NeonSigns_AlphabetRed_On_11
+  - first:
+      213: -4286866830995536167
+    second: NeonSigns_AlphabetRed_On_12
+  - first:
+      213: -8390904776591662871
+    second: NeonSigns_AlphabetRed_On_13
+  - first:
+      213: -6686697647929665326
+    second: NeonSigns_AlphabetRed_On_14
+  - first:
+      213: 3583905381708484359
+    second: NeonSigns_AlphabetRed_On_15
+  - first:
+      213: -720138443378831231
+    second: NeonSigns_AlphabetRed_On_16
+  - first:
+      213: -2436187979839972350
+    second: NeonSigns_AlphabetRed_On_17
+  - first:
+      213: -1617471855934654717
+    second: NeonSigns_AlphabetRed_On_18
+  - first:
+      213: -8397598329966199548
+    second: NeonSigns_AlphabetRed_On_19
+  - first:
+      213: -6025039796339869697
+    second: NeonSigns_AlphabetRed_On_20
+  - first:
+      213: -6634977819996740988
+    second: NeonSigns_AlphabetRed_On_21
+  - first:
+      213: -6317132967966586653
+    second: NeonSigns_AlphabetRed_On_22
+  - first:
+      213: -2052321536368972606
+    second: NeonSigns_AlphabetRed_On_23
+  - first:
+      213: 8024756435682287696
+    second: NeonSigns_AlphabetRed_On_24
+  - first:
+      213: 3260735908526635622
+    second: NeonSigns_AlphabetRed_On_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a5e9344c3bdf6bc0800000000000000
+      internalID: -3787567709706132062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d5c5c338a0388ca0800000000000000
+      internalID: -6014503803372059176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_2
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1908f183d11c66d0800000000000000
+      internalID: -2996000051991934690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_3
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0535923ff9c7f840800000000000000
+      internalID: 5257893187880826123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_4
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7e2d8c4b545abb30800000000000000
+      internalID: 4303845145009008251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_5
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70f618de7d5f59970800000000000000
+      internalID: 8761178957870624519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_6
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0631def1641cdd560800000000000000
+      internalID: 7340235474611278688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_7
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d242ce48544cf140800000000000000
+      internalID: 4754750452665565911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_8
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c2decaa1ff0a6130800000000000000
+      internalID: 3560675986017014469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_9
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 568c9fa130538b100800000000000000
+      internalID: 123907277206440037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_10
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd59196d42ef146d0800000000000000
+      internalID: -3007843641934637603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_11
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9024514ff452511d0800000000000000
+      internalID: -3380754919944011255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_12
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d64b1b745df184c0800000000000000
+      internalID: -4286866830995536167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_13
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e0202700948d8b80800000000000000
+      internalID: -8390904776591662871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_14
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d856b6bae31433a0800000000000000
+      internalID: -6686697647929665326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_15
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70f4851d4f69cb130800000000000000
+      internalID: 3583905381708484359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_16
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 0
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1805d45b6ed8106f0800000000000000
+      internalID: -720138443378831231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_17
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20cdf8790fbe03ed0800000000000000
+      internalID: -2436187979839972350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_18
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 307b2d0bae59d89e0800000000000000
+      internalID: -1617471855934654717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_19
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40d73ffafccb57b80800000000000000
+      internalID: -8397598329966199548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_20
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff7f19d2a32c26ca0800000000000000
+      internalID: -6025039796339869697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_21
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 482af7a83d2dbe3a0800000000000000
+      internalID: -6634977819996740988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_22
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 1
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e8417509090558a0800000000000000
+      internalID: -6317132967966586653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_23
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cce7d3bf60b483e0800000000000000
+      internalID: -2052321536368972606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_24
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0506fd51679ad5f60800000000000000
+      internalID: 8024756435682287696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeonSigns_AlphabetRed_On_25
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 1
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66a371e5806704d20800000000000000
+      internalID: 3260735908526635622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

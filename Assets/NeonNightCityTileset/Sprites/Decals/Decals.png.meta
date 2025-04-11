@@ -1,0 +1,2580 @@
+fileFormatVersion: 2
+guid: 77945cc8087ec734b82c16a7b1e3e46a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9018111846463007574
+    second: Decals_0
+  - first:
+      213: -5300756708933983464
+    second: Decals_1
+  - first:
+      213: -3312338835949399008
+    second: Decals_2
+  - first:
+      213: 1536828842825008735
+    second: Decals_3
+  - first:
+      213: -3586384748753191135
+    second: Decals_4
+  - first:
+      213: -2193985801107402268
+    second: Decals_5
+  - first:
+      213: 7371104610969219585
+    second: Decals_6
+  - first:
+      213: -616988471123618190
+    second: Decals_7
+  - first:
+      213: -966895149905917454
+    second: Decals_8
+  - first:
+      213: 9055302376602960747
+    second: Decals_9
+  - first:
+      213: 1994110949709121417
+    second: Decals_10
+  - first:
+      213: 2058431180233136973
+    second: Decals_11
+  - first:
+      213: -3291042482496555426
+    second: Decals_12
+  - first:
+      213: 8795840974609333600
+    second: Decals_13
+  - first:
+      213: 1012385016976483211
+    second: Decals_14
+  - first:
+      213: -7591793526653178101
+    second: Decals_15
+  - first:
+      213: -7035029965887770116
+    second: Decals_16
+  - first:
+      213: 2287404183481714947
+    second: Decals_17
+  - first:
+      213: -5612876611644932779
+    second: Decals_18
+  - first:
+      213: -1366323557797755377
+    second: Decals_19
+  - first:
+      213: -673842534674070041
+    second: Decals_20
+  - first:
+      213: 8901515543770084337
+    second: Decals_21
+  - first:
+      213: -4464574325762370009
+    second: Decals_22
+  - first:
+      213: -3006320033264782339
+    second: Decals_23
+  - first:
+      213: -73174928531488371
+    second: Decals_24
+  - first:
+      213: 5489918014808918155
+    second: Decals_25
+  - first:
+      213: 7555005518628785299
+    second: Decals_26
+  - first:
+      213: -8772264455416706443
+    second: Decals_27
+  - first:
+      213: -745259803220078508
+    second: Decals_28
+  - first:
+      213: -6024296068639010153
+    second: Decals_29
+  - first:
+      213: -9133653938954569895
+    second: Decals_30
+  - first:
+      213: -517969008928326514
+    second: Decals_31
+  - first:
+      213: 8625770170650576512
+    second: Decals_32
+  - first:
+      213: 3808684365531913250
+    second: Decals_33
+  - first:
+      213: 3372168624205705765
+    second: Decals_34
+  - first:
+      213: -4444479153512354728
+    second: Decals_35
+  - first:
+      213: -7114977605693873012
+    second: Decals_36
+  - first:
+      213: 2217362665039577979
+    second: Decals_37
+  - first:
+      213: -7920562704988647172
+    second: Decals_38
+  - first:
+      213: -5291712063944162304
+    second: Decals_39
+  - first:
+      213: 3041540060335069397
+    second: Decals_40
+  - first:
+      213: -7647802577419488546
+    second: Decals_41
+  - first:
+      213: 8665579398475310060
+    second: Decals_42
+  - first:
+      213: -5513891514659756301
+    second: Decals_43
+  - first:
+      213: 4869273442342450337
+    second: Decals_44
+  - first:
+      213: 3450911659640601536
+    second: Decals_45
+  - first:
+      213: -1799810032333304843
+    second: Decals_46
+  - first:
+      213: -1265339665624191315
+    second: Decals_47
+  - first:
+      213: -1051529122603325394
+    second: Decals_48
+  - first:
+      213: -8379919036500213540
+    second: Decals_49
+  - first:
+      213: 6058332302910197240
+    second: Decals_50
+  - first:
+      213: 543592803753304030
+    second: Decals_51
+  - first:
+      213: 2900301192617310363
+    second: Decals_52
+  - first:
+      213: -2465250233051268792
+    second: Decals_53
+  - first:
+      213: 1804437640127398250
+    second: Decals_54
+  - first:
+      213: -8618215063710608623
+    second: Decals_55
+  - first:
+      213: 5409729717563561937
+    second: Decals_56
+  - first:
+      213: -5587206121348177022
+    second: Decals_57
+  - first:
+      213: 8964211312211639394
+    second: Decals_58
+  - first:
+      213: -3658149774840256625
+    second: Decals_59
+  - first:
+      213: 4519325571424616358
+    second: Decals_60
+  - first:
+      213: 7384388176293825857
+    second: Decals_61
+  - first:
+      213: 1913004660923191568
+    second: Decals_62
+  - first:
+      213: -6471275912071186405
+    second: Decals_63
+  - first:
+      213: 109573014536014270
+    second: Decals_64
+  - first:
+      213: -5610698622702941686
+    second: Decals_65
+  - first:
+      213: 5066006807678010333
+    second: Decals_66
+  - first:
+      213: 5293606376425796917
+    second: Decals_67
+  - first:
+      213: 2269640710968630248
+    second: Decals_68
+  - first:
+      213: -3358255290869785028
+    second: Decals_69
+  - first:
+      213: 8055613410719957755
+    second: Decals_70
+  - first:
+      213: -4893160989297081435
+    second: Decals_71
+  - first:
+      213: -6292610904347516784
+    second: Decals_72
+  - first:
+      213: 2847043152299168401
+    second: Decals_73
+  - first:
+      213: -3383790223571639471
+    second: Decals_74
+  - first:
+      213: 7617016020894672047
+    second: Decals_75
+  - first:
+      213: -7539157444543814429
+    second: Decals_76
+  - first:
+      213: -2965474338479274681
+    second: Decals_77
+  - first:
+      213: -1823856357087076718
+    second: Decals_78
+  - first:
+      213: 717805296474788742
+    second: Decals_79
+  - first:
+      213: -7547011957142974223
+    second: Decals_80
+  - first:
+      213: 5081036551404300573
+    second: Decals_81
+  - first:
+      213: -151413951511359674
+    second: Decals_82
+  - first:
+      213: 7636317123171882267
+    second: Decals_83
+  - first:
+      213: 1613059911353085914
+    second: Decals_84
+  - first:
+      213: 6038654199230320717
+    second: Decals_85
+  - first:
+      213: -5052260433078760467
+    second: Decals_86
+  - first:
+      213: -621014448789587423
+    second: Decals_87
+  - first:
+      213: 3794194201324400165
+    second: Decals_88
+  - first:
+      213: 9097300429123026510
+    second: Decals_89
+  - first:
+      213: 623540706419562196
+    second: Decals_90
+  - first:
+      213: 2447842895097946711
+    second: Decals_91
+  - first:
+      213: 6064708538700005736
+    second: Decals_92
+  - first:
+      213: 4120499331669025092
+    second: Decals_93
+  - first:
+      213: 3172195568871756933
+    second: Decals_94
+  - first:
+      213: -1739334356192490834
+    second: Decals_95
+  - first:
+      213: 517918640022543989
+    second: Decals_96
+  - first:
+      213: 8298832372043857390
+    second: Decals_97
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Decals_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 439
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa494de3e0b39d280800000000000000
+      internalID: -9018111846463007574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 434
+        width: 20
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 813a83b9bddef66b0800000000000000
+      internalID: -5300756708933983464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_2
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 438
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0245183d0653802d0800000000000000
+      internalID: -3312338835949399008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_3
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 438
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f56c829a0b9e35510800000000000000
+      internalID: 1536828842825008735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_4
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 439
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12fffae821a9a3ec0800000000000000
+      internalID: -3586384748753191135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_5
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 398
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e11eb2c9856d81e0800000000000000
+      internalID: -2193985801107402268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_6
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 390
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1027013079c6b4660800000000000000
+      internalID: 7371104610969219585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_7
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 390
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2765a2421440077f0800000000000000
+      internalID: -616988471123618190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_8
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 390
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f94fc6ebf5e492f0800000000000000
+      internalID: -966895149905917454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_9
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 391
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b638b23d885eaad70800000000000000
+      internalID: 9055302376602960747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_10
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 391
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9870120f7518cab10800000000000000
+      internalID: 1994110949709121417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_11
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 341
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4b526c9044019c10800000000000000
+      internalID: 2058431180233136973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_12
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 262
+        width: 24
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e56b2128c4ed352d0800000000000000
+      internalID: -3291042482496555426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_13
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 268
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06d3a6893ca111a70800000000000000
+      internalID: 8795840974609333600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_14
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 262
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b83afc02fc6bc0e00800000000000000
+      internalID: 1012385016976483211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_15
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 271
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0f2ab3b20884a690800000000000000
+      internalID: -7591793526653178101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_16
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 263
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf1f70be48d8e5e90800000000000000
+      internalID: -7035029965887770116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_17
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 265
+        width: 32
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3098b265cfd7ebf10800000000000000
+      internalID: 2287404183481714947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_18
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 261
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55d3ec2c57e0b12b0800000000000000
+      internalID: -5612876611644932779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_19
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 261
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f06873996f7d90de0800000000000000
+      internalID: -1366323557797755377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_20
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 261
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e5043ee8c706a6f0800000000000000
+      internalID: -673842534674070041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_21
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 261
+        width: 14
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f3b80d8939888b70800000000000000
+      internalID: 8901515543770084337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_22
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 275
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 726da971e45aa02c0800000000000000
+      internalID: -4464574325762370009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_23
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 261
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df3bc10abd76746d0800000000000000
+      internalID: -3006320033264782339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_24
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 262
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d818a6a4ac70cfef0800000000000000
+      internalID: -73174928531488371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_25
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 268
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8804bef85b103c40800000000000000
+      internalID: 5489918014808918155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_26
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 266
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c0cf5bd75c8d860800000000000000
+      internalID: 7555005518628785299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_27
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 263
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a0a1b84f7a24680800000000000000
+      internalID: -8772264455416706443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_28
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 212
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45090b3582e48a5f0800000000000000
+      internalID: -745259803220078508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_29
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 226
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7925df6c4a6656ca0800000000000000
+      internalID: -6024296068639010153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_30
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 216
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 957f34b722ebe3180800000000000000
+      internalID: -9133653938954569895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_31
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 217
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8c7a224eedcfc8f0800000000000000
+      internalID: -517969008928326514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_32
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 217
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 086c9c7d444e4b770800000000000000
+      internalID: 8625770170650576512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_33
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 212
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22c1d1d404a2bd430800000000000000
+      internalID: 3808684365531913250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_34
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 213
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 522bf784f795cce20800000000000000
+      internalID: 3372168624205705765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_35
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 212
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85c644bf1c90252c0800000000000000
+      internalID: -4444479153512354728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_36
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 226
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c84e1cb7095824d90800000000000000
+      internalID: -7114977605693873012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_37
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 216
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b73c5e38897a5ce10800000000000000
+      internalID: 2217362665039577979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_38
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 217
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf0d1fb4f22841290800000000000000
+      internalID: -7920562704988647172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_39
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 230
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00485fe1aef0096b0800000000000000
+      internalID: -5291712063944162304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_40
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 217
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d85462f198b53a20800000000000000
+      internalID: 3041540060335069397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_41
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 227
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed2389c531c8dd590800000000000000
+      internalID: -7647802577419488546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_42
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 217
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce3601bfc82524870800000000000000
+      internalID: 8665579398475310060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_43
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 217
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f62aaa91e8ba73b0800000000000000
+      internalID: -5513891514659756301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_44
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 217
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a4b015b562239340800000000000000
+      internalID: 4869273442342450337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_45
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 159
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cbb128eed914ef20800000000000000
+      internalID: 3450911659640601536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_46
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 179
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fbc697bf4ac507e0800000000000000
+      internalID: -1799810032333304843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_47
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 174
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dae2246374c907ee0800000000000000
+      internalID: -1265339665624191315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_48
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 170
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e28204095d73861f0800000000000000
+      internalID: -1051529122603325394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_49
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 158
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd00fd6f80c84bb80800000000000000
+      internalID: -8379919036500213540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_50
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 175
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fd8c3e8125831450800000000000000
+      internalID: 6058332302910197240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_51
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 177
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edf9c2266ca3b8700800000000000000
+      internalID: 543592803753304030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_52
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 175
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b98b8977190ff3820800000000000000
+      internalID: 2900301192617310363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_53
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 154
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 849b78879fba9cdd0800000000000000
+      internalID: -2465250233051268792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_54
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 172
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61432f2976aa0910800000000000000
+      internalID: 1804437640127398250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_55
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 148
+        width: 15
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 113db919f03f56880800000000000000
+      internalID: -8618215063710608623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_56
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 158
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d710422488331b40800000000000000
+      internalID: 5409729717563561937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_57
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 152
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 283672a82a14672b0800000000000000
+      internalID: -5587206121348177022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_58
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 142
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26cb9eba1b6476c70800000000000000
+      internalID: 8964211312211639394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_59
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 160
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87a8775924ab3dc0800000000000000
+      internalID: -3658149774840256625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_60
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 155
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6af7a1da9aed7be30800000000000000
+      internalID: 4519325571424616358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_61
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 151
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14d86931ced9a7660800000000000000
+      internalID: 7384388176293825857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_62
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 150
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0115ef38a9b5c8a10800000000000000
+      internalID: 1913004660923191568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_63
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 144
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b18747128d86136a0800000000000000
+      internalID: -6471275912071186405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_64
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 150
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb943608318458100800000000000000
+      internalID: 109573014536014270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_65
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 133
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0a8404545bc222b0800000000000000
+      internalID: -5610698622702941686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_66
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 145
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd3cb59c9521e4640800000000000000
+      internalID: 5066006807678010333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_67
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 101
+        width: 26
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5353a9fd3faa67940800000000000000
+      internalID: 5293606376425796917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_68
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 100
+        width: 26
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ebdc0993326f7f10800000000000000
+      internalID: 2269640710968630248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_69
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 87
+        width: 23
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3e51a21b941561d0800000000000000
+      internalID: -3358255290869785028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_70
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 80
+        width: 26
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf206d177b94bcf60800000000000000
+      internalID: 8055613410719957755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_71
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 85
+        width: 44
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a3062c5100081cb0800000000000000
+      internalID: -4893160989297081435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_72
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 86
+        width: 40
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 090ed90e8b72ca8a0800000000000000
+      internalID: -6292610904347516784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_73
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 88
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1921009a9aab28720800000000000000
+      internalID: 2847043152299168401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_74
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 86
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 153a29148bc5a01d0800000000000000
+      internalID: -3383790223571639471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_75
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 86
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa4e2edd6b315b960800000000000000
+      internalID: 7617016020894672047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_76
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 91
+        width: 28
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e469349f388f5790800000000000000
+      internalID: -7539157444543814429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_77
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 36
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74508680dc488d6d0800000000000000
+      internalID: -2965474338479274681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_78
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 34
+        width: 29
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29e9c727e4c50b6e0800000000000000
+      internalID: -1823856357087076718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_79
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 35
+        width: 18
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68316423d1826f900800000000000000
+      internalID: 717805296474788742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_80
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 35
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f01eda5c90a34790800000000000000
+      internalID: -7547011957142974223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_81
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 26
+        width: 42
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d19aa31b2d7738640800000000000000
+      internalID: 5081036551404300573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_82
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 52
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64f802630d116edf0800000000000000
+      internalID: -151413951511359674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_83
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 47
+        width: 40
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1594eee6f5a9f960800000000000000
+      internalID: 7636317123171882267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_84
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 27
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adfaf99617db26610800000000000000
+      internalID: 1613059911353085914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_85
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 35
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d405b82000c9dc350800000000000000
+      internalID: 6038654199230320717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_86
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 37
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb449577e3c2e9b0800000000000000
+      internalID: -5052260433078760467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_87
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 34
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12af28b26a6b167f0800000000000000
+      internalID: -621014448789587423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_88
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 38
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52ea9ca068fa7a430800000000000000
+      internalID: 3794194201324400165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_89
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 35
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4ef2ec6a8a104e70800000000000000
+      internalID: 9097300429123026510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_90
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 39
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d6522508f247a800800000000000000
+      internalID: 623540706419562196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_91
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 32
+        width: 41
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 752e644d42c78f120800000000000000
+      internalID: 2447842895097946711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_92
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 41
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8610e73a84c2a2450800000000000000
+      internalID: 6064708538700005736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_93
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 38
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 441ed519f44fe2930800000000000000
+      internalID: 4120499331669025092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_94
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 23
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5845ba81017e50c20800000000000000
+      internalID: 3172195568871756933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_95
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 33
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaa83815e94acd7e0800000000000000
+      internalID: -1739334356192490834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_96
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 37
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57ed8115244003700800000000000000
+      internalID: 517918640022543989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decals_97
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 29
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eedbf22c2106b2370800000000000000
+      internalID: 8298832372043857390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

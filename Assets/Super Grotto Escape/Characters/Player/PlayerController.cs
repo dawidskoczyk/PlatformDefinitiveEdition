@@ -265,6 +265,7 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 1;
+            animator.Play("land");
         }
         else if (jump && jumpCounter == 1 && !(WallCheckLeft() || WallCheckRight()))
         {
@@ -315,6 +316,7 @@ public class PlayerController : MonoBehaviour
                 slam = false;
                 Collider2D hitCollider = Physics2D.OverlapBox(transform.position - new Vector3(0, 1f), new Vector2(2, -1), 0f);
                 Debug.Log("SLam : " + hitCollider);
+                animator.Play("slam");
             }
 
             //// U¿yj bardziej rozs¹dnej wartoœci mno¿nika, np. 0.5f dla powietrza

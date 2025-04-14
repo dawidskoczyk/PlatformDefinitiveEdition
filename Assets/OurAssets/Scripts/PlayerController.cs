@@ -9,17 +9,17 @@ public class PlayerController : MonoBehaviour
 {
     public enum PlayerState { Idle, Run, Attack, Die, Jump, DashAttack }
 
-    [SerializeField] PlayerState state;
+    [SerializeField] public PlayerState state;
     PlayerState currentState;
     PlayerState previousState;
-    Animator animator;
-    Rigidbody2D rb;
+    public Animator animator;
+    public Rigidbody2D rb;
 
-    [SerializeField] bool isLocked = false;
+    [SerializeField] public bool isLocked = false;
     [SerializeField] float maxSpeed = 2f;
     [SerializeField] float jumpPower = 6f;
     [SerializeField] float moveSpeed = 4f;
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     [SerializeField] Sprite jumpSprite;
     [SerializeField] Sprite fallSprite;
     [SerializeField] LayerMask whatIsGround;
@@ -35,14 +35,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool groudnededed;
     [SerializeField] bool doubleJumpAfterWall;
     [SerializeField] float boxCastXMiniOffset;
-    [SerializeField] GameObject shoot1;
-    [SerializeField] Transform gunSpot;
-    [SerializeField] float shootSpeed;
-    [SerializeField] bool canAttack = false;
+    [SerializeField] public GameObject shoot1;
+    [SerializeField] public Transform gunSpot;
+    [SerializeField] public float shootSpeed;
+    [SerializeField] public bool canAttack = false;
     [SerializeField] bool dashAttack = false;
     [SerializeField] float chargeTimer = 0f;
-    [SerializeField] bool slam;
-    [SerializeField] bool upAttack;
+    [SerializeField] public bool slam;
+    [SerializeField] public bool upAttack;
 
     void Start()
     {
@@ -89,7 +89,8 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Attack:
                 if (!isLocked)
-                    StartCoroutine(MeleeAttack());
+                    StartCoroutine(GetComponentInChildren<IAttack>().Attack(this));
+                //StartCoroutine(MeleeAttack());
                 //StartCoroutine(Attack());
                 break;
             case PlayerState.DashAttack:
@@ -255,8 +256,8 @@ public class PlayerController : MonoBehaviour
             rb.linearDamping = 3;
           
         }   
-        else
-            animator.Play("jump");
+        //else
+        //    animator.Play("jump");
 
         rb.linearDamping = 2;
         if (jump && GroundCheck())// && jumpCounter == 0)
@@ -265,12 +266,14 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 1;
-            animator.Play("land");
+            //animator.Play("land");
+            animator.Play("jump");
         }
         else if (jump && jumpCounter == 1 && !(WallCheckLeft() || WallCheckRight()))
         {
             if(!doubleJumpAfterWall)  return; 
             print("double jump");
+            animator.Play("FrontFlip");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
@@ -281,6 +284,7 @@ public class PlayerController : MonoBehaviour
         else if (jump && horizontalInput != 0 && (WallCheckLeft() || WallCheckRight()))
         {
             print("wall jump"); // i tu te¿ trzeba pomyœleæ nad czasem kojota,
+            animator.Play("jump");
             wallJump = true;
             //if(jumpCounter == 1) jumpCounter = 0; //po dotkniêciu œciany ka¿dy skok to double jump
             rb.gravityScale = 1;
@@ -300,6 +304,7 @@ public class PlayerController : MonoBehaviour
         {
             print("wall slide");
             //if (jumpCounter == 1) jumpCounter = 0;
+            animator.Play("WallSlide");
             rb.gravityScale = 0.3f;
             rb.linearVelocity = new Vector2(0, 0);
         }
@@ -381,7 +386,7 @@ public class PlayerController : MonoBehaviour
             upAttack = Input.GetKeyDown(KeyCode.W);
     }
 
-    void ChangeCharacterState(PlayerState playerState)
+    public void ChangeCharacterState(PlayerState playerState)
     {
         state = playerState;
         //isLocked = true;
@@ -392,7 +397,7 @@ public class PlayerController : MonoBehaviour
         wallJump = false;
     }
 
-    bool GroundCheck()
+    public bool GroundCheck()
     {
         return Physics2D.BoxCast(transform.position - new Vector3(-GetComponent<BoxCollider2D>().offset.x + boxCastXMiniOffset,0.4f,0), new Vector2(groundXSize, 0.3f),0f, Vector2.down, 0.4f, whatIsGround);
     }

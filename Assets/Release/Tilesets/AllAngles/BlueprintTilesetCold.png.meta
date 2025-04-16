@@ -672,7 +672,29 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BlueprintTilesetCold_0: -6721041577398115745
+      BlueprintTilesetCold_1: 3500639168921601662
+      BlueprintTilesetCold_10: 4022015173384802118
+      BlueprintTilesetCold_11: 3132548642221619523
+      BlueprintTilesetCold_12: -6111736750762990551
+      BlueprintTilesetCold_13: 7654495797642872025
+      BlueprintTilesetCold_14: -3542507312440645008
+      BlueprintTilesetCold_15: 6691200518016000194
+      BlueprintTilesetCold_16: 6215437838188593391
+      BlueprintTilesetCold_17: 9085233589453818765
+      BlueprintTilesetCold_18: 7883888510335956280
+      BlueprintTilesetCold_19: -4743254223635226046
+      BlueprintTilesetCold_2: 4397065556871797803
+      BlueprintTilesetCold_20: 6698179976310492937
+      BlueprintTilesetCold_21: 7573854701798838570
+      BlueprintTilesetCold_3: -3334244038221043311
+      BlueprintTilesetCold_4: 5685813280237463980
+      BlueprintTilesetCold_5: -349531289016240350
+      BlueprintTilesetCold_6: -8214948611460226535
+      BlueprintTilesetCold_7: -6020961912123573520
+      BlueprintTilesetCold_8: -622165120499191691
+      BlueprintTilesetCold_9: -6854360564675170880
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

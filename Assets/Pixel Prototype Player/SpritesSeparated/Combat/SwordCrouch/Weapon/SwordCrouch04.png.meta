@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SwordCrouch04_0: 3174745090928920932
+      SwordCrouch04_1: -4082193722048798864
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

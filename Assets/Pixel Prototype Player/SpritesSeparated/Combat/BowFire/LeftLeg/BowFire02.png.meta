@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BowFire02_0: -7688928354395912724
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

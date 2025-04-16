@@ -897,7 +897,38 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bird_Lookaround_0: 726150034052347959
+      Bird_Lookaround_1: -2918870785193839431
+      Bird_Lookaround_10: 3916861395024186890
+      Bird_Lookaround_11: -6336629214339384324
+      Bird_Lookaround_12: -643613678971033912
+      Bird_Lookaround_13: 2199627275153919535
+      Bird_Lookaround_14: -2645068196530251785
+      Bird_Lookaround_15: 7677711750833183870
+      Bird_Lookaround_16: -2213892918174037769
+      Bird_Lookaround_17: -9040093263581530620
+      Bird_Lookaround_18: -7871284021605499622
+      Bird_Lookaround_19: 1258018726256488725
+      Bird_Lookaround_2: 166167212074681656
+      Bird_Lookaround_20: -9093531078237658333
+      Bird_Lookaround_21: 7582945126704194639
+      Bird_Lookaround_22: -8531832407025107373
+      Bird_Lookaround_23: -2040677640186303336
+      Bird_Lookaround_24: -1288086953396484863
+      Bird_Lookaround_25: -8199427892497501726
+      Bird_Lookaround_26: 3712877349571790725
+      Bird_Lookaround_27: -3976594221335228501
+      Bird_Lookaround_28: 6634535053468005212
+      Bird_Lookaround_29: -6354490080733555002
+      Bird_Lookaround_3: -350934488373176397
+      Bird_Lookaround_30: -986064090930646199
+      Bird_Lookaround_4: 2111881799394786167
+      Bird_Lookaround_5: 6500913864543194143
+      Bird_Lookaround_6: 4871465864302798939
+      Bird_Lookaround_7: -219501887104476208
+      Bird_Lookaround_8: -6474022477767298589
+      Bird_Lookaround_9: -9102740044272455331
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

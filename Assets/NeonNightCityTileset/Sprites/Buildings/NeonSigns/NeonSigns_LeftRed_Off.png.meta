@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeonSigns_LeftRed_Off_0: -4969948131772985743
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

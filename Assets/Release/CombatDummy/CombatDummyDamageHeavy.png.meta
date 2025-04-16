@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CombatDummyDamageHeavy_0: -7634647956024018610
+      CombatDummyDamageHeavy_1: -1229281691651610337
+      CombatDummyDamageHeavy_2: 6496722822153183980
+      CombatDummyDamageHeavy_3: -5328142671982016240
+      CombatDummyDamageHeavy_4: 5483540007105039089
+      CombatDummyDamageHeavy_5: -8279939819631944162
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -772,7 +772,33 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeonSigns_AlphabetRed_On_0: -3787567709706132062
+      NeonSigns_AlphabetRed_On_1: -6014503803372059176
+      NeonSigns_AlphabetRed_On_10: -3007843641934637603
+      NeonSigns_AlphabetRed_On_11: -3380754919944011255
+      NeonSigns_AlphabetRed_On_12: -4286866830995536167
+      NeonSigns_AlphabetRed_On_13: -8390904776591662871
+      NeonSigns_AlphabetRed_On_14: -6686697647929665326
+      NeonSigns_AlphabetRed_On_15: 3583905381708484359
+      NeonSigns_AlphabetRed_On_16: -720138443378831231
+      NeonSigns_AlphabetRed_On_17: -2436187979839972350
+      NeonSigns_AlphabetRed_On_18: -1617471855934654717
+      NeonSigns_AlphabetRed_On_19: -8397598329966199548
+      NeonSigns_AlphabetRed_On_2: -2996000051991934690
+      NeonSigns_AlphabetRed_On_20: -6025039796339869697
+      NeonSigns_AlphabetRed_On_21: -6634977819996740988
+      NeonSigns_AlphabetRed_On_22: -6317132967966586653
+      NeonSigns_AlphabetRed_On_23: -2052321536368972606
+      NeonSigns_AlphabetRed_On_24: 8024756435682287696
+      NeonSigns_AlphabetRed_On_25: 3260735908526635622
+      NeonSigns_AlphabetRed_On_3: 5257893187880826123
+      NeonSigns_AlphabetRed_On_4: 4303845145009008251
+      NeonSigns_AlphabetRed_On_5: 8761178957870624519
+      NeonSigns_AlphabetRed_On_6: 7340235474611278688
+      NeonSigns_AlphabetRed_On_7: 4754750452665565911
+      NeonSigns_AlphabetRed_On_8: 3560675986017014469
+      NeonSigns_AlphabetRed_On_9: 123907277206440037
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

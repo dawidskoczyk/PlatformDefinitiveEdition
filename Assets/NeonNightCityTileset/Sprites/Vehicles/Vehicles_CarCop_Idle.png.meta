@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vehicles_CarCop_Idle_0: 2527127713197798657
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

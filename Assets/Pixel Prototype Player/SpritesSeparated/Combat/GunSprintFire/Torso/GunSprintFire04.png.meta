@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GunSprintFire04_0: -1872200130944205853
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

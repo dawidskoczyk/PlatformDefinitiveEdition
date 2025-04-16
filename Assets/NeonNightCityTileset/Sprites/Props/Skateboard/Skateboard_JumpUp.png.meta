@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Skateboard_JumpUp_0: -2328248710106514245
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

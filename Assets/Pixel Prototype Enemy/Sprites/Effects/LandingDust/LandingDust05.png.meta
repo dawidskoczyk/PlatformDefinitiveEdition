@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LandingDust05_0: -117711101221958839
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CombatDummyPartsDamaged_0: -8871125340353802299
+      CombatDummyPartsDamaged_1: -1545245904769585515
+      CombatDummyPartsDamaged_2: -7078888724330797107
+      CombatDummyPartsDamaged_3: 3291656361457796342
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

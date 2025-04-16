@@ -372,7 +372,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CheckpointActivate_0: 7245556276485364166
+      CheckpointActivate_1: -2844258526245220768
+      CheckpointActivate_2: -8990871138166733643
+      CheckpointActivate_3: 1366776723134152384
+      CheckpointActivate_4: 1081773189151603162
+      CheckpointActivate_5: 7003657225050237284
+      CheckpointActivate_6: 4964326603907829745
+      CheckpointActivate_7: 7371799947007212238
+      CheckpointActivate_8: 8227808406953543485
+      CheckpointActivate_9: 8166793966018137843
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1297,7 +1297,54 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      EffectsSheet_0: -5543225874783288875
+      EffectsSheet_1: -4399446331281293685
+      EffectsSheet_10: 1794537931037541977
+      EffectsSheet_11: -5597430581472286437
+      EffectsSheet_12: 679888193402446957
+      EffectsSheet_13: -1463440204110868200
+      EffectsSheet_14: -6984022030466553073
+      EffectsSheet_15: 4344749435867587733
+      EffectsSheet_16: -9168694450222832557
+      EffectsSheet_17: -3878435346885302729
+      EffectsSheet_18: 4126051554335611788
+      EffectsSheet_19: -660690269585408603
+      EffectsSheet_2: 3477227200128531155
+      EffectsSheet_20: 2350017729818780564
+      EffectsSheet_21: -1548824745775897011
+      EffectsSheet_22: 5827628938619344067
+      EffectsSheet_23: -1070523976282114695
+      EffectsSheet_24: 4825885445009126984
+      EffectsSheet_25: -3275773458130412825
+      EffectsSheet_26: 5739809253235030363
+      EffectsSheet_27: 4010094221918548592
+      EffectsSheet_28: -4568613977906611270
+      EffectsSheet_29: 8119095264693299174
+      EffectsSheet_3: -19916263322878819
+      EffectsSheet_30: -9182579756249962408
+      EffectsSheet_31: -3058384182429011516
+      EffectsSheet_32: 1698737689451029844
+      EffectsSheet_33: -2700189635054208844
+      EffectsSheet_34: 1951140342360597951
+      EffectsSheet_35: 1576155458102321996
+      EffectsSheet_36: 7421779515888772056
+      EffectsSheet_37: -2448057820844867896
+      EffectsSheet_38: -7562849690674888839
+      EffectsSheet_39: 218661660020313362
+      EffectsSheet_4: 976099605692636837
+      EffectsSheet_40: 351913006154688679
+      EffectsSheet_41: -1683175307159485176
+      EffectsSheet_42: -266656520728163638
+      EffectsSheet_43: 6329060460444811898
+      EffectsSheet_44: -1897981929922297691
+      EffectsSheet_45: 3182229114987937785
+      EffectsSheet_46: -828049138637508897
+      EffectsSheet_5: 6213013893453981503
+      EffectsSheet_6: 7691942541614280322
+      EffectsSheet_7: 7325856760919541762
+      EffectsSheet_8: -6619772843989436957
+      EffectsSheet_9: 8060370491327217150
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

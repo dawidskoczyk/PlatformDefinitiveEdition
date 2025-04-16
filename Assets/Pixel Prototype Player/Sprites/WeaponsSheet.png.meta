@@ -872,7 +872,37 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WeaponsSheet_0: 1461688205788308180
+      WeaponsSheet_1: -384349504684339361
+      WeaponsSheet_10: -433923027889966178
+      WeaponsSheet_11: 5366958563906919771
+      WeaponsSheet_12: -7873582536043595250
+      WeaponsSheet_13: 7445419967637443496
+      WeaponsSheet_14: -1337672978944275645
+      WeaponsSheet_15: 5222081943111091040
+      WeaponsSheet_16: -8827313262104280841
+      WeaponsSheet_17: 286504167629157864
+      WeaponsSheet_18: -7599873816563783393
+      WeaponsSheet_19: -259928941962474656
+      WeaponsSheet_2: -5059244808535453313
+      WeaponsSheet_20: 6856847352313133942
+      WeaponsSheet_21: 9114194236010818394
+      WeaponsSheet_22: -7118296818860052522
+      WeaponsSheet_23: 944080357409357835
+      WeaponsSheet_24: -5527059416982765027
+      WeaponsSheet_25: 2010368968429320209
+      WeaponsSheet_26: 4139121109995209300
+      WeaponsSheet_27: 2660683912573914750
+      WeaponsSheet_28: -8878630839068226741
+      WeaponsSheet_29: -4101141587343666043
+      WeaponsSheet_3: -549227831997797517
+      WeaponsSheet_4: -3500955272036149640
+      WeaponsSheet_5: 8119609504468450458
+      WeaponsSheet_6: 2002414888523776220
+      WeaponsSheet_7: 3743668469661347038
+      WeaponsSheet_8: 4680789329821263798
+      WeaponsSheet_9: 6703888973188571906
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

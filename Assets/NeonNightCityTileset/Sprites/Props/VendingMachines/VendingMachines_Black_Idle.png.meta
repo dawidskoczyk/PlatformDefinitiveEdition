@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      VendingMachines_Black_Idle_0: -6039112098447341252
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Pavement_0: -8015850701244393012
+      Pavement_1: -1800342582554779301
+      Pavement_2: -883077041864599760
+      Pavement_3: 5499095421309137921
+      Pavement_4: 1979830359035736614
+      Pavement_5: 577469305607095524
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

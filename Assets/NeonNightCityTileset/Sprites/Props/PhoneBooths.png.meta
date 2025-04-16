@@ -422,7 +422,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PhoneBooths_0: -3042727859055611653
+      PhoneBooths_1: -1385705726777836105
+      PhoneBooths_10: -7229153647585763360
+      PhoneBooths_11: 8798472647679188916
+      PhoneBooths_2: -76150361399167173
+      PhoneBooths_3: 4196133682859523416
+      PhoneBooths_4: 6387141611599745739
+      PhoneBooths_5: -3064750270809172201
+      PhoneBooths_6: 7207564887788118674
+      PhoneBooths_7: -8858183826396632762
+      PhoneBooths_8: -218129994251442404
+      PhoneBooths_9: -5566168390661818607
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SurveillanceCamera_Left_DownToUp_0: -7265487510270420432
+      SurveillanceCamera_Left_DownToUp_1: -1144162997870067034
+      SurveillanceCamera_Left_DownToUp_2: -7759116760056315986
+      SurveillanceCamera_Left_DownToUp_3: 2192752129251210844
+      SurveillanceCamera_Left_DownToUp_4: 134485159175063377
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

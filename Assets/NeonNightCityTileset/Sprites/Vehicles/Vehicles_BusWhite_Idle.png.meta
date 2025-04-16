@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vehicles_BusWhite_Idle_0: -1590765398029271142
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

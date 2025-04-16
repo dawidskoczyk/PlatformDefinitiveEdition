@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TrafficLight_Icons_0: -4192936678277552292
+      TrafficLight_Icons_1: 6784910126156873193
+      TrafficLight_Icons_2: 5210586772912346849
+      TrafficLight_Icons_3: 8042111062267511952
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

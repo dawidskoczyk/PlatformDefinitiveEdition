@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vehicles_VanWhite_Land_0: -1715608128240654867
+      Vehicles_VanWhite_Land_1: 3765672544666002372
+      Vehicles_VanWhite_Land_2: 876457751931059418
+      Vehicles_VanWhite_Land_3: -1303308639287856556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SwordWalk06_0: 9207960243070078698
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

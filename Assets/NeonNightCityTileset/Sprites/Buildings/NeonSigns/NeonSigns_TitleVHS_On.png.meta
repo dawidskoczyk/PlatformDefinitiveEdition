@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeonSigns_TitleVHS_On_0: -795847130177446912
+      NeonSigns_TitleVHS_On_1: 4788517156168581107
+      NeonSigns_TitleVHS_On_2: 7385862398447479946
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

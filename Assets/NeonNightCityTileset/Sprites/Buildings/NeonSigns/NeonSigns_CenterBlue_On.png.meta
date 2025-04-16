@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeonSigns_CenterBlue_On_0: 4437593321339920446
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      WallClimbIdle02_0: 601570253177921674
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

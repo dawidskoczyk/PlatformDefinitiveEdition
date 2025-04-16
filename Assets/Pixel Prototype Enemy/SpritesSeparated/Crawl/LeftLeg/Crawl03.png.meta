@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crawl03_0: -1562699217119846468
+      Crawl03_1: 1620567161061674308
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

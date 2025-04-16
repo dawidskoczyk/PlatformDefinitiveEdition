@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeonSigns_ContainerHorizontalBlue_Off_0: -5724537888209151780
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      VendingMachines_Black_Hit_0: 7864074853605558619
+      VendingMachines_Black_Hit_1: 1464466327202107962
+      VendingMachines_Black_Hit_2: -6162855706958354175
+      VendingMachines_Black_Hit_3: -493098267719305047
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

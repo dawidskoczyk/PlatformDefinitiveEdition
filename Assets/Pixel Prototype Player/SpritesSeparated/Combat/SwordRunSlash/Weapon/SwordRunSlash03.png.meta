@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SwordRunSlash03_0: -860789218267738806
+      SwordRunSlash03_1: 6014422238746962823
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

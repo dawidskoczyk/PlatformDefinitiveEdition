@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LedgeClimb04_0: 994785677326233912
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

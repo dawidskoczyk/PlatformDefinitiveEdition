@@ -247,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeonSigns_TitlePizza_On_0: -743718707952550315
+      NeonSigns_TitlePizza_On_1: 6797456827222455070
+      NeonSigns_TitlePizza_On_2: 1041877906648285730
+      NeonSigns_TitlePizza_On_3: 7061944699359545217
+      NeonSigns_TitlePizza_On_4: 6303164438480872261
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

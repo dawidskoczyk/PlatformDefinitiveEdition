@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeonSigns_ArrowDiagonalRight_Off_0: 6694014159349260769
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

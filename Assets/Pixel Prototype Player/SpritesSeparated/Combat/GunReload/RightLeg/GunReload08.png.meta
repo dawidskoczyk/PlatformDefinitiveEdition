@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GunReload08_0: -8026435317980784480
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

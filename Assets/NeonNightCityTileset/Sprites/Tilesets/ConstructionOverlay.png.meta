@@ -622,7 +622,27 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ConstructionOverlay_0: -2013279656138525302
+      ConstructionOverlay_1: 7325198519868989873
+      ConstructionOverlay_10: -269184012184766662
+      ConstructionOverlay_11: -95683565084158495
+      ConstructionOverlay_12: 4039780442970582594
+      ConstructionOverlay_13: 7636692466281281968
+      ConstructionOverlay_14: 1254525779469252056
+      ConstructionOverlay_15: -1584768986206069408
+      ConstructionOverlay_16: -4335071009543009511
+      ConstructionOverlay_17: 7282020509621203600
+      ConstructionOverlay_18: -6700355125669892183
+      ConstructionOverlay_19: -3311762617087032389
+      ConstructionOverlay_2: 1827565685793659051
+      ConstructionOverlay_3: 7654984541935894962
+      ConstructionOverlay_4: 4244452842276247631
+      ConstructionOverlay_5: 6880074825625197057
+      ConstructionOverlay_6: -3228527322440570059
+      ConstructionOverlay_7: -4032884189432637613
+      ConstructionOverlay_8: -3856107000835506444
+      ConstructionOverlay_9: -4142653386989047045
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

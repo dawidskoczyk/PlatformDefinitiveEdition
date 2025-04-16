@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MuzzleFlash03_0: 1847578168586500819
+      MuzzleFlash03_1: 6983442769619975809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

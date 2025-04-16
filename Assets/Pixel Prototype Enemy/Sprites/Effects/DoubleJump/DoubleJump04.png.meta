@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DoubleJump04_0: -7524874234509668929
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -772,7 +772,33 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeonSigns_AlphabetOrange_On_0: 5012367936718770191
+      NeonSigns_AlphabetOrange_On_1: -6476020603509466950
+      NeonSigns_AlphabetOrange_On_10: -356471638312777255
+      NeonSigns_AlphabetOrange_On_11: -8246074454447957072
+      NeonSigns_AlphabetOrange_On_12: 92256839651601785
+      NeonSigns_AlphabetOrange_On_13: 2200957911545057492
+      NeonSigns_AlphabetOrange_On_14: -3012183867588049808
+      NeonSigns_AlphabetOrange_On_15: -1994942546163404398
+      NeonSigns_AlphabetOrange_On_16: -2803916369406971393
+      NeonSigns_AlphabetOrange_On_17: -6499571755528594889
+      NeonSigns_AlphabetOrange_On_18: -8453192914091139539
+      NeonSigns_AlphabetOrange_On_19: 1151310354280247191
+      NeonSigns_AlphabetOrange_On_2: -7687841915251268387
+      NeonSigns_AlphabetOrange_On_20: -8464911511863067625
+      NeonSigns_AlphabetOrange_On_21: -439108501564134175
+      NeonSigns_AlphabetOrange_On_22: 5231432949145913204
+      NeonSigns_AlphabetOrange_On_23: 5997800558682155169
+      NeonSigns_AlphabetOrange_On_24: -6118819115688197502
+      NeonSigns_AlphabetOrange_On_25: -160238642985851857
+      NeonSigns_AlphabetOrange_On_3: -4758043576206774543
+      NeonSigns_AlphabetOrange_On_4: 5215783386902627862
+      NeonSigns_AlphabetOrange_On_5: -6714801049640778195
+      NeonSigns_AlphabetOrange_On_6: -1776531113546058774
+      NeonSigns_AlphabetOrange_On_7: -6129563890758552500
+      NeonSigns_AlphabetOrange_On_8: 3728241407250966547
+      NeonSigns_AlphabetOrange_On_9: 1236255414091106512
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeonSigns_ArrowDown_Idle_0: -4751336174455691124
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

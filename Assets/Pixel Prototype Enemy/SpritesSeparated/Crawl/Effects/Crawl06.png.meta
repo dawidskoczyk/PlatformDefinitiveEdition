@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crawl06_0: 2768342725224532662
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

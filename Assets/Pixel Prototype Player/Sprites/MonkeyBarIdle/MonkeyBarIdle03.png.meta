@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MonkeyBarIdle03_0: -7883196398075694278
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

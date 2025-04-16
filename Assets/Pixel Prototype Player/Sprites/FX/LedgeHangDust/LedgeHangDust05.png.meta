@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      LedgeHangDust05_0: -9044453736090209530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

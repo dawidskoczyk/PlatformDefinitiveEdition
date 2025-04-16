@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Skateboard_Grind_0: 5882510547182389318
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

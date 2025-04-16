@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Skateboard_OllieApex_0: 5285473268488282812
+      Skateboard_OllieApex_1: 6566756104046123086
+      Skateboard_OllieApex_2: 8650677062438931589
+      Skateboard_OllieApex_3: 8710868661085952651
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

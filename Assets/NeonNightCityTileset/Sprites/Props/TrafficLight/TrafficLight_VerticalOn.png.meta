@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TrafficLight_VerticalOn_0: 5757631920853083268
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

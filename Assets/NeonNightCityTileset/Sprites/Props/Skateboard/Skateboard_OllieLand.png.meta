@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Skateboard_OllieLand_0: -8986029642230532335
+      Skateboard_OllieLand_1: 5137513051789467961
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

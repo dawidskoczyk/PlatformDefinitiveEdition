@@ -397,7 +397,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Skateboard_Kickflip_0: -1398011454641714938
+      Skateboard_Kickflip_1: -1864687557095291635
+      Skateboard_Kickflip_10: -6791475838069762210
+      Skateboard_Kickflip_2: -6250724594736689817
+      Skateboard_Kickflip_3: -286483022369044157
+      Skateboard_Kickflip_4: -8706872091891781222
+      Skateboard_Kickflip_5: 1946118566721033897
+      Skateboard_Kickflip_6: -803497017945369819
+      Skateboard_Kickflip_7: -6206898282797855870
+      Skateboard_Kickflip_8: -4467740091317176714
+      Skateboard_Kickflip_9: -1487898059429445875
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

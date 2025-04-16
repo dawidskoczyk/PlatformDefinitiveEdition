@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CoinSpin_0: 6215512951420971312
+      CoinSpin_1: 3702836077589478795
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CoinBlackSpin_0: -6591772699333303315
+      CoinBlackSpin_1: -4259488417890506247
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CombatDummyDamageLight_0: 503569466942573511
+      CombatDummyDamageLight_1: 8797233332463232613
+      CombatDummyDamageLight_2: -5936904923140994701
+      CombatDummyDamageLight_3: -2943964495731266544
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

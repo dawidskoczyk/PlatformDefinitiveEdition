@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeonSigns_TitleHotel_Off_0: 4278578500419287552
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

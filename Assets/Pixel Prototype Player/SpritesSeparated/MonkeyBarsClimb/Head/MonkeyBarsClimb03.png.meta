@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MonkeyBarsClimb03_0: 49673783475041210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

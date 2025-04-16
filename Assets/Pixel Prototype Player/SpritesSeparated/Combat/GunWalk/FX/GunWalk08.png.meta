@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GunWalk08_0: 2974527982143974692
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

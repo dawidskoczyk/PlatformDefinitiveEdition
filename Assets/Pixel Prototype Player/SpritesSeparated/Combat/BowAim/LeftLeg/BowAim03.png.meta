@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BowAim03_0: 6502842291567383074
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

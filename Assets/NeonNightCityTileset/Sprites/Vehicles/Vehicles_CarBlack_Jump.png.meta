@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vehicles_CarBlack_Jump_0: -6369300787793395071
+      Vehicles_CarBlack_Jump_1: -1027375130660190576
+      Vehicles_CarBlack_Jump_2: -8930309976826228174
+      Vehicles_CarBlack_Jump_3: 6979790807706403949
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

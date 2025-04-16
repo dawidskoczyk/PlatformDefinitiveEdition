@@ -372,7 +372,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Streetlights_0: 5267323753666503373
+      Streetlights_1: -2750858478769611114
+      Streetlights_2: -4131341367130872209
+      Streetlights_3: 6056363526498885468
+      Streetlights_4: 3808367954309469569
+      Streetlights_5: 4085629658424233975
+      Streetlights_6: 2479140746472452045
+      Streetlights_7: 8054117314059425128
+      Streetlights_8: 5775077338297434149
+      Streetlights_9: 536808824293201920
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

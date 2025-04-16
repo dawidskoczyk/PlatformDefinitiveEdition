@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SwordJump01_0: -2513654789316666234
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

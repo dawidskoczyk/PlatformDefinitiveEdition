@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vehicles_TrainFront_Idle_0: -3284299120236708545
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

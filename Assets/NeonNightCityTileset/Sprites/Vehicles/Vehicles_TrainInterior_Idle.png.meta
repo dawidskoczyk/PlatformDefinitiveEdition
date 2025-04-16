@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vehicles_TrainInterior_Idle_0: 6252528344970392240
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

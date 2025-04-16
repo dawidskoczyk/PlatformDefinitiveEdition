@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RollDust06_0: 6898454804988900306
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

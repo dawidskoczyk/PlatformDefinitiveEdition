@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2701108914029004557}
   - component: {fileID: 5906866604545623231}
   - component: {fileID: 4942055510377147837}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,6 +35,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 567714376889251109}
   - {fileID: 8355099577178010881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8260fa3e4fbaa204d8ba008dd62c4b27, type: 3}
+  m_Sprite: {fileID: -4654964282214106459, guid: 44f5dd0074b198148b10c8ef4d73ba32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +104,7 @@ Animator:
   m_GameObject: {fileID: 387955707724019395}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b0f9366aad49d064998b0955dc82e775, type: 2}
+  m_Controller: {fileID: 9100000, guid: 46932a202dc72ff44aac82d1ed1b5f58, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -176,11 +177,11 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.047427714, y: -0.13576335}
+  m_Offset: {x: 0.05, y: -0.13576335}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.1875}
+    oldSize: {x: 0.5, y: 1.28125}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -214,17 +215,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   smoothTime: 1
-  distanceToWall: 0.5
-  groundXSize: 0.6
+  distanceToWall: 0.35
+  groundXSize: 0.5138651
   jumpCounter: 0
   jump: 0
   horizontalInput: 0
   groudnededed: 0
   doubleJumpAfterWall: 0
   boxCastXMiniOffset: 0
-  shoot1: {fileID: 0}
-  gunSpot: {fileID: 0}
-  shootSpeed: 0
+  shoot1: {fileID: 8734017430371138061, guid: ffd4cc9ab3975594fbea4c9c8595e203, type: 3}
+  gunSpot: {fileID: 8355099577178010881}
+  shootSpeed: 100
   canAttack: 0
   dashAttack: 0
   chargeTimer: 0
@@ -276,7 +277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8355099577178010881}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gunSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,9 +293,66 @@ Transform:
   m_GameObject: {fileID: 838349910823390270}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.464, y: -0.076, z: 0}
+  m_LocalPosition: {x: 0.39, y: 0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4851863068273739929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8745290441299986036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 567714376889251109}
+  - component: {fileID: 6741880324145358860}
+  - component: {fileID: 5650044675289619911}
+  m_Layer: 7
+  m_Name: weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &567714376889251109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745290441299986036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4851863068273739929}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6741880324145358860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745290441299986036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf58c14de98dd5a4da0192e784d32899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5650044675289619911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745290441299986036}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1bbe24af5db5a4abbf8ff0c5748ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

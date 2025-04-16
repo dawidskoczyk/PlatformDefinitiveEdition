@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool slam;
     [SerializeField] public bool upAttack;
 
+    bool canWallSlide = true;
+
     void Start()
     {
         state = PlayerState.Idle;
@@ -268,6 +270,9 @@ public class PlayerController : MonoBehaviour
             jumpCounter = 1;
             //animator.Play("land");
             animator.Play("jump");
+
+            canWallSlide = false;
+            Invoke(nameof(UnlockWallSlide), 0.5f);
         }
         else if (jump && jumpCounter == 1 && !(WallCheckLeft() || WallCheckRight()))
         {
@@ -300,7 +305,7 @@ public class PlayerController : MonoBehaviour
             
         }
 
-        if (((WallCheckLeft() && horizontalInput == -1) || (WallCheckRight() && horizontalInput == 1)) && !wallJump)
+        if (((WallCheckLeft() && horizontalInput == -1) || (WallCheckRight() && horizontalInput == 1)) && canWallSlide)// && !wallJump && Math.Abs(rb.linearVelocityY) < 1)
         {
             print("wall slide");
             //if (jumpCounter == 1) jumpCounter = 0;
@@ -360,6 +365,11 @@ public class PlayerController : MonoBehaviour
         else if (jump)
         {
             ChangeCharacterState(PlayerState.Jump);
+        }
+        else if(Math.Abs(rb.linearVelocityY) > 1 && !GroundCheck())
+        {
+            ChangeCharacterState(PlayerState.Jump);
+            jumpCounter = 1;
         }
         else if (horizontalInput != 0 && GroundCheck() && rb.linearVelocityY < 0.1f && rb.linearVelocityY > -0.1f)// && state != PlayerState.Jump)
         {
@@ -423,6 +433,11 @@ public class PlayerController : MonoBehaviour
     void Unlocked()
     {
         isLocked = false;
+    }
+
+    void UnlockWallSlide()
+    {
+        canWallSlide = true;
     }
 
     void OnDrawGizmos()

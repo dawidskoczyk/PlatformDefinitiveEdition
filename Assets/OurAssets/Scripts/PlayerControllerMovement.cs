@@ -32,7 +32,6 @@ public class PlayerControllerMovement : MonoBehaviour
     bool canChangeState = true;
     [SerializeField] bool jump = false;
     [SerializeField] float horizontalInput;
-    [SerializeField] bool groudnededed;
     [SerializeField] bool doubleJumpAfterWall;
     [SerializeField] float boxCastXMiniOffset;
     [SerializeField] public GameObject shoot1;
@@ -73,7 +72,6 @@ public class PlayerControllerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        groudnededed = GroundCheck();
         switch (state)
         {
             case PlayerState.Idle:
@@ -90,12 +88,6 @@ public class PlayerControllerMovement : MonoBehaviour
             case PlayerState.Attack:
                 if (!isLocked)
                     StartCoroutine(Attack());
-                //StartCoroutine(MeleeAttack());
-                //StartCoroutine(Attack());
-                break;
-            case PlayerState.DashAttack:
-                if (!isLocked)
-                    StartCoroutine(DashAttack());
                 break;
             case PlayerState.Die:
                 StopAllCoroutines();

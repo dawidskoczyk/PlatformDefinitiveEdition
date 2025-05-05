@@ -7,37 +7,36 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum PlayerState { Idle, Run, Attack, Die, Jump, DashAttack }
+    public enum PlayerState { Idle, Run, Attack, Die, Jump, Dash}
 
     [SerializeField] public PlayerState state;
     PlayerState currentState;
     PlayerState previousState;
     public Animator animator;
     public Rigidbody2D rb;
+    public SpriteRenderer spriteRenderer;
 
-    [SerializeField] public bool isLocked = false;
     [SerializeField] float maxSpeed = 2f;
     [SerializeField] float jumpPower = 6f;
     [SerializeField] float moveSpeed = 4f;
-    public SpriteRenderer spriteRenderer;
-    [SerializeField] Sprite jumpSprite;
-    [SerializeField] Sprite fallSprite;
-    [SerializeField] LayerMask whatIsGround;
     [SerializeField] float smoothTime = 0.2f;
     [SerializeField] float distanceToWall = 0.5f;
     [SerializeField] float groundXSize = 0.6f;
 
+    [SerializeField] Sprite jumpSprite;
+    [SerializeField] Sprite fallSprite;
+    [SerializeField] LayerMask whatIsGround;
+
     [SerializeField]int jumpCounter = 0;
-    bool wallJump = false;
-    bool canChangeState = true;
+    [SerializeField] public bool isLocked = false;
     [SerializeField] bool jump = false;
     [SerializeField] float horizontalInput;
-    [SerializeField] bool groudnededed;
     [SerializeField] bool doubleJumpAfterWall;
     [SerializeField] float boxCastXMiniOffset;
     [SerializeField] public GameObject shoot1;
     [SerializeField] public Transform gunSpot;
     [SerializeField] public float shootSpeed;
+    [SerializeField] public float dashForce;
     [SerializeField] public bool canAttack = false;
     [SerializeField] bool dashAttack = false;
     [SerializeField] float chargeTimer = 0f;
@@ -45,6 +44,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public bool upAttack;
 
     bool canWallSlide = true;
+    bool wallJump = false;
+    bool canChangeState = true;
+
 
     void Start()
     {
@@ -75,7 +77,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        groudnededed = GroundCheck();
         switch (state)
         {
             case PlayerState.Idle:
@@ -95,9 +96,10 @@ public class PlayerController : MonoBehaviour
                 //StartCoroutine(MeleeAttack());
                 //StartCoroutine(Attack());
                 break;
-            case PlayerState.DashAttack:
+            case PlayerState.Dash:
                 if (!isLocked)
-                    StartCoroutine(DashAttack());
+                    Dash();
+                    //StartCoroutine(Dash());
                 break;
             case PlayerState.Die:
                 StopAllCoroutines();
@@ -166,7 +168,6 @@ public class PlayerController : MonoBehaviour
         {
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(1, 0), new Vector2(1, 1), 0);
             Debug.Log("right hit : " + hitCollider);
-            
         }
 
         yield return new WaitForSeconds(0.3f);
@@ -174,56 +175,23 @@ public class PlayerController : MonoBehaviour
         canAttack = false;
     }
 
-    IEnumerator DashAttack()
+    void Dash()
     {
-        isLocked = true;
-        rb.gravityScale = 0.1f;
-        // Charging duration (adjust as needed)
-        float chargeDuration = 1f;
-
-        // Charge visual or gameplay feedback can be added here
-        while (chargeTimer < chargeDuration)
-        {
-            // Optional: Add charging mechanics
-            // For example, visual charge effect, building up power, etc.
-            chargeTimer += Time.deltaTime;
-            if (Input.GetMouseButtonUp(0)) // Left mouse button
-            {
-                break;
-            }
-            // Allow cancellation during charge
-            if (Input.GetKeyUp(KeyCode.Mouse1))
-            {
-                // Reset state if canceled
-                isLocked = false;
-                dashAttack = false;
-                ChangeCharacterState(PlayerState.Idle);
-                yield break;
-            }
-            yield return null;
-        }
-
-        // Determine dash direction
+        //Determine dash direction
         Vector3 shootDirection;
-        shootDirection = Input.mousePosition;
-        shootDirection.z = 0.0f;
-        shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
-        shootDirection = shootDirection - transform.position;
+        float xInput = Input.GetAxisRaw("Horizontal");
+        float yInput = Input.GetAxisRaw("Vertical");
+        shootDirection = new Vector3 (xInput, yInput, 0);
         shootDirection.Normalize(); // Ensure consistent dash speed
-
-        // Perform dash with potentially increased force based on charge time
-        float dashForce = 500f * (1f + (chargeTimer / chargeDuration));
+        
+        if(shootDirection == Vector3.zero)
+            shootDirection = Vector3.one;
+  
         rb.AddForce(shootDirection * dashForce, ForceMode2D.Impulse);
 
-        // Dash duration
-        yield return new WaitForSeconds(0.3f);
-        rb.gravityScale = 1f;
-        // Reset states
-        isLocked = false;
         dashAttack = false;
         ChangeCharacterState(PlayerState.Idle);
         if (!GroundCheck()) ChangeCharacterState(PlayerState.Jump);
-        chargeTimer = 0f;
     }
 
     void Run()
@@ -238,6 +206,8 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(new Vector2(moveSpeed, 0), ForceMode2D.Force);
         }
+
+        //  SPOWALNIA MI DASH XD
 
         Vector2 currentVelocity = rb.linearVelocity;
         Vector2 clampedVelocity = currentVelocity;
@@ -272,7 +242,7 @@ public class PlayerController : MonoBehaviour
             animator.Play("jump");
 
             canWallSlide = false;
-            Invoke(nameof(UnlockWallSlide), 0.5f);
+            Invoke(nameof(UnlockWallSlide), 0.4f);
         }
         else if (jump && jumpCounter == 1 && !(WallCheckLeft() || WallCheckRight()))
         {
@@ -355,7 +325,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (dashAttack && !isLocked)
         {
-            ChangeCharacterState(PlayerState.DashAttack);
+            ChangeCharacterState(PlayerState.Dash);
             canAttack = false;
         }
         else if (canAttack && !isLocked )
@@ -383,7 +353,8 @@ public class PlayerController : MonoBehaviour
             canAttack = Input.GetKeyDown(KeyCode.Mouse0);
 
         if (!dashAttack)
-            dashAttack = Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.Mouse1);
+            dashAttack = Input.GetKeyDown(KeyCode.LeftShift);
+            //dashAttack = Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.Mouse1);
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
         if(horizontalInput < 0) {spriteRenderer.flipX = true; }

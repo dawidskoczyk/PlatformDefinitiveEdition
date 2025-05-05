@@ -1962,6 +1962,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5906866604545623231, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
+      propertyPath: canAttack
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906866604545623231, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
+      propertyPath: dashForce
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2176,6 +2184,14 @@ PrefabInstance:
     - target: {fileID: 2701108914029004557, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
       propertyPath: m_Offset.x
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701108914029004557, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701108914029004557, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.1875
       objectReference: {fileID: 0}
     - target: {fileID: 4851863068273739929, guid: c9e54a3aeb5891a4b9da84ba02d655e7, type: 3}
       propertyPath: m_LocalPosition.x

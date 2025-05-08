@@ -12,22 +12,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public PlayerState state;
     PlayerState currentState;
     PlayerState previousState;
-    public Animator animator;
-    public Rigidbody2D rb;
-    public SpriteRenderer spriteRenderer;
+    [HideInInspector] public Animator animator;
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
 
     [SerializeField] float maxSpeed = 2f;
     [SerializeField] float jumpPower = 6f;
-    [SerializeField] float moveSpeed = 4f;
-    [SerializeField] float smoothTime = 0.2f;
     [SerializeField] float distanceToWall = 0.5f;
     [SerializeField] float groundXSize = 0.6f;
 
-    [SerializeField] Sprite jumpSprite;
-    [SerializeField] Sprite fallSprite;
     [SerializeField] LayerMask whatIsGround;
 
-    [SerializeField]int jumpCounter = 0;
+    [SerializeField] int jumpCounter = 0;
     [SerializeField] public bool isLocked = false;
     [SerializeField] bool jump = false;
     [SerializeField] float horizontalInput;
@@ -68,8 +64,6 @@ public class PlayerController : MonoBehaviour
 
         if (state == PlayerState.Idle)//(GroundCheck())
         {
-            //print("ground");
-            //jump = false;
             jumpCounter = 0;
         }
 
@@ -98,8 +92,10 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Dash:
                 if (!isLocked)
-                    Dash();
-                    //StartCoroutine(Dash());
+                {
+                    print("dash - fixed updt");
+                    StartCoroutine(Dash());
+                }
                 break;
             case PlayerState.Die:
                 StopAllCoroutines();
@@ -175,36 +171,50 @@ public class PlayerController : MonoBehaviour
         canAttack = false;
     }
 
-    void Dash()
+    IEnumerator Dash()
     {
+        isLocked = true;
         //Determine dash direction
-        Vector3 shootDirection;
+        Vector2 shootDirection;
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
-        shootDirection = new Vector3 (xInput, yInput, 0);
+        shootDirection = new Vector2 (xInput, yInput * 2);
         shootDirection.Normalize(); // Ensure consistent dash speed
-        
-        if(shootDirection == Vector3.zero)
-            shootDirection = Vector3.one;
-  
+
+        if (shootDirection == Vector2.zero)
+        {
+            if (spriteRenderer.flipX)
+                shootDirection = Vector2.left;
+            else
+                shootDirection = Vector2.right;
+        }
+
+
+
+        print("add force - dash");
         rb.AddForce(shootDirection * dashForce, ForceMode2D.Impulse);
 
+        yield return new WaitForSeconds(0.1f);
+
         dashAttack = false;
+        isLocked = false;
+
         ChangeCharacterState(PlayerState.Idle);
         if (!GroundCheck()) ChangeCharacterState(PlayerState.Jump);
     }
 
     void Run()
     {
+        
         rb.linearDamping = 5;
         animator.Play("Run_Animation");
         if (Input.GetKey(KeyCode.A) && GroundCheck())
         {
-            rb.AddForce(new Vector2(-moveSpeed, 0), ForceMode2D.Force);
+            rb.AddForce(new Vector2(-maxSpeed, 0), ForceMode2D.Force);
         }
         if (Input.GetKey(KeyCode.D) && GroundCheck())
         {
-            rb.AddForce(new Vector2(moveSpeed, 0), ForceMode2D.Force);
+            rb.AddForce(new Vector2(maxSpeed, 0), ForceMode2D.Force);
         }
 
         //  SPOWALNIA MI DASH XD
@@ -256,7 +266,8 @@ public class PlayerController : MonoBehaviour
             // /\ wcale nie, oznacza rest liczby mo¿liwych skokow (chyba)
 
         }
-        else if (jump && horizontalInput != 0 && (WallCheckLeft() || WallCheckRight()))
+        //else if (jump && horizontalInput != 0 && (WallCheckLeft() || WallCheckRight()))
+        else if (jump && (WallCheckLeft() || WallCheckRight()))
         {
             print("wall jump"); // i tu te¿ trzeba pomyœleæ nad czasem kojota,
             animator.Play("jump");
@@ -265,6 +276,14 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = 1;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
 
+            if(horizontalInput == 0)
+            {
+                if (spriteRenderer.flipX)
+                    horizontalInput = 1;
+                else
+                    horizontalInput = -1;
+            }
+
             if((horizontalInput == -1 && WallCheckLeft()) ||(horizontalInput == 1 && WallCheckRight()))
                 rb.AddForce(new Vector2(horizontalInput * -30f, jumpPower), ForceMode2D.Impulse);
             else
@@ -272,10 +291,13 @@ public class PlayerController : MonoBehaviour
 
             jumpCounter = 1; // Oznacza, ¿e wykorzystaliœmy oba skoki
             Invoke(nameof(ChangeJumpReady), 0.2f);
+
+            canWallSlide = false;
+            Invoke(nameof(UnlockWallSlide), 0.2f);
             
         }
 
-        if (((WallCheckLeft() && horizontalInput == -1) || (WallCheckRight() && horizontalInput == 1)) && canWallSlide)// && !wallJump && Math.Abs(rb.linearVelocityY) < 1)
+        else if (((WallCheckLeft() && horizontalInput == -1) || (WallCheckRight() && horizontalInput == 1)) && canWallSlide)// && !wallJump && Math.Abs(rb.linearVelocityY) < 1)
         {
             print("wall slide");
             //if (jumpCounter == 1) jumpCounter = 0;
@@ -287,7 +309,7 @@ public class PlayerController : MonoBehaviour
         {
             print("jump else");
             rb.gravityScale = 1;
-            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeed, 0), ForceMode2D.Force);
+            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * maxSpeed, 0), ForceMode2D.Force);
             Vector2 currentVelocity = rb.linearVelocity;
             Vector2 clampedVelocity = currentVelocity;
             if (slam)
@@ -298,35 +320,30 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("SLam : " + hitCollider);
                 animator.Play("slam");
             }
-
-            //// U¿yj bardziej rozs¹dnej wartoœci mno¿nika, np. 0.5f dla powietrza
-            //clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed * 0.5f, maxSpeed * 0.5f);
-
-            //// U¿yj wartoœci smoothTime, która zapewni zauwa¿aln¹ zmianê
-            //Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, 10); //smoothTime + Time.deltaTime);
-            //rb.linearVelocity = lerpedVelocity;
-
-            //// Debug - wyœwietlanie wartoœci w konsoli, aby zobaczyæ, czy ograniczenie dzia³a
-            //Debug.Log($"Current: {currentVelocity.x}, Clamped: {clampedVelocity.x}, Lerped: {lerpedVelocity.x}");
         }
+
 
         //if (GroundCheck())
         //    state = PlayerState.Idle;
-        
+
+
         jump = false;
        
     }
 
     void EvaluateState()
     {
+        print("checking state");
         if (!Input.anyKey && GroundCheck())
         {
             ChangeCharacterState(PlayerState.Idle);
         }
         else if (dashAttack && !isLocked)
         {
+            print("change state to dash");
             ChangeCharacterState(PlayerState.Dash);
             canAttack = false;
+            
         }
         else if (canAttack && !isLocked )
         {
@@ -410,6 +427,12 @@ public class PlayerController : MonoBehaviour
     {
         canWallSlide = true;
     }
+
+    void JumpToFalse()
+    {
+        jump = false;
+    }
+
 
     void OnDrawGizmos()
     {

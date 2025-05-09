@@ -207,12 +207,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   maxSpeed: 10
   jumpPower: 60
-  moveSpeed: 100
-  smoothTime: 1
   distanceToWall: 0.35
   groundXSize: 0.5138651
-  jumpSprite: {fileID: 21300000, guid: 6d8e45da9d8b33e408a42c26c977adb4, type: 3}
-  fallSprite: {fileID: 21300000, guid: 7584898c9e3dffc429544ee14d2350f7, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64

@@ -333,7 +333,6 @@ public class PlayerController : MonoBehaviour
 
     void EvaluateState()
     {
-        print("checking state");
         if (!Input.anyKey && GroundCheck())
         {
             ChangeCharacterState(PlayerState.Idle);

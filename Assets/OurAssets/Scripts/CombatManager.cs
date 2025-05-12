@@ -24,7 +24,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] bool iceEffectTick;
     [SerializeField] bool poisonEffectTick;
 
-    Dictionary<string, bool> Perks; //klasa chyba lepsza bêdzie od s³ownik
+    Dictionary<string, bool> Perks; //klasa chyba lepsza bï¿½dzie od sï¿½ownik
     private void Start()
     {
         Perks = new Dictionary<string, bool>
@@ -44,16 +44,14 @@ public class CombatManager : MonoBehaviour
             LevelUp("rangeSlash");
         if(Input.GetKeyUp(KeyCode.Alpha3))
             LevelUp("elementalEffect");
-
-        //print("crit" + Perks["critChance"]);
     }
 
-    private void LevelUp(string perk)
+    public void LevelUp(string perk)
     {
         Perks[perk] = true;
         
     } 
-    private void Reset(string perk)
+    public void Reset(string perk)
     {
         Perks[perk] = false;
     }

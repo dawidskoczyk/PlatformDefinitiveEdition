@@ -45,7 +45,7 @@ public class CombatManager : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Alpha3))
             LevelUp("elementalEffect");
 
-        print("crit" + Perks["critChance"]);
+        //print("crit" + Perks["critChance"]);
     }
 
     private void LevelUp(string perk)

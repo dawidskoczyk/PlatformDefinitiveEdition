@@ -1,8 +1,16 @@
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 public class FastAttack : IAttack
 {
     [SerializeField] float animatorSpeed = 1;
+    [SerializeField] float shootSpeed = 100;
+    [SerializeField] GameObject projectile;
+
+    //private void Start()
+    //{
+        
+    //}
     public override IEnumerator Attack(PlayerController player)
     {
         player.isLocked = true;
@@ -22,6 +30,12 @@ public class FastAttack : IAttack
                 player.upAttack = false;
             player.animator.speed = animatorSpeed;
             player.animator.Play("AirSlashUp");
+
+            if (CombatManager.Perks["rangeSlash"])
+            {
+                spawnProjectile(player, new Vector3(0, 1));
+            }
+
         }
         else if (player.slam)
         {
@@ -32,18 +46,33 @@ public class FastAttack : IAttack
                 player.slam = false;
             player.animator.speed = animatorSpeed;
             player.animator.Play("AirSlashDown");
+
+            if (CombatManager.Perks["rangeSlash"])
+            {
+                spawnProjectile(player, new Vector3(0, -1));
+            }
         }
         else if (player.spriteRenderer.flipX)
         {
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(-1, 0), new Vector2(1, 1), 0);
             Debug.Log("left hit : " + hitCollider);
             player.animator.Play("fastSlash");
+
+            if (CombatManager.Perks["rangeSlash"])
+            {
+                spawnProjectile(player, new Vector3(-1, 0));
+            }
         }
         else
         {
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(1, 0), new Vector2(1, 1), 0);
             Debug.Log("right hit : " + hitCollider);
             player.animator.Play("fastSlash");
+
+            if (CombatManager.Perks["rangeSlash"])
+            {
+                spawnProjectile(player, new Vector3(1, 0));
+            }
         }
 
         yield return new WaitForSeconds(0.2f);
@@ -55,6 +84,16 @@ public class FastAttack : IAttack
 
         player.animator.speed = 1;
         player.canAttack = false;
+    }
+    private void spawnProjectile(PlayerController player, Vector2 direction)
+    {
+        Vector2 shotPosition = player.spriteRenderer.flipX ? transform.TransformPoint(new Vector2(-player.gunSpot.localPosition.x, player.gunSpot.localPosition.y)) : player.gunSpot.position;
+        GameObject GO = Instantiate(projectile, shotPosition, Quaternion.identity);
+        Vector2 shootDirection = direction;
+        
+        GO.GetComponent<Rigidbody2D>().AddForce(shootDirection * shootSpeed, ForceMode2D.Impulse);
+        if (player.spriteRenderer.flipX) GO.GetComponent<SpriteRenderer>().flipX = true;
+        Destroy(GO, 0.3f);
     }
 
 }

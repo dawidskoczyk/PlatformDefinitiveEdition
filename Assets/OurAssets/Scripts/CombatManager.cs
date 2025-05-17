@@ -24,7 +24,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] bool iceEffectTick;
     [SerializeField] bool poisonEffectTick;
 
-    Dictionary<string, bool> Perks; //klasa chyba lepsza b�dzie od s�ownik
+    public static Dictionary<string, bool> Perks; //klasa chyba lepsza b�dzie od s�ownik
     private void Start()
     {
         Perks = new Dictionary<string, bool>

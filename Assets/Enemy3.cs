@@ -10,14 +10,16 @@ public class Enemy3 : MonoBehaviour
     public float attackRange = 3f;
     public float Xleft;
     public float Xright;
-    [SerializeField] bool startDirRight = true;
+    //[SerializeField] bool startDirRight = true;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] GameObject player;
 
     private int direction;
 
+    Vector2 attackDir;
+
     bool canChangeDir = true;
-    bool canMove = true;
+    bool canAttack = true;
 
     Rigidbody2D rb;
 
@@ -29,56 +31,68 @@ public class Enemy3 : MonoBehaviour
         currentState = Enemy1state.Idle;
         previousState = Enemy1state.Idle;
 
-        if (startDirRight)
-            direction = 1;
-        else
-            direction = -1;
     }
 
 
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            canMove = false;
-            rb.AddForce(Vector2.one * 2, ForceMode2D.Impulse);
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    canMove = false;
+        //    rb.AddForce(Vector2.one * 2, ForceMode2D.Impulse);
 
-            Invoke(nameof(CanMoveNow), 0.5f);
+        //    Invoke(nameof(CanMoveNow), 0.5f);
+        //}
+
+        if (Mathf.Abs((player.transform.position - transform.position).magnitude) < attackRange && canAttack)
+        {
+            canAttack = false;
+            Invoke(nameof(CanAttackNow), 4f);
+
+            currentState = Enemy1state.Attack;
+            Invoke(nameof(IdleState), 0.2f);
+
+            attackDir = (player.transform.position - transform.position).normalized;
         }
     }
 
     private void FixedUpdate()
     {
-        // sprawdzanie stanu:
-        if (Mathf.Abs((player.transform.position - transform.position).magnitude) < attackRange)
-        {
-            currentState = Enemy1state.Attack;
-        }
-        else
-        {
-            currentState = Enemy1state.Idle;
-        }
-
-
-        if (currentState == Enemy1state.Idle)
-        {
-            if (previousState == Enemy1state.Attack)
-            {
-                StopCoroutine(AttackPlayer());
-                print("stop attackaaa");
-            }
-        }
-
         if (currentState == Enemy1state.Attack)
         {
-            if (previousState == Enemy1state.Idle)
-                StartCoroutine(AttackPlayer());
-        }
-        else
-            print("WTF state");
+            rb.linearVelocity = attackDir * speed;
 
-        previousState = currentState;
+        }
+            // sprawdzanie stanu:
+            //if (Mathf.Abs((player.transform.position - transform.position).magnitude) < attackRange)
+            //{
+            //    currentState = Enemy1state.Attack;
+            //}
+            //else
+            //{
+            //    currentState = Enemy1state.Idle;
+            //}
+
+
+            //if (currentState == Enemy1state.Idle)
+            //{
+            //    if (previousState == Enemy1state.Attack)
+            //    {
+            //        StopCoroutine(AttackPlayer());
+            //        print("stop attackaaa");
+            //    }
+            //}
+
+            //if (currentState == Enemy1state.Attack)
+            //{
+            //    if (previousState == Enemy1state.Idle)
+            //        StartCoroutine(AttackPlayer());
+            //}
+            //else
+            //    print("WTF state");
+
+            previousState = currentState;
     }
 
     IEnumerator AttackPlayer()
@@ -103,9 +117,14 @@ public class Enemy3 : MonoBehaviour
         canChangeDir = true;
     }
 
-    void CanMoveNow()
+    void CanAttackNow()
     {
-        canMove = true;
+        canAttack = true;
+    }
+
+    void IdleState()
+    {
+        currentState = Enemy1state.Idle;
     }
 
     void NormalSpeed()

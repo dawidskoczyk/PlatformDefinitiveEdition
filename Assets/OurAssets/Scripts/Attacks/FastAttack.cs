@@ -4,6 +4,7 @@ using UnityEngine;
 public class FastAttack : IAttack
 {
     [SerializeField] float animatorSpeed = 1;
+    [SerializeField] float waitSpeed = 0.2f;
     [SerializeField] float shootSpeed = 100;
     [SerializeField] GameObject projectile;
 
@@ -28,12 +29,22 @@ public class FastAttack : IAttack
 
             if (!Input.GetKey(KeyCode.W))
                 player.upAttack = false;
-            player.animator.speed = animatorSpeed;
+           
+            if (CombatManager.Perks["CritDmg"])
+
+                player.animator.speed = 0.75f;
+            else
+                player.animator.speed = animatorSpeed;
+
             player.animator.Play("AirSlashUp");
 
             if (CombatManager.Perks["rangeSlash"])
             {
-                spawnProjectile(player, new Vector3(0, 1));
+                spawnProjectile(player, new Vector3(0, 1)); //fastAttackHardPerk //CritDmg
+            }
+            if (CombatManager.Perks["CritDmg"])
+            {
+                player.animator.speed = 0.75f;
             }
 
         }
@@ -44,13 +55,18 @@ public class FastAttack : IAttack
 
             if (!Input.GetKey(KeyCode.S))
                 player.slam = false;
-            player.animator.speed = animatorSpeed;
+
+            if (CombatManager.Perks["CritDmg"])
+                player.animator.speed = 0.75f;
+            else
+                player.animator.speed = animatorSpeed;
             player.animator.Play("AirSlashDown");
 
             if (CombatManager.Perks["rangeSlash"])
             {
                 spawnProjectile(player, new Vector3(0, -1));
             }
+
         }
         else if (player.spriteRenderer.flipX)
         {
@@ -61,6 +77,11 @@ public class FastAttack : IAttack
             if (CombatManager.Perks["rangeSlash"])
             {
                 spawnProjectile(player, new Vector3(-1, 0));
+            }
+
+            if (CombatManager.Perks["CritDmg"])
+            {
+                player.animator.Play("fastAttackHardPerk");
             }
         }
         else
@@ -73,9 +94,18 @@ public class FastAttack : IAttack
             {
                 spawnProjectile(player, new Vector3(1, 0));
             }
-        }
 
-        yield return new WaitForSeconds(0.2f);
+            if (CombatManager.Perks["CritDmg"])
+            {
+                player.animator.Play("fastAttackHardPerk");
+            }
+        }
+        if (CombatManager.Perks["CritDmg"])
+            waitSpeed = 0.75f;
+        else
+            waitSpeed = 0.2f;
+
+        yield return new WaitForSeconds(waitSpeed);
         
         player.isLocked = false;
 

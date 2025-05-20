@@ -14,6 +14,7 @@ public class UIPerkButton : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
+        PerkButtonManager.Reset += Reset;
     }
 
     public void LevelUp()
@@ -28,22 +29,27 @@ public class UIPerkButton : MonoBehaviour
                     print(p.nextPerks);
                 foreach(var n in p.nextPerks)
                 {
-                    if (n.previousPerks.Length <= 1)
-                        n.enableToUp = true;
-                    else
-                    {
-                        n.enableToUp = true;
-                         // it may gives a troubles if yes add additional parameter when break loop below
+
+                        int neededPerks = 0;
                         foreach (var o in n.previousPerks)
                         {
-                            if (o.up != true)
-                                n.enableToUp = false;
-                                break;
+                            if (o.up == true)
+                            {
+                                neededPerks++;
+                            }
                         }
-                    }
-
+                        if(neededPerks == n.previousPerks.Length)
+                            n.enableToUp = true;
                 }
                 }
         }
     }
+    private void Reset()
+    {
+            up = false;
+            image.color = Color.white;
+        if (previousPerks.Length == 0) enableToUp = true;
+            else enableToUp = false;
+    }
+
 }

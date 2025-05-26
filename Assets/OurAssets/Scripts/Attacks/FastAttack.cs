@@ -27,6 +27,12 @@ public class FastAttack : IAttack
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1), new Vector2(1, 1), 0);
             Debug.Log("up hit : " + hitCollider);
 
+            if (hitCollider != null)
+            {
+                if (hitCollider.transform.tag == "Enemy")
+                    hitCollider.GetComponent<Hearts>().SubHp(1);
+            }
+
             if (!Input.GetKey(KeyCode.W))
                 player.upAttack = false;
            
@@ -53,6 +59,12 @@ public class FastAttack : IAttack
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, -1), new Vector2(1, 1), 0);
             Debug.Log("down hit : " + hitCollider);
 
+            if (hitCollider != null)
+            {
+                if (hitCollider.transform.tag == "Enemy")
+                    hitCollider.GetComponent<Hearts>().SubHp(1);
+            }
+
             if (!Input.GetKey(KeyCode.S))
                 player.slam = false;
 
@@ -72,6 +84,13 @@ public class FastAttack : IAttack
         {
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(-1, 0), new Vector2(1, 1), 0);
             Debug.Log("left hit : " + hitCollider);
+
+            if (hitCollider != null)
+            {
+                if (hitCollider.transform.tag == "Enemy")
+                    hitCollider.GetComponent<Hearts>().SubHp(1);
+            }
+
             player.animator.Play("fastSlash");
 
             if (CombatManager.Perks["rangeSlash"])
@@ -88,6 +107,13 @@ public class FastAttack : IAttack
         {
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(1, 0), new Vector2(1, 1), 0);
             Debug.Log("right hit : " + hitCollider);
+
+            if (hitCollider != null)
+            {
+                if (hitCollider.transform.tag == "Enemy")
+                    hitCollider.GetComponent<Hearts>().SubHp(1);
+            }
+
             player.animator.Play("fastSlash");
 
             if (CombatManager.Perks["rangeSlash"])

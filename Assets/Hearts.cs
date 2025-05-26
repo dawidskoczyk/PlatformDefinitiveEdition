@@ -1,15 +1,21 @@
 using UnityEngine;
+using System;
 
 public class Hearts : MonoBehaviour
 {
     [SerializeField][Range(1,10)] int maxHp;
     [SerializeField] int currentHp;
     public GameObject kontener;
+    public event Action OnDeath;
+
 
     void Start()
     {
-        kontener.GetComponent<RectTransform>().sizeDelta = new Vector2(45 * maxHp, 50);
-        RefreshUI();
+        if (kontener != null)
+        {
+            kontener.GetComponent<RectTransform>().sizeDelta = new Vector2(45 * maxHp, 50);
+            RefreshUI();
+        }
     }
 
     void Update()
@@ -25,24 +31,30 @@ public class Hearts : MonoBehaviour
         }
     }
 
-    void AddHp(int hp)
+    public void AddHp(int hp)
     {
         if (currentHp < maxHp)
         {
             currentHp += hp;
         }
 
-        RefreshUI();
+        print("hp teraz:  " + currentHp);
+        //RefreshUI();
     }
 
-    void SubHp(int hp)
+    public void SubHp(int hp)
     {
         if (currentHp > 0)
         {
             currentHp -= hp;
         }
+        else
+        {
+            OnDeath?.Invoke();
+        }
 
-        RefreshUI();
+        print("hp teraz:  " + currentHp);
+        //RefreshUI();
     }
 
     void RefreshUI()

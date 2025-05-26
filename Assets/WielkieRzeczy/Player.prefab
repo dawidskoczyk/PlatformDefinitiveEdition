@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorSpeed: 2
+  waitSpeed: 0.2
   shootSpeed: 100
   projectile: {fileID: 0}
 --- !u!114 &6741880324145358860

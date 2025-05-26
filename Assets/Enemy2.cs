@@ -21,20 +21,25 @@ public class Enemy2 : MonoBehaviour
 
     Rigidbody2D rb;
 
+    public Hearts enemyHealth;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
+        enemyHealth = GetComponent<Hearts>();
+
         currentState = Enemy1state.Idle;
         previousState = Enemy1state.Idle;
+
+        enemyHealth.OnDeath += PlayDeathAnimation;
 
         if (startDirRight)
             direction = 1;
         else
             direction = -1;
     }
-
 
     void Update()
     {
@@ -84,6 +89,7 @@ public class Enemy2 : MonoBehaviour
             if (canMove)
                 rb.linearVelocity = Vector2.right * direction * speed;
         }
+
         
 
         if (currentState == Enemy1state.Attack)
@@ -128,6 +134,12 @@ public class Enemy2 : MonoBehaviour
     void NormalSpeed()
     {
         speed = 3;
+    }
+
+    public void PlayDeathAnimation()
+    {
+        print("Wróg zgin¹³!");
+        enemyHealth.OnDeath -= PlayDeathAnimation;
     }
 
 }

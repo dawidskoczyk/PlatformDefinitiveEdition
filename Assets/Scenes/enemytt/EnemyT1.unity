@@ -9784,7 +9784,7 @@ GameObject:
   - component: {fileID: 1530374275}
   m_Layer: 0
   m_Name: Enemy3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10065,9 +10065,10 @@ GameObject:
   - component: {fileID: 1674110790}
   - component: {fileID: 1674110796}
   - component: {fileID: 1674110795}
+  - component: {fileID: 1674110797}
   m_Layer: 0
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10239,6 +10240,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.3090515, y: 0.27866822}
   m_EdgeRadius: 0
+--- !u!114 &1674110797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674110789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94dce0aac1e28fa4794823b082254cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 10
+  currentHp: 10
+  kontener: {fileID: 0}
 --- !u!1 &1691223444
 GameObject:
   m_ObjectHideFlags: 0
@@ -10285,7 +10301,7 @@ GameObject:
   - component: {fileID: 1719886482}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

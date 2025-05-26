@@ -137,6 +137,7 @@ public class Enemy2 : MonoBehaviour
     {
         print("Wróg zgin¹³!");
         enemyHealth.OnDeath -= PlayDeathAnimation;
+        gameObject.SetActive(false);
     }
 
 }

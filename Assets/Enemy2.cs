@@ -43,7 +43,6 @@ public class Enemy2 : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.K))
         {
             canMove = false;
@@ -64,7 +63,6 @@ public class Enemy2 : MonoBehaviour
         {
             currentState = Enemy1state.Idle;
         }
-
 
         if (currentState == Enemy1state.Idle)
         {
@@ -89,7 +87,6 @@ public class Enemy2 : MonoBehaviour
             if (canMove)
                 rb.linearVelocity = Vector2.right * direction * speed;
         }
-
         
 
         if (currentState == Enemy1state.Attack)

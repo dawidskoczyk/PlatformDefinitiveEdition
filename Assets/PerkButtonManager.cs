@@ -12,7 +12,7 @@ public class PerkButtonManager : MonoBehaviour
     {
         PerkButtons = new List<UIPerkButton>();
         PerkButtons = GetComponentsInChildren<UIPerkButton>().ToList();
-        print("lista "+ PerkButtons.Count);
+        //print("lista "+ PerkButtons.Count);
     }
 
     // Update is called once per frame

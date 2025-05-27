@@ -33,7 +33,6 @@ public class Enemy1 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("kolizja1");
         if(!(collision.gameObject.tag == "Player"))
         {
             direction *= -1;
@@ -41,7 +40,6 @@ public class Enemy1 : MonoBehaviour
 
             canChangeDir = false;
             Invoke(nameof(CanChangeTrue), 0.5f);
-            print("kolizja");
 
             return;
         }

@@ -46,6 +46,7 @@ public class FastAttack : IAttack
 
             if (CombatManager.Perks["rangeSlash"])
             {
+                print("wchodzi do rangeSlash "+ CombatManager.Perks["rangeSlash"]);
                 spawnProjectile(player, new Vector3(0, 1)); //fastAttackHardPerk //CritDmg
             }
             if (CombatManager.Perks["CritDmg"])

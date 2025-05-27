@@ -50,6 +50,10 @@ public class UIPerkButton : MonoBehaviour
             image.color = Color.white;
         if (previousPerks.Length == 0) enableToUp = true;
             else enableToUp = false;
+        foreach(var keys in CombatManager.Perks.Keys.ToList())
+        {
+            CombatManager.Perks[keys] = false;
+        }    
     }
 
 }

@@ -25,7 +25,8 @@ public class CombatManager : MonoBehaviour
     [SerializeField] bool iceEffectTick;
     [SerializeField] bool poisonEffectTick;
 
-    public static Dictionary<string, bool> Perks; //klasa chyba lepsza b�dzie od s�ownik
+    public static Dictionary<string, bool> Perks;
+    public static Dictionary<string, bool> Upgrades; //klasa chyba lepsza b�dzie od s�ownik
     private void Start()
     {
         Perks = new Dictionary<string, bool>
@@ -35,6 +36,18 @@ public class CombatManager : MonoBehaviour
             { "elementalEffect", false },
             { "CritDmg", false },
             { "elementalRange", false }
+        };
+        Upgrades = new Dictionary<string, bool>
+        {
+            { "critChance+", false },
+            { "rangeSlashDouble", false },
+            { "elementalEffect+", false }, //to później zrobimy te elementale
+            { "critDmg+", false },
+            { "hp+", false },
+            { "gold+", false },
+            { "as+", false }, // większa prędkość ataku
+            { "ad+", false }, //więcej obrażeń
+            { "slam+", false } //fala po użyciu slama (wcisnięcie s podczas skoku)
         };
     }
     private void Update()

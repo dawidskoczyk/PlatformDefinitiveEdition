@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy2 : MonoBehaviour
@@ -21,7 +22,7 @@ public class Enemy2 : MonoBehaviour
 
     Rigidbody2D rb;
 
-    public Hearts enemyHealth;
+    Hearts enemyHealth;
 
 
     void Start()
@@ -100,6 +101,18 @@ public class Enemy2 : MonoBehaviour
         previousState = currentState;
         
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.tag != "Player")
+        {
+            if(currentState == Enemy1state.Idle)
+            {
+                direction *= -1;
+            }
+        }
+    }
+
 
     IEnumerator AttackPlayer()
     {

@@ -47,7 +47,8 @@ public class CombatManager : MonoBehaviour
             { "gold+", false },
             { "as+", false }, // większa prędkość ataku
             { "ad+", false }, //więcej obrażeń
-            { "slam+", false } //fala po użyciu slama (wcisnięcie s podczas skoku)
+            { "slam+", false },//fala po użyciu slama (wcisnięcie s podczas skoku)
+            { "dash+", false}
         };
     }
     private void Update()

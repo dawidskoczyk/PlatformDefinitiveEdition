@@ -10674,11 +10674,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8aa336a5d8a8e4bb56dae961e38ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeList: []
+  upgradeList:
+  - {fileID: 11400000, guid: 15778b07719b13643a86b858ecd332e3, type: 2}
+  - {fileID: 11400000, guid: 341010b7d7b448d46b9c668de9f6c9bc, type: 2}
+  - {fileID: 11400000, guid: fd9bbbb832cec06479222c0d9b441602, type: 2}
+  - {fileID: 11400000, guid: ff5deb619aab10a4e8d78e7457a1c3bc, type: 2}
+  - {fileID: 11400000, guid: fc8332d28dfd9894698706b9eedbab0b, type: 2}
+  - {fileID: 11400000, guid: d630759e03afb3c429c371a9b63ae7a7, type: 2}
+  - {fileID: 11400000, guid: 9a6032be51273d04689657ce48b7fe75, type: 2}
+  - {fileID: 11400000, guid: 8f9d16577a679b7409eeed06eda8e893, type: 2}
+  - {fileID: 11400000, guid: 1ee3907966f0dd04c9e2e14992a9d23d, type: 2}
+  - {fileID: 11400000, guid: b91d31f5366fcce4881e4c5081192ff3, type: 2}
+  upgradeListCopy: []
   options:
   - {fileID: 1025085074}
   - {fileID: 652830262}
   - {fileID: 195299105}
+  panel: {fileID: 0}
 --- !u!1 &719739915
 GameObject:
   m_ObjectHideFlags: 0
@@ -11237,6 +11249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 2031709575}
+  panel3: {fileID: 713405979}
 --- !u!1 &1025085074
 GameObject:
   m_ObjectHideFlags: 0
@@ -11386,7 +11399,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "K - \"przeciwnik otrzymuje obra\u017Cenia\""
+  m_text: "K - \"przeciwnik otrzymuje obra\u017Cenia\"\nL - \"losuj\"\nO - \"otw\xF3rz
+    panel 3 ulepsze\u0144\"\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12430,7 +12444,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   player: {fileID: 1291398670}
-  enemyHealth: {fileID: 0}
 --- !u!61 &1674110796
 BoxCollider2D:
   m_ObjectHideFlags: 0

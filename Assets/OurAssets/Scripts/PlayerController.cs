@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float dashForce;
     [SerializeField] public bool canAttack = false;
     [SerializeField] bool dashAttack = false;
+    [SerializeField] float dashBrakeTime = 1;
     [SerializeField] float chargeTimer = 0f;
     [SerializeField] public bool slam;
     [SerializeField] public bool upAttack;
@@ -227,9 +228,6 @@ public class PlayerController : MonoBehaviour
     }
     void Jump()
     {
-        //jeszcze do przerobienia case kiedy postaæ biegnie, spada z platformy i dotyka œciany, bo wtedy siê jej nie ³apie bo ³apanie œciany jest w stanie skoku. \
-        //Bêdzie trzeba ca³¹ obs³ugê œcian jakoœ przenieœæ albo obs³u¿yæ ten wyj¹tek kopiuj¹c fragment kodu do stanu run
-
         //dodac maxjumps - max liczba mozliwych skokow
 
         if (rb.linearVelocityY < -1)
@@ -322,11 +320,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
-        //if (GroundCheck())
-        //    state = PlayerState.Idle;
-
-
         jump = false;
        
     }
@@ -339,10 +332,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (dashAttack && !isLocked)
         {
-            print("change state to dash");
             ChangeCharacterState(PlayerState.Dash);
             canAttack = false;
-            
         }
         else if (canAttack && !isLocked )
         {

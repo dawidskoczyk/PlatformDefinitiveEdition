@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4942055510377147837}
   - component: {fileID: 7744287722072890465}
   m_Layer: 7
-  m_Name: Player
+  m_Name: PlayerRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,9 +333,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 567714376889251109}
+  - component: {fileID: 5650044675289619911}
   - component: {fileID: 8573511183313974732}
   - component: {fileID: 6741880324145358860}
-  - component: {fileID: 5650044675289619911}
   m_Layer: 7
   m_Name: weapon
   m_TagString: Untagged
@@ -358,7 +358,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4851863068273739929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8573511183313974732
+--- !u!114 &5650044675289619911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -366,6 +366,18 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8745290441299986036}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1bbe24af5db5a4abbf8ff0c5748ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8573511183313974732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745290441299986036}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b855d4e673c69b4bb9a4f1388df4e91, type: 3}
   m_Name: 
@@ -384,17 +396,5 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf58c14de98dd5a4da0192e784d32899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5650044675289619911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8745290441299986036}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a1bbe24af5db5a4abbf8ff0c5748ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

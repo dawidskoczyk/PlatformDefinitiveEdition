@@ -11,7 +11,7 @@ public class Shoot1 : MonoBehaviour
         {
             print(collision.transform.tag + "..+.." + collision.gameObject.layer);
             
-            Destroy(gameObject, 0.2f);
+            Destroy(gameObject, 2f);
         }
     }
 }

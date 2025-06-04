@@ -7,7 +7,8 @@ public class CombatManager : MonoBehaviour
 {
     [SerializeField] GameObject activeWeapon; //aktywna bron lewy przycisk
     [SerializeField] float xp; 
-    [SerializeField] float dmg; 
+    [SerializeField] float dmg;
+    [SerializeField] public bool handGun;
         
     [SerializeField] bool critChance;
     [SerializeField] float critDmg;
@@ -25,7 +26,10 @@ public class CombatManager : MonoBehaviour
     [SerializeField] bool iceEffectTick;
     [SerializeField] bool poisonEffectTick;
 
+
+
     public static Dictionary<string, bool> Perks;
+    public static Dictionary<string, bool> PerksHandGun;
     public static Dictionary<string, bool> Upgrades; //klasa chyba lepsza b�dzie od s�ownik
     private void Start()
     {
@@ -36,6 +40,16 @@ public class CombatManager : MonoBehaviour
             { "elementalEffect", false },
             { "CritDmg", false },
             { "elementalRange", false }
+        };
+        PerksHandGun = new Dictionary<string, bool>
+        {
+            { "critChance", false },
+            { "rangeSlash", false },
+            { "shotgun", false },
+            { "CritDmg", false },
+            { "grenade", false },                                                                                                                                                                                                                           
+            { "3grenade", false },
+            { "3shots", false }
         };
         Upgrades = new Dictionary<string, bool>
         {
@@ -63,12 +77,18 @@ public class CombatManager : MonoBehaviour
 
     public void LevelUp(string perk)
     {
-        Perks[perk] = true;
+        if(handGun)
+            PerksHandGun[perk] = true;
+        else
+            Perks[perk] = true;
         
     } 
     public void Reset(string perk)
     {
-        Perks[perk] = false;
+        if (handGun)
+            PerksHandGun[perk] = false;
+        else
+            Perks[perk] = false;
     }
 }
 

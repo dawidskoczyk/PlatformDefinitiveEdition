@@ -53,21 +53,18 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
         if (isLocked) // aktualnie znaczy - jesli gracz atakuje
             return;
 
         TakeInputs();
         EvaluateState();
 
-        if (state == PlayerState.Idle)//(GroundCheck())
+        if (state == PlayerState.Idle || state == PlayerState.Run)//(GroundCheck())
         {
             jumpCounter = 0;
         }
-
     }
 
     private void FixedUpdate()
@@ -108,6 +105,56 @@ public class PlayerController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void EvaluateState()
+    {
+        if (!Input.anyKey && GroundCheck())
+        {
+            ChangeCharacterState(PlayerState.Idle);
+        }
+        else if (dashAttack && !isLocked)
+        {
+            ChangeCharacterState(PlayerState.Dash);
+            canAttack = false;
+        }
+        else if (canAttack && !isLocked)
+        {
+            ChangeCharacterState(PlayerState.Attack);
+        }
+        else if (jump)
+        {
+            ChangeCharacterState(PlayerState.Jump);
+        }
+        else if (Math.Abs(rb.linearVelocityY) > 1 && !GroundCheck())
+        {
+            ChangeCharacterState(PlayerState.Jump);
+            if(doubleJumpAfterWall== true)
+                jumpCounter = 1;
+        }
+        else if (horizontalInput != 0 && GroundCheck() && rb.linearVelocityY < 0.1f && rb.linearVelocityY > -0.1f)// && state != PlayerState.Jump)
+        {
+            ChangeCharacterState(PlayerState.Run);
+        }
+    }
+
+    void TakeInputs()
+    {
+        if (!canAttack)
+            canAttack = Input.GetKeyDown(KeyCode.Mouse0);
+
+        if (!dashAttack)
+            dashAttack = Input.GetKeyDown(KeyCode.LeftShift);
+
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        if (horizontalInput < 0) { spriteRenderer.flipX = true; }
+        else if (horizontalInput > 0) { spriteRenderer.flipX = false; }
+        if (!jump)
+            jump = Input.GetKeyDown(KeyCode.Space);
+        if (!slam)
+            slam = Input.GetKeyDown(KeyCode.S);
+        if (!upAttack)
+            upAttack = Input.GetKeyDown(KeyCode.W);
     }
 
     IEnumerator Attack()
@@ -190,14 +237,13 @@ public class PlayerController : MonoBehaviour
                 shootDirection = Vector2.right;
         }
 
-
-
         print("add force - dash");
         rb.AddForce(shootDirection * dashForce, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(0.1f);
 
-        dashAttack = false;
+        //dashAttack = false;
+        Invoke(nameof(DashEnd), dashBrakeTime);
         isLocked = false;
 
         ChangeCharacterState(PlayerState.Idle);
@@ -209,6 +255,7 @@ public class PlayerController : MonoBehaviour
         
         rb.linearDamping = 5;
         animator.Play("Run_Animation");
+        doubleJumpAfterWall = true; // <- idk
         if (Input.GetKey(KeyCode.A) && GroundCheck())
         {
             rb.AddForce(new Vector2(-maxSpeed, 0), ForceMode2D.Force);
@@ -229,24 +276,20 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         //dodac maxjumps - max liczba mozliwych skokow
-
+        print("wchodzi w funkcje jump");
         if (rb.linearVelocityY < -1)
         {
             animator.Play("fall");
             rb.linearDamping = 3;
-          
-        }   
-        //else
-        //    animator.Play("jump");
+        }
 
         rb.linearDamping = 2;
-        if (jump && GroundCheck())// && jumpCounter == 0)
+        if (jump && GroundCheck())
         {
             print("jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 1;
-            //animator.Play("land");
             animator.Play("jump");
 
             canWallSlide = false;
@@ -254,7 +297,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (jump && jumpCounter == 1 && !(WallCheckLeft() || WallCheckRight()))
         {
-            if(!doubleJumpAfterWall)  return; 
+            if(!doubleJumpAfterWall)  return;
             print("double jump");
             animator.Play("FrontFlip");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
@@ -264,7 +307,6 @@ public class PlayerController : MonoBehaviour
             // /\ wcale nie, oznacza rest liczby mo¿liwych skokow (chyba)
 
         }
-        //else if (jump && horizontalInput != 0 && (WallCheckLeft() || WallCheckRight()))
         else if (jump && (WallCheckLeft() || WallCheckRight()))
         {
             print("wall jump"); // i tu te¿ trzeba pomyœleæ nad czasem kojota,
@@ -324,55 +366,7 @@ public class PlayerController : MonoBehaviour
        
     }
 
-    void EvaluateState()
-    {
-        if (!Input.anyKey && GroundCheck())
-        {
-            ChangeCharacterState(PlayerState.Idle);
-        }
-        else if (dashAttack && !isLocked)
-        {
-            ChangeCharacterState(PlayerState.Dash);
-            canAttack = false;
-        }
-        else if (canAttack && !isLocked )
-        {
-            ChangeCharacterState(PlayerState.Attack);
-        }
-        else if (jump)
-        {
-            ChangeCharacterState(PlayerState.Jump);
-        }
-        else if(Math.Abs(rb.linearVelocityY) > 1 && !GroundCheck())
-        {
-            ChangeCharacterState(PlayerState.Jump);
-            jumpCounter = 1;
-        }
-        else if (horizontalInput != 0 && GroundCheck() && rb.linearVelocityY < 0.1f && rb.linearVelocityY > -0.1f)// && state != PlayerState.Jump)
-        {
-            ChangeCharacterState(PlayerState.Run);
-        }
-    }
-
-    void TakeInputs()
-    {
-        if(!canAttack)
-            canAttack = Input.GetKeyDown(KeyCode.Mouse0);
-
-        if (!dashAttack)
-            dashAttack = Input.GetKeyDown(KeyCode.LeftShift);
-            //dashAttack = Input.GetKeyDown(KeyCode.Mouse0) && Input.GetKey(KeyCode.Mouse1);
-
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        if(horizontalInput < 0) {spriteRenderer.flipX = true; }
-        else if (horizontalInput > 0) { spriteRenderer.flipX = false; }
-        if (!jump)
-            jump = Input.GetKeyDown(KeyCode.Space);
-        if (!slam)
-            slam = Input.GetKeyDown(KeyCode.S);
-        if (!upAttack)
-            upAttack = Input.GetKeyDown(KeyCode.W);
-    }
+    
 
     public void ChangeCharacterState(PlayerState playerState)
     {
@@ -421,6 +415,11 @@ public class PlayerController : MonoBehaviour
     void JumpToFalse()
     {
         jump = false;
+    }
+
+    void DashEnd()
+    {
+        dashAttack = false;
     }
 
 

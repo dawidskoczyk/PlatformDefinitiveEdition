@@ -281,6 +281,7 @@ MonoBehaviour:
   activeWeapon: {fileID: 0}
   xp: 0
   dmg: 0
+  handGun: 0
   critChance: 0
   critDmg: 0
   rangeSlash: 0

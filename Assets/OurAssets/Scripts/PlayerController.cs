@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float chargeTimer = 0f;
     [SerializeField] public bool slam;
     [SerializeField] public bool upAttack;
+    [SerializeField] public bool rightClick;
 
     bool canWallSlide = true;
     bool wallJump = false;
@@ -118,7 +119,7 @@ public class PlayerController : MonoBehaviour
             ChangeCharacterState(PlayerState.Dash);
             canAttack = false;
         }
-        else if (canAttack && !isLocked)
+        else if ((canAttack && !isLocked) || (rightClick && !isLocked))
         {
             ChangeCharacterState(PlayerState.Attack);
         }
@@ -155,6 +156,9 @@ public class PlayerController : MonoBehaviour
             slam = Input.GetKeyDown(KeyCode.S);
         if (!upAttack)
             upAttack = Input.GetKeyDown(KeyCode.W);
+
+        if (!rightClick)
+            rightClick = Input.GetKeyDown(KeyCode.Mouse1);
     }
 
     IEnumerator Attack()

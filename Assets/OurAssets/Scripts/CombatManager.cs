@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class CombatManager : MonoBehaviour
 {
-    [SerializeField] GameObject activeWeapon; //aktywna bron lewy przycisk
+    [SerializeField] GameObject activeWeapon;
+    [SerializeField] string activeWeaponString; //aktywna bron lewy przycisk
     [SerializeField] float xp; 
     [SerializeField] float dmg;
-    [SerializeField] public bool handGun;
+    bool handGun = true; //tej zmiennej nie da się zmieniać podczas działania gry jeszcze nie wiem czemu, rozwiązanie to dodanie kolejnego parametru do funkcji levelUp, żeby wiedzieć dla której broni jest drzewko
         
     [SerializeField] bool critChance;
     [SerializeField] float critDmg;
@@ -31,6 +32,13 @@ public class CombatManager : MonoBehaviour
     public static Dictionary<string, bool> Perks;
     public static Dictionary<string, bool> PerksHandGun;
     public static Dictionary<string, bool> Upgrades; //klasa chyba lepsza b�dzie od s�ownik
+    private void Awake()
+    {
+        if (activeWeaponString == "handGun")
+            handGun = true;
+        else
+            handGun= false;
+    }
     private void Start()
     {
         Perks = new Dictionary<string, bool>
@@ -64,6 +72,7 @@ public class CombatManager : MonoBehaviour
             { "slam+", false },//fala po użyciu slama (wcisnięcie s podczas skoku)
             { "dash+", false}
         };
+        //handGun = true;
     }
     private void Update()
     {
@@ -77,11 +86,11 @@ public class CombatManager : MonoBehaviour
 
     public void LevelUp(string perk)
     {
-        if(handGun)
+        print("3shotsCombatManager " + CombatManager.PerksHandGun["3shots"] + " handgun" + handGun);
+        if (handGun)
             PerksHandGun[perk] = true;
         else
             Perks[perk] = true;
-        
     } 
     public void Reset(string perk)
     {

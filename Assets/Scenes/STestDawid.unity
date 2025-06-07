@@ -13591,6 +13591,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5650044675289619911, guid: 45899fe461e1d204f98f04bd25834315, type: 3}
+      propertyPath: grenade
+      value: 
+      objectReference: {fileID: 8734017430371138061, guid: c6dbac17b5deaf243b7f2853d8a27d4f, type: 3}
     - target: {fileID: 5906866604545623231, guid: 45899fe461e1d204f98f04bd25834315, type: 3}
       propertyPath: gunSpot
       value: 
@@ -13610,6 +13614,10 @@ PrefabInstance:
     - target: {fileID: 7744287722072890465, guid: 45899fe461e1d204f98f04bd25834315, type: 3}
       propertyPath: handGun
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7744287722072890465, guid: 45899fe461e1d204f98f04bd25834315, type: 3}
+      propertyPath: activeWeaponString
+      value: handGun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

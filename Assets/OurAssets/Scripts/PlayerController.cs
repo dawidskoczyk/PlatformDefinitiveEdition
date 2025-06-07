@@ -60,8 +60,8 @@ public class PlayerController : MonoBehaviour
             return;
 
         TakeInputs();
-        EvaluateState();
-
+        
+        // umo¿liwia double jump po wyladowwaniu - a moze po prostu sprawdzac ground check i wtedy odnowic ???
         if (state == PlayerState.Idle || state == PlayerState.Run)//(GroundCheck())
         {
             jumpCounter = 0;
@@ -70,42 +70,65 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        EvaluateState();
+
         switch (state)
         {
             case PlayerState.Idle:
-                animator.Play("idle-Animation");
-                rb.linearVelocity = new Vector2(0, rb.linearVelocityY);
-                rb.linearDamping = 5;
-                rb.gravityScale = 1;
-                doubleJumpAfterWall = true;
-                //StopAllCoroutines();
+                BeIdle();
                 break;
+
             case PlayerState.Run:
                 Run();
                 break;
+
             case PlayerState.Attack:
                 if (!isLocked)
+                {
                     StartCoroutine(GetComponentInChildren<IAttack>().Attack(this));
-                //StartCoroutine(MeleeAttack());
-                //StartCoroutine(Attack());
+                }
                 break;
+
             case PlayerState.Dash:
                 if (!isLocked)
                 {
-                    print("dash - fixed updt");
                     StartCoroutine(Dash());
                 }
                 break;
+
             case PlayerState.Die:
                 StopAllCoroutines();
                 //OnDie();
                 break;
+
             case PlayerState.Jump:
                 Jump();
                 break;
+
             default:
                 break;
         }
+    }
+
+    void TakeInputs()
+    {
+        if (!canAttack)
+            canAttack = Input.GetKeyDown(KeyCode.Mouse0);
+        if (!dashAttack)
+            dashAttack = Input.GetKeyDown(KeyCode.LeftShift);
+        if (!jump) // -> czemu? podczas skoku przecie¿ mo¿na skakaæ ponownie
+            jump = Input.GetKeyDown(KeyCode.Space);
+        if (!slam)
+            slam = Input.GetKeyDown(KeyCode.S);
+        if (!upAttack)
+            upAttack = Input.GetKeyDown(KeyCode.W);
+
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        if (horizontalInput < 0)
+            spriteRenderer.flipX = true;
+        else if (horizontalInput > 0)
+            spriteRenderer.flipX = false;
     }
 
     void EvaluateState()
@@ -139,8 +162,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void TakeInputs()
+    
+    void BeIdle()
     {
+<<<<<<< Updated upstream
         if (!canAttack)
             canAttack = Input.GetKeyDown(KeyCode.Mouse0);
 
@@ -159,6 +184,13 @@ public class PlayerController : MonoBehaviour
 
         if (!rightClick)
             rightClick = Input.GetKeyDown(KeyCode.Mouse1);
+=======
+        animator.Play("idle-Animation");
+        rb.linearVelocity = new Vector2(0, rb.linearVelocityY);
+        rb.linearDamping = 5;
+        rb.gravityScale = 1;
+        doubleJumpAfterWall = true; // !!!!!!!!! CHECK 1
+>>>>>>> Stashed changes
     }
 
     IEnumerator Attack()
@@ -277,36 +309,37 @@ public class PlayerController : MonoBehaviour
         Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, 10);
         rb.linearVelocity = lerpedVelocity;
     }
+
     void Jump()
     {
         //dodac maxjumps - max liczba mozliwych skokow
-        print("wchodzi w funkcje jump");
+        // SPADANIE
         if (rb.linearVelocityY < -1)
         {
             animator.Play("fall");
             rb.linearDamping = 3;
         }
 
-        rb.linearDamping = 2;
+        rb.linearDamping = 2; // <- podczas skoku a jaki jest normalnie?
+
+        // pierwszy skok (z ziemi)
         if (jump && GroundCheck())
         {
-            print("jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
             jumpCounter = 1;
             animator.Play("jump");
 
             canWallSlide = false;
-            Invoke(nameof(UnlockWallSlide), 0.4f);
+            Invoke(nameof(UnlockWallSlide), 0.4f);  // <- zapobiego przyklejaniu sie do sciany podaczas skoku przy niej (przykleja sie dopiero po 0.4s)
         }
         else if (jump && jumpCounter == 1 && !(WallCheckLeft() || WallCheckRight()))
         {
             if(!doubleJumpAfterWall)  return;
-            print("double jump");
             animator.Play("FrontFlip");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
-            jumpCounter = 0; // Oznacza, ¿e wykorzystaliœmy oba skoki
+            jumpCounter = 2; // Oznacza, ¿e wykorzystaliœmy oba skoki
             doubleJumpAfterWall = false;
             // /\ wcale nie, oznacza rest liczby mo¿liwych skokow (chyba)
 
@@ -369,8 +402,6 @@ public class PlayerController : MonoBehaviour
         jump = false;
        
     }
-
-    
 
     public void ChangeCharacterState(PlayerState playerState)
     {

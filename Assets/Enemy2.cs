@@ -95,8 +95,6 @@ public class Enemy2 : MonoBehaviour
             if(previousState == Enemy1state.Idle)
                 StartCoroutine(AttackPlayer());
         }
-        else
-            print("WTF state");
 
         previousState = currentState;
         

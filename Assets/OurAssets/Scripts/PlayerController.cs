@@ -133,11 +133,8 @@ public class PlayerController : MonoBehaviour
 
     void EvaluateState()
     {
-        if (!Input.anyKey && GroundCheck())
-        {
-            ChangeCharacterState(PlayerState.Idle);
-        }
-        else if (dashAttack && !isLocked)
+        
+        if (dashAttack && !isLocked)
         {
             ChangeCharacterState(PlayerState.Dash);
             canAttack = false;
@@ -148,10 +145,12 @@ public class PlayerController : MonoBehaviour
         }
         else if (jump)
         {
+            print(" jump = true");
             ChangeCharacterState(PlayerState.Jump);
         }
         else if (Math.Abs(rb.linearVelocityY) > 1 && !GroundCheck())
         {
+            print("jump true when falls");
             ChangeCharacterState(PlayerState.Jump);
             if(doubleJumpAfterWall== true)
                 jumpCounter = 1;
@@ -160,43 +159,20 @@ public class PlayerController : MonoBehaviour
         {
             ChangeCharacterState(PlayerState.Run);
         }
+        else if (!Input.anyKey && GroundCheck())
+        {
+            ChangeCharacterState(PlayerState.Idle);
+        }
     }
 
     
     void BeIdle()
     {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        if (!canAttack)
-            canAttack = Input.GetKeyDown(KeyCode.Mouse0);
-
-        if (!dashAttack)
-            dashAttack = Input.GetKeyDown(KeyCode.LeftShift);
-
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        if (horizontalInput < 0) { spriteRenderer.flipX = true; }
-        else if (horizontalInput > 0) { spriteRenderer.flipX = false; }
-        if (!jump)
-            jump = Input.GetKeyDown(KeyCode.Space);
-        if (!slam)
-            slam = Input.GetKeyDown(KeyCode.S);
-        if (!upAttack)
-            upAttack = Input.GetKeyDown(KeyCode.W);
-
-        if (!rightClick)
-            rightClick = Input.GetKeyDown(KeyCode.Mouse1);
-=======
-=======
->>>>>>> Stashed changes
         animator.Play("idle-Animation");
         rb.linearVelocity = new Vector2(0, rb.linearVelocityY);
         rb.linearDamping = 5;
         rb.gravityScale = 1;
-        doubleJumpAfterWall = true; // !!!!!!!!! CHECK 1
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+        doubleJumpAfterWall = true; // !!!!!!!!! CHECK 1 
     }
 
     IEnumerator Attack()
@@ -293,8 +269,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Run()
-    {
-        
+    {  
         rb.linearDamping = 5;
         animator.Play("Run_Animation");
         doubleJumpAfterWall = true; // <- idk
@@ -307,8 +282,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(maxSpeed, 0), ForceMode2D.Force);
         }
 
-        //  SPOWALNIA MI DASH XD
-
         Vector2 currentVelocity = rb.linearVelocity;
         Vector2 clampedVelocity = currentVelocity;
         clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed, maxSpeed);
@@ -318,6 +291,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
+        print("is jumping rn");
         //dodac maxjumps - max liczba mozliwych skokow
         // SPADANIE
         if (rb.linearVelocityY < -1)

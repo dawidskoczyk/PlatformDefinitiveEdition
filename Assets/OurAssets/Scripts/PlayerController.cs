@@ -166,6 +166,7 @@ public class PlayerController : MonoBehaviour
     void BeIdle()
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if (!canAttack)
             canAttack = Input.GetKeyDown(KeyCode.Mouse0);
 
@@ -185,11 +186,16 @@ public class PlayerController : MonoBehaviour
         if (!rightClick)
             rightClick = Input.GetKeyDown(KeyCode.Mouse1);
 =======
+=======
+>>>>>>> Stashed changes
         animator.Play("idle-Animation");
         rb.linearVelocity = new Vector2(0, rb.linearVelocityY);
         rb.linearDamping = 5;
         rb.gravityScale = 1;
         doubleJumpAfterWall = true; // !!!!!!!!! CHECK 1
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 

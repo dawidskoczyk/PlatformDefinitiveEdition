@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DeathState
+public class DeathState : IState
 {
     private PlayerControllerSM player;
 

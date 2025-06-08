@@ -144,13 +144,11 @@ public class PlayerController : MonoBehaviour
             ChangeCharacterState(PlayerState.Attack);
         }
         else if (jump)
-        {
-            print(" jump = true");
+        {;
             ChangeCharacterState(PlayerState.Jump);
         }
         else if (Math.Abs(rb.linearVelocityY) > 1 && !GroundCheck())
         {
-            print("jump true when falls");
             ChangeCharacterState(PlayerState.Jump);
             if(doubleJumpAfterWall== true)
                 jumpCounter = 1;
@@ -291,7 +289,6 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        print("is jumping rn");
         //dodac maxjumps - max liczba mozliwych skokow
         // SPADANIE
         if (rb.linearVelocityY < -1)
@@ -326,7 +323,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (jump && (WallCheckLeft() || WallCheckRight()))
         {
-            print("wall jump"); // i tu te¿ trzeba pomyœleæ nad czasem kojota,
             animator.Play("jump");
             wallJump = true;
             //if(jumpCounter == 1) jumpCounter = 0; //po dotkniêciu œciany ka¿dy skok to double jump
@@ -356,7 +352,6 @@ public class PlayerController : MonoBehaviour
 
         else if (((WallCheckLeft() && horizontalInput == -1) || (WallCheckRight() && horizontalInput == 1)) && canWallSlide)// && !wallJump && Math.Abs(rb.linearVelocityY) < 1)
         {
-            print("wall slide");
             //if (jumpCounter == 1) jumpCounter = 0;
             animator.Play("WallSlide");
             rb.gravityScale = 0.3f;
@@ -364,7 +359,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            print("jump else");
             rb.gravityScale = 1;
             rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * maxSpeed, 0), ForceMode2D.Force);
             Vector2 currentVelocity = rb.linearVelocity;
@@ -374,7 +368,6 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(new Vector2(0, -jumpPower), ForceMode2D.Impulse);
                 slam = false;
                 Collider2D hitCollider = Physics2D.OverlapBox(transform.position - new Vector3(0, 1f), new Vector2(2, -1), 0f);
-                Debug.Log("SLam : " + hitCollider);
                 animator.Play("slam");
             }
         }

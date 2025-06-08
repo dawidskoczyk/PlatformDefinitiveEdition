@@ -12,16 +12,24 @@ public class RunState : IState
     public void Enter()
     {
         // code that runs when we first enter the state
-        Debug.Log("stan biegany");
         player.GetRigidbody().linearDamping = 5;
         player.GetAnimator().Play("Run_Animation");
+
+        player.jumpCounter = 0;
+
     }
     public void Update()
     {
         // Here we add logic to detect if the conditions exist to
         // transition to another state
-        if(player.GetHorizontalInput() == 0)
+        if (player.GetHorizontalInput() == 0 && player.IsGrounded())
+        {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().idleState);
+        }
+        else if (player.IsJumpPressed() || player.GetRigidbody().linearVelocityY < -1)
+        {
+            player.GetStateMachine().TransitionTo(player.GetStateMachine().jumpState);
+        }
 
 
         player.Move(player.moveSpeed * player.GetHorizontalInput());

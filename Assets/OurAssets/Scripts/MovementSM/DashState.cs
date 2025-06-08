@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DashState
+public class DashState : IState
 {
     private PlayerControllerSM player;
 

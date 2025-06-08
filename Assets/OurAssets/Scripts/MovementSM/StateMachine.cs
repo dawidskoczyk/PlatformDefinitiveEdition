@@ -5,13 +5,13 @@ using Unity.IO.LowLevel.Unsafe;
 public class StateMachine
 {
     public IState CurrentState { get; private set; }
-    public RunState walkState;
+    public RunState runState;
     public JumpState jumpState;
     public IdleState idleState;
 
     public StateMachine(PlayerControllerSM player)
     {
-        this.walkState = new RunState(player);
+        this.runState = new RunState(player);
         this.jumpState = new JumpState(player);
         this.idleState = new IdleState(player);
     }

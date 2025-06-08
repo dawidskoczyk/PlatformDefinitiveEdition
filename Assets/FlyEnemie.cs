@@ -19,7 +19,6 @@ public class FlyEnemie : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemyHealth = GetComponent<Hearts>();
         enemyHealth.OnDeath += PlayDeathAnimation;
-        print(chasePlayer);
         currentDir = Vector2.one;
     }
 

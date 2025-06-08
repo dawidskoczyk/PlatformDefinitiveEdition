@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Unity.VisualScripting.FullSerializer;
-
 using System;
 using UnityEngine;
+
 public class IdleState : IState
 {
     private PlayerControllerSM player;
@@ -15,22 +15,30 @@ public class IdleState : IState
     public void Enter()
     {
         // code that runs when we first enter the state
-        UnityEngine.Debug.Log("idle state on");
         //rb.linearVelocity = new Vector2(0, rb.linearVelocityY);
        
         player.GetRigidbody().linearDamping = 5;
         player.GetRigidbody().gravityScale = 1;
         player.GetAnimator().Play("idle-Animation");
 
+        player.jumpCounter = 0;
+
     }
     public void Update()
     {
  // Here we add logic to detect if the conditions exist to
  // transition to another state
-        if(player.GetHorizontalInput() != 0)
+        if(player.GetHorizontalInput() != 0 && player.IsGrounded())
         {
-            player.GetStateMachine().TransitionTo(player.GetStateMachine().walkState);
+            player.GetStateMachine().TransitionTo(player.GetStateMachine().runState);
         }
+        else if (player.IsJumpPressed())
+        {
+            player.GetStateMachine().TransitionTo(player.GetStateMachine().jumpState);
+            
+        }
+
+        player.GetAnimator().Play("idle-Animation");
 
     }
     public void Exit()

@@ -21,11 +21,9 @@ public class FastAttack : IAttack
         if (!Input.GetKey(KeyCode.S))
             player.slam = false;
 
-        Debug.Log("upAttack is ready to hit : " + player.upAttack);
         if (player.upAttack)
         {
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1), new Vector2(1, 1), 0);
-            Debug.Log("up hit : " + hitCollider);
 
             if (hitCollider != null)
             {
@@ -58,7 +56,6 @@ public class FastAttack : IAttack
         else if (player.slam)
         {
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, -1), new Vector2(1, 1), 0);
-            Debug.Log("down hit : " + hitCollider);
 
             if (hitCollider != null)
             {
@@ -84,7 +81,6 @@ public class FastAttack : IAttack
         else if (player.spriteRenderer.flipX)
         {
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(-1, 0), new Vector2(1, 1), 0);
-            Debug.Log("left hit : " + hitCollider);
 
             if (hitCollider != null)
             {
@@ -107,7 +103,6 @@ public class FastAttack : IAttack
         else
         {
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(1, 0), new Vector2(1, 1), 0);
-            Debug.Log("right hit : " + hitCollider);
 
             if (hitCollider != null)
             {

@@ -229,6 +229,7 @@ MonoBehaviour:
   chargeTimer: 0
   slam: 0
   upAttack: 0
+  rightClick: 0
 --- !u!70 &4942055510377147837
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -279,9 +280,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeWeapon: {fileID: 0}
+  activeWeaponString: 
   xp: 0
   dmg: 0
-  handGun: 0
   critChance: 0
   critDmg: 0
   rangeSlash: 0
@@ -399,3 +400,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1bbe24af5db5a4abbf8ff0c5748ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grenade: {fileID: 0}

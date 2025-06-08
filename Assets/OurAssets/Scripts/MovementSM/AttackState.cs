@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AttackState
+public class AttackState : IState
 {
     private PlayerControllerSM player;
 
@@ -11,7 +11,7 @@ public class AttackState
 
     public void Enter()
     {
-        // code that runs when we first enter the state
+        
     }
     public void Update()
     {

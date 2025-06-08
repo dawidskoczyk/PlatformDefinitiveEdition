@@ -1,4 +1,6 @@
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class PlayerControllerSM : MonoBehaviour
 {
@@ -22,18 +24,14 @@ public class PlayerControllerSM : MonoBehaviour
     [HideInInspector] public SpriteRenderer spriteRenderer;
 
     //[SerializeField] float maxSpeed = 2f;
-    //[SerializeField] float jumpPower = 6f;
-    //[SerializeField] float distanceToWall = 0.5f;
-    //[SerializeField] float groundXSize = 0.6f;
+    [SerializeField] float distanceToWall = 0.5f;
+    [SerializeField] float groundXSize = 0.6f;
 
-    //[SerializeField] LayerMask whatIsGround;
+    [SerializeField] LayerMask whatIsGround;
 
-    //[SerializeField] int jumpCounter = 0;
     //[SerializeField] public bool isLocked = false;
-    //[SerializeField] bool jump = false;
-    //[SerializeField] float horizontalInput;
     //[SerializeField] bool doubleJumpAfterWall;
-    //[SerializeField] float boxCastXMiniOffset;
+    [SerializeField] float boxCastXMiniOffset;
     //[SerializeField] public GameObject shoot1;
     //[SerializeField] public Transform gunSpot;
     //[SerializeField] public float shootSpeed;
@@ -42,15 +40,20 @@ public class PlayerControllerSM : MonoBehaviour
     //[SerializeField] bool dashAttack = false;
     //[SerializeField] float dashBrakeTime = 1;
     //[SerializeField] float chargeTimer = 0f;
-    //[SerializeField] public bool slam;
-    //[SerializeField] public bool upAttack;
-    //[SerializeField] public bool rightClick;
+    [SerializeField] public bool isAttacking;
+    [SerializeField] public bool slam;
+    [SerializeField] public bool upAttack;
+    [SerializeField] public bool rightClick;
 
-    //bool canWallSlide = true;
-    //bool wallJump = false;
+    [SerializeField] public int jumpCounter;
+
+    [SerializeField] int maxJumpNumber;
+
+    bool canWallSlide = true;
+    bool wallJump = false;
     //bool canChangeState = true;
 
-// ########################################################3
+    // ########################################################3
 
     private void Start()
     {
@@ -71,20 +74,23 @@ public class PlayerControllerSM : MonoBehaviour
 
         // Update logiki
         stateMachine.Update();
+
+        print(stateMachine.CurrentState);
     }
 
     void TakeInput()
     {
-        //if(!canAttack)
+        //if (!canAttack)
         //    canAttack = Input.GetKeyDown(KeyCode.Mouse0);
         //if (!dashAttack)
         //    dashAttack = Input.GetKeyDown(KeyCode.LeftShift);
         //if (!jump) // -> czemu? podczas skoku przecie¿ mo¿na skakaæ ponownie
-        //    jump = Input.GetKeyDown(KeyCode.Space);
-        //if (!slam)
-        //    slam = Input.GetKeyDown(KeyCode.S);
-        //if (!upAttack)
-        //    upAttack = Input.GetKeyDown(KeyCode.W);
+        if (!jumpPressed)
+            jumpPressed = Input.GetKeyDown(KeyCode.Space);
+        if (!slam)
+            slam = Input.GetKeyDown(KeyCode.S);
+        if (!upAttack)
+            upAttack = Input.GetKeyDown(KeyCode.W);
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
@@ -118,13 +124,127 @@ public class PlayerControllerSM : MonoBehaviour
 
     public void Jump()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpForce);
+        if (stateMachine.CurrentState != stateMachine.jumpState)
+            return;
+
+        if (rb.linearVelocityY < -1)
+        {
+            animator.Play("fall");
+            rb.linearDamping = 3;
+        }
+
+        rb.linearDamping = 2;
+
+        if (jumpPressed && jumpCounter == 0 && IsGrounded()) // pierwszy skok
+        {
+            animator.Play("jump");
+
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            
+            jumpCounter = 1;
+
+            canWallSlide = false;
+            Invoke(nameof(UnlockWallSlide), 0.4f);  // <- naprawia blok skoku przy scianie
+        }
+        // ########################################
+
+        else if (jumpPressed && jumpCounter > 0 && jumpCounter < maxJumpNumber && !(WallCheckLeft() || WallCheckRight())) // kolejne skoki w powietrzu
+        {
+            //if (!doubleJumpAfterWall) return;
+            animator.Play("FrontFlip");
+
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+
+            jumpCounter++;
+            //doubleJumpAfterWall = false;
+        }
+        else if (jumpPressed && (WallCheckLeft() || WallCheckRight())) // skoki na scianach
+        {
+            animator.Play("jump");
+
+            rb.gravityScale = 1;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
+
+            if (horizontalInput == 0)
+            {
+                if (spriteRenderer.flipX)
+                    horizontalInput = 1;
+                else
+                    horizontalInput = -1;
+            }
+
+            if ((horizontalInput == -1 && WallCheckLeft()) || (horizontalInput == 1 && WallCheckRight()))
+                rb.AddForce(new Vector2(horizontalInput * -30f, jumpForce), ForceMode2D.Impulse);
+            else
+                rb.AddForce(new Vector2(horizontalInput * 30f, jumpForce), ForceMode2D.Impulse);
+
+            //jumpCounter = 1; // Oznacza, ¿e wykorzystaliœmy oba skoki
+            Invoke(nameof(ChangeWallJumpFalse), 0.2f);
+
+            canWallSlide = false;
+            Invoke(nameof(UnlockWallSlide), 0.2f);
+
+        }
+
+        else if (((WallCheckLeft() && horizontalInput == -1) || (WallCheckRight() && horizontalInput == 1)) && canWallSlide)// && !wallJump && Math.Abs(rb.linearVelocityY) < 1)
+        {
+            animator.Play("WallSlide");
+            rb.gravityScale = 0.3f;
+            rb.linearVelocity = new Vector2(0, 0);
+        }
+        else
+        {
+            rb.gravityScale = 1;
+            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 100, 0), ForceMode2D.Force);
+            Vector2 currentVelocity = rb.linearVelocity;
+            Vector2 clampedVelocity = currentVelocity;
+            if (slam)
+            {
+                rb.AddForce(new Vector2(0, -jumpForce), ForceMode2D.Impulse);
+                slam = false;
+                Collider2D hitCollider = Physics2D.OverlapBox(transform.position - new Vector3(0, 1f), new Vector2(2, -1), 0f);
+                animator.Play("slam");
+            }
+        }
+        jumpPressed = false;
     }
+
+    //void Dash()
+    //{
+    //    isLocked = true;
+    //    //Determine dash direction
+    //    Vector2 shootDirection;
+    //    float xInput = Input.GetAxisRaw("Horizontal");
+    //    float yInput = Input.GetAxisRaw("Vertical");
+    //    shootDirection = new Vector2(xInput, yInput * 2);
+    //    shootDirection.Normalize(); // Ensure consistent dash speed
+
+    //    if (shootDirection == Vector2.zero)
+    //    {
+    //        if (spriteRenderer.flipX)
+    //            shootDirection = Vector2.left;
+    //        else
+    //            shootDirection = Vector2.right;
+    //    }
+
+    //    print("add force - dash");
+    //    rb.AddForce(shootDirection * dashForce, ForceMode2D.Impulse);
+
+    //    //yield return new WaitForSeconds(0.1f);
+
+    //    //dashAttack = false;
+    //    Invoke(nameof(DashEnd), dashBrakeTime);
+    //    isLocked = false;
+
+    //    ChangeCharacterState(PlayerState.Idle);
+    //    if (!GroundCheck()) ChangeCharacterState(PlayerState.Jump);
+    //}
 
     public bool IsGrounded()
     {
-        // Placeholder – zamieñ na Raycast/Overlap
-        return rb.linearVelocityY == 0;
+        return Physics2D.BoxCast(transform.position - new Vector3(-GetComponent<BoxCollider2D>().offset.x + boxCastXMiniOffset, 0.4f, 0), new Vector2(groundXSize, 0.3f), 0f, Vector2.down, 0.4f, whatIsGround);
     }
 
     public void SetAnimationTrigger(string trigger)
@@ -138,6 +258,62 @@ public class PlayerControllerSM : MonoBehaviour
         // Opcjonalne: sprawdŸ stan animacji
         return false;
     }
+
+    IEnumerator MeleeAttack()
+    {
+        //isLocked = true;
+
+        if (upAttack)
+        {
+            Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1), new Vector2(1, 1), 0);
+            Debug.Log("up hit : " + hitCollider);
+            upAttack = false;
+        }
+        else if (slam)
+        {
+            Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, -1), new Vector2(1, 1), 0);
+            Debug.Log("down hit : " + hitCollider);
+            slam = false;
+        }
+        else if (spriteRenderer.flipX)
+        {
+            Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(-1, 0), new Vector2(1, 1), 0);
+            Debug.Log("left hit : " + hitCollider);
+
+        }
+        else
+        {
+            Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(1, 0), new Vector2(1, 1), 0);
+            Debug.Log("right hit : " + hitCollider);
+        }
+
+        yield return new WaitForSeconds(0.3f);
+        //isLocked = false;
+        //canAttack = false;
+    }
+
+    void UnlockWallSlide()
+    {
+        canWallSlide = true;
+    }
+
+    void ChangeWallJumpFalse()
+    {
+        wallJump = false;
+    }
+
+    bool WallCheckRight()
+    {
+        return Physics2D.Raycast(transform.position, transform.right, distanceToWall, whatIsGround);
+        //return Physics2D.BoxCast(transform.position - new Vector3(0, 0.1f, 0), new Vector2(0.3f, 0.8f), 0f, Vector2.right, 0.4f, whatIsGround);
+    }
+
+    bool WallCheckLeft()
+    {
+        return Physics2D.Raycast(transform.position, -transform.right, distanceToWall, whatIsGround);
+        //return Physics2D.BoxCast(transform.position - new Vector3(0, 0.1f, 0), new Vector2(0.3f, 0.8f), 0f, Vector2.left, 0.4f, whatIsGround);
+    }
+
 
     public float GetHorizontalInput() => horizontalInput;
     public bool IsJumpPressed() => jumpPressed;

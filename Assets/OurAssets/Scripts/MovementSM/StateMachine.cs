@@ -9,6 +9,7 @@ public class StateMachine
     public JumpState jumpState;
     public IdleState idleState;
     public AttackState attackState;
+    public DashState dashState;
 
     public StateMachine(PlayerControllerSM player)
     {
@@ -16,6 +17,7 @@ public class StateMachine
         this.jumpState = new JumpState(player);
         this.idleState = new IdleState(player);
         this.attackState = new AttackState(player);  
+        this.dashState = new DashState(player);
     }
 
     public void Initialize(IState startingState)

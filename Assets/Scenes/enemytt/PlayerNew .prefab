@@ -309,6 +309,8 @@ MonoBehaviour:
     m_Bits: 64
   boxCastXMiniOffset: 0
   gunSpot: {fileID: 0}
+  walljumpForce: 30
+  dashForce: 0
   leftClick: 0
   isAttacking: 0
   slam: 0

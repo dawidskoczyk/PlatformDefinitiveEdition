@@ -36,6 +36,10 @@ public class JumpState : IState
             {
                 player.GetStateMachine().TransitionTo(player.GetStateMachine().attackState);
             }
+            else if (player.IsDashPressed())
+            {
+                player.GetStateMachine().TransitionTo(player.GetStateMachine().dashState);
+            }
         }
 
         player.Jump();

@@ -34,12 +34,12 @@ public class PlayerControllerSM : MonoBehaviour
     [SerializeField] float boxCastXMiniOffset;
     //[SerializeField] public GameObject shoot1;
     [SerializeField] public Transform gunSpot;
-    //[SerializeField] public float shootSpeed;
-    //[SerializeField] public float dashForce;
+    [SerializeField] public float walljumpForce = 30;
+    [SerializeField] public float dashForce;
     [SerializeField] public bool leftClick = false;
-    //[SerializeField] bool dashAttack = false;
-    //[SerializeField] float dashBrakeTime = 1;
-    //[SerializeField] float chargeTimer = 0f;
+    [SerializeField] float dashTime = 1;
+    [SerializeField] float dashBrakeTime = 1;
+   
     [SerializeField] public bool isAttacking;
     [SerializeField] public bool slam;
     [SerializeField] public bool upAttack;
@@ -84,9 +84,8 @@ public class PlayerControllerSM : MonoBehaviour
             leftClick = Input.GetKeyDown(KeyCode.Mouse0);
         if (!rightClick)
             rightClick = Input.GetKeyDown(KeyCode.Mouse1);
-        //if (!dashAttack)
-        //    dashAttack = Input.GetKeyDown(KeyCode.LeftShift);
-        //if (!jump) // -> czemu? podczas skoku przecie¿ mo¿na skakaæ ponownie
+        if (!dashPressed)
+            dashPressed = Input.GetKeyDown(KeyCode.LeftShift);
         if (!jumpPressed)
             jumpPressed = Input.GetKeyDown(KeyCode.Space);
         if (!slam)
@@ -129,7 +128,7 @@ public class PlayerControllerSM : MonoBehaviour
         if (stateMachine.CurrentState != stateMachine.jumpState)
             return;
 
-        if (rb.linearVelocityY < -1)
+        if (rb.linearVelocityY < -2)
         {
             animator.Play("fall");
             rb.linearDamping = 3;
@@ -146,23 +145,22 @@ public class PlayerControllerSM : MonoBehaviour
             
             jumpCounter = 1;
 
-            canWallSlide = false;
-            Invoke(nameof(UnlockWallSlide), 0.4f);  // <- naprawia blok skoku przy scianie
+            canWallSlide = false;                   // naprawia blok skoku przy scianie
+            Invoke(nameof(UnlockWallSlide), 0.4f);  
         }
-        // ########################################
-
-        else if (jumpPressed && jumpCounter > 0 && jumpCounter < maxJumpNumber && !(WallCheckLeft() || WallCheckRight())) // kolejne skoki w powietrzu
+        // kolejne skoki w powietrzu:
+        else if (jumpPressed && jumpCounter > 0 && jumpCounter < maxJumpNumber && !(WallCheckLeft() || WallCheckRight())) 
         {
-            //if (!doubleJumpAfterWall) return;
             animator.Play("FrontFlip");
 
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 
             jumpCounter++;
-            //doubleJumpAfterWall = false;
+
         }
-        else if (jumpPressed && (WallCheckLeft() || WallCheckRight())) // skoki na scianach
+        // skoki na scianach
+        else if (jumpPressed && (WallCheckLeft() || WallCheckRight())) 
         {
             animator.Play("jump");
 
@@ -178,73 +176,62 @@ public class PlayerControllerSM : MonoBehaviour
             }
 
             if ((horizontalInput == -1 && WallCheckLeft()) || (horizontalInput == 1 && WallCheckRight()))
-                rb.AddForce(new Vector2(horizontalInput * -30f, jumpForce), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(horizontalInput * -walljumpForce, jumpForce), ForceMode2D.Impulse);
             else
-                rb.AddForce(new Vector2(horizontalInput * 30f, jumpForce), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(horizontalInput * walljumpForce, jumpForce), ForceMode2D.Impulse);
 
-            //jumpCounter = 1; // Oznacza, ¿e wykorzystaliœmy oba skoki
             Invoke(nameof(ChangeWallJumpFalse), 0.2f);
 
             canWallSlide = false;
             Invoke(nameof(UnlockWallSlide), 0.2f);
-
         }
-
-        else if (((WallCheckLeft() && horizontalInput == -1) || (WallCheckRight() && horizontalInput == 1)) && canWallSlide)// && !wallJump && Math.Abs(rb.linearVelocityY) < 1)
+        else if (((WallCheckLeft() && horizontalInput == -1) || (WallCheckRight() && horizontalInput == 1)) && canWallSlide)
         {
             animator.Play("WallSlide");
-            rb.gravityScale = 0.3f;
+            rb.gravityScale = 2f;
             rb.linearVelocity = new Vector2(0, 0);
         }
         else
         {
             rb.gravityScale = 1;
             rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 100, 0), ForceMode2D.Force);
-            Vector2 currentVelocity = rb.linearVelocity;
-            Vector2 clampedVelocity = currentVelocity;
-            clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed, maxSpeed);
-            rb.linearVelocityX = clampedVelocity.x;
+            float clampedVelocity = Mathf.Clamp(rb.linearVelocityX, -maxSpeed, maxSpeed);
+            rb.linearVelocityX = clampedVelocity;
+
             if (slam)
             {
-                rb.AddForce(new Vector2(0, -jumpForce), ForceMode2D.Impulse);
-                slam = false;
-                Collider2D hitCollider = Physics2D.OverlapBox(transform.position - new Vector3(0, 1f), new Vector2(2, -1), 0f);
                 animator.Play("slam");
+
+                rb.AddForce(new Vector2(0, -jumpForce), ForceMode2D.Impulse);
+                Collider2D hitCollider = Physics2D.OverlapBox(transform.position - new Vector3(0, 1f), new Vector2(2, -1), 0f);
+
+                slam = false;
             }
         }
         jumpPressed = false;
     }
 
-    //void Dash()
-    //{
-    //    isLocked = true;
-    //    //Determine dash direction
-    //    Vector2 shootDirection;
-    //    float xInput = Input.GetAxisRaw("Horizontal");
-    //    float yInput = Input.GetAxisRaw("Vertical");
-    //    shootDirection = new Vector2(xInput, yInput * 2);
-    //    shootDirection.Normalize(); // Ensure consistent dash speed
+    public void Dash()
+    {
+        //Determine dash direction
+        Vector2 shootDirection;
+        float xInput = Input.GetAxisRaw("Horizontal");
+        float yInput = Input.GetAxisRaw("Vertical");
+        shootDirection = new Vector2(xInput, yInput); // yinput * 2 ?
+        shootDirection.Normalize();
 
-    //    if (shootDirection == Vector2.zero)
-    //    {
-    //        if (spriteRenderer.flipX)
-    //            shootDirection = Vector2.left;
-    //        else
-    //            shootDirection = Vector2.right;
-    //    }
+        if (shootDirection == Vector2.zero)
+        {
+            if (spriteRenderer.flipX)
+                shootDirection = Vector2.left;
+            else
+                shootDirection = Vector2.right;
+        }
 
-    //    print("add force - dash");
-    //    rb.AddForce(shootDirection * dashForce, ForceMode2D.Impulse);
-
-    //    //yield return new WaitForSeconds(0.1f);
-
-    //    //dashAttack = false;
-    //    Invoke(nameof(DashEnd), dashBrakeTime);
-    //    isLocked = false;
-
-    //    ChangeCharacterState(PlayerState.Idle);
-    //    if (!GroundCheck()) ChangeCharacterState(PlayerState.Jump);
-    //}
+        rb.AddForce(shootDirection * dashForce, ForceMode2D.Impulse);
+        print("dashing");
+        Invoke(nameof(EndofDash), dashTime);
+    }
 
     public bool IsGrounded()
     {
@@ -257,16 +244,8 @@ public class PlayerControllerSM : MonoBehaviour
             animator.SetTrigger(trigger);
     }
 
-    public bool IsAttacking()
-    {
-        // Opcjonalne: sprawdŸ stan animacji
-        return false;
-    }
-
     IEnumerator MeleeAttack()
     {
-        //isLocked = true;
-
         if (upAttack)
         {
             Collider2D hitCollider = Physics2D.OverlapBox(transform.position + new Vector3(0, 1), new Vector2(1, 1), 0);
@@ -292,8 +271,6 @@ public class PlayerControllerSM : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.3f);
-        //isLocked = false;
-        //canAttack = false;
     }
 
     void UnlockWallSlide()
@@ -304,6 +281,12 @@ public class PlayerControllerSM : MonoBehaviour
     void ChangeWallJumpFalse()
     {
         wallJump = false;
+    }
+
+    void EndofDash()
+    {
+        stateMachine.dashState.isLocked = false;
+        dashPressed = false;
     }
 
     bool WallCheckRight()

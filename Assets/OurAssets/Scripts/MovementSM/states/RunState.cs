@@ -22,6 +22,8 @@ public class RunState : IState
     {
         // Here we add logic to detect if the conditions exist to
         // transition to another state
+        player.Move(player.moveSpeed * player.GetHorizontalInput());
+
         if (player.GetHorizontalInput() == 0 && player.IsGrounded())
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().idleState);
@@ -34,8 +36,12 @@ public class RunState : IState
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().attackState);
         }
+        else if (player.IsDashPressed())
+        {
+            player.GetStateMachine().TransitionTo(player.GetStateMachine().dashState);
+        }
 
-        player.Move(player.moveSpeed * player.GetHorizontalInput());
+        
     }
     public void Exit()
     {

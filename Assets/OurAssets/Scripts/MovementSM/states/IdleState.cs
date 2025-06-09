@@ -42,6 +42,10 @@ public class IdleState : IState
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().attackState);
         }
+        else if (player.IsDashPressed())
+        {
+            player.GetStateMachine().TransitionTo(player.GetStateMachine().dashState);
+        }
 
         player.GetAnimator().Play("idle-Animation");
 

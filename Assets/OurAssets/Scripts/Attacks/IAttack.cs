@@ -14,6 +14,6 @@ public abstract class IAttack : MonoBehaviour
     {
         
     }
-    public abstract IEnumerator Attack(PlayerController player);
+    public abstract IEnumerator Attack(PlayerControllerSM player);
 
 }

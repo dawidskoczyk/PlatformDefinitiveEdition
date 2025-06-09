@@ -30,7 +30,10 @@ public class RunState : IState
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().jumpState);
         }
-
+        else if (player.leftClick || player.rightClick)
+        {
+            player.GetStateMachine().TransitionTo(player.GetStateMachine().attackState);
+        }
 
         player.Move(player.moveSpeed * player.GetHorizontalInput());
     }

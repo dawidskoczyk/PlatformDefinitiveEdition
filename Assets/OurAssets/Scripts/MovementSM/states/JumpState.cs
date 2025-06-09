@@ -32,6 +32,10 @@ public class JumpState : IState
             {
                 player.GetStateMachine().TransitionTo(player.GetStateMachine().idleState);
             }
+            else if (player.leftClick || player.rightClick)
+            {
+                player.GetStateMachine().TransitionTo(player.GetStateMachine().attackState);
+            }
         }
 
         player.Jump();

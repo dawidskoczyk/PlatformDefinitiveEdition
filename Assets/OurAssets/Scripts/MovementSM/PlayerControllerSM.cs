@@ -23,7 +23,7 @@ public class PlayerControllerSM : MonoBehaviour
 
     [HideInInspector] public SpriteRenderer spriteRenderer;
 
-    //[SerializeField] float maxSpeed = 2f;
+    [SerializeField] float maxSpeed = 1f;
     [SerializeField] float distanceToWall = 0.5f;
     [SerializeField] float groundXSize = 0.6f;
 
@@ -33,10 +33,10 @@ public class PlayerControllerSM : MonoBehaviour
     //[SerializeField] bool doubleJumpAfterWall;
     [SerializeField] float boxCastXMiniOffset;
     //[SerializeField] public GameObject shoot1;
-    //[SerializeField] public Transform gunSpot;
+    [SerializeField] public Transform gunSpot;
     //[SerializeField] public float shootSpeed;
     //[SerializeField] public float dashForce;
-    //[SerializeField] public bool canAttack = false;
+    [SerializeField] public bool leftClick = false;
     //[SerializeField] bool dashAttack = false;
     //[SerializeField] float dashBrakeTime = 1;
     //[SerializeField] float chargeTimer = 0f;
@@ -80,8 +80,10 @@ public class PlayerControllerSM : MonoBehaviour
 
     void TakeInput()
     {
-        //if (!canAttack)
-        //    canAttack = Input.GetKeyDown(KeyCode.Mouse0);
+        if (!leftClick)
+            leftClick = Input.GetKeyDown(KeyCode.Mouse0);
+        if (!rightClick)
+            rightClick = Input.GetKeyDown(KeyCode.Mouse1);
         //if (!dashAttack)
         //    dashAttack = Input.GetKeyDown(KeyCode.LeftShift);
         //if (!jump) // -> czemu? podczas skoku przecie¿ mo¿na skakaæ ponownie
@@ -119,7 +121,7 @@ public class PlayerControllerSM : MonoBehaviour
         //clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed, maxSpeed);
         //Vector2 lerpedVelocity = Vector2.Lerp(currentVelocity, clampedVelocity, 10);
         //rb.linearVelocity = lerpedVelocity;
-        
+
     }
 
     public void Jump()
@@ -200,6 +202,8 @@ public class PlayerControllerSM : MonoBehaviour
             rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 100, 0), ForceMode2D.Force);
             Vector2 currentVelocity = rb.linearVelocity;
             Vector2 clampedVelocity = currentVelocity;
+            clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -maxSpeed, maxSpeed);
+            rb.linearVelocityX = clampedVelocity.x;
             if (slam)
             {
                 rb.AddForce(new Vector2(0, -jumpForce), ForceMode2D.Impulse);

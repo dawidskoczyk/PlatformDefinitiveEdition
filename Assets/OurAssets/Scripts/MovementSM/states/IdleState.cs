@@ -19,6 +19,7 @@ public class IdleState : IState
        
         player.GetRigidbody().linearDamping = 5;
         player.GetRigidbody().gravityScale = 1;
+        player.GetRigidbody().linearVelocityX = 0;
         player.GetAnimator().Play("idle-Animation");
 
         player.jumpCounter = 0;
@@ -36,6 +37,10 @@ public class IdleState : IState
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().jumpState);
             
+        }
+        else if (player.leftClick || player.rightClick)
+        {
+            player.GetStateMachine().TransitionTo(player.GetStateMachine().attackState);
         }
 
         player.GetAnimator().Play("idle-Animation");

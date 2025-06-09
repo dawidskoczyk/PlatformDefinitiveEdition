@@ -12,10 +12,10 @@ public class FastAttack : IAttack
     //{
         
     //}
-    public override IEnumerator Attack(PlayerController player)
+    public override IEnumerator Attack(PlayerControllerSM player)
     {
-        player.isLocked = true;
-
+        // player.isLocked = true;
+        
         if (!Input.GetKey(KeyCode.W))
             player.upAttack = false;//nie powinno tu byæ inputów ale póki dzia³a to niech bêd¹
         if (!Input.GetKey(KeyCode.S))
@@ -36,11 +36,11 @@ public class FastAttack : IAttack
            
             if (CombatManager.Perks["CritDmg"])
 
-                player.animator.speed = 0.75f;
+                player.GetAnimator().speed = 0.75f;
             else
-                player.animator.speed = animatorSpeed;
+                player.GetAnimator().speed = animatorSpeed;
 
-            player.animator.Play("AirSlashUp");
+            player.GetAnimator().Play("AirSlashUp");
 
             if (CombatManager.Perks["rangeSlash"])
             {
@@ -49,7 +49,7 @@ public class FastAttack : IAttack
             }
             if (CombatManager.Perks["CritDmg"])
             {
-                player.animator.speed = 0.75f;
+                player.GetAnimator().speed = 0.75f;
             }
 
         }
@@ -67,10 +67,10 @@ public class FastAttack : IAttack
                 player.slam = false;
 
             if (CombatManager.Perks["CritDmg"])
-                player.animator.speed = 0.75f;
+                player.GetAnimator().speed = 0.75f;
             else
-                player.animator.speed = animatorSpeed;
-            player.animator.Play("AirSlashDown");
+                player.GetAnimator().speed = animatorSpeed;
+            player.GetAnimator().Play("AirSlashDown");
 
             if (CombatManager.Perks["rangeSlash"])
             {
@@ -88,7 +88,7 @@ public class FastAttack : IAttack
                     hitCollider.GetComponent<Hearts>().SubHp(1);
             }
 
-            player.animator.Play("fastSlash");
+            player.GetAnimator().Play("fastSlash");
 
             if (CombatManager.Perks["rangeSlash"])
             {
@@ -97,7 +97,7 @@ public class FastAttack : IAttack
 
             if (CombatManager.Perks["CritDmg"])
             {
-                player.animator.Play("fastAttackHardPerk");
+                player.GetAnimator().Play("fastAttackHardPerk");
             }
         }
         else
@@ -110,7 +110,7 @@ public class FastAttack : IAttack
                     hitCollider.GetComponent<Hearts>().SubHp(1);
             }
 
-            player.animator.Play("fastSlash");
+            player.GetAnimator().Play("fastSlash");
 
             if (CombatManager.Perks["rangeSlash"])
             {
@@ -119,7 +119,7 @@ public class FastAttack : IAttack
 
             if (CombatManager.Perks["CritDmg"])
             {
-                player.animator.Play("fastAttackHardPerk");
+                player.GetAnimator().Play("fastAttackHardPerk");
             }
         }
         if (CombatManager.Perks["CritDmg"])
@@ -128,16 +128,12 @@ public class FastAttack : IAttack
             waitSpeed = 0.2f;
 
         yield return new WaitForSeconds(waitSpeed);
-        
-        player.isLocked = false;
 
-        if (!player.GroundCheck()) player.ChangeCharacterState(PlayerController.PlayerState.Jump);
-        else player.ChangeCharacterState(PlayerController.PlayerState.Idle);
+        player.GetAnimator().speed = 1;
 
-        player.animator.speed = 1;
-        player.canAttack = false;
+        player.GetStateMachine().attackState.lockedState = false;
     }
-    private void spawnProjectile(PlayerController player, Vector2 direction)
+    private void spawnProjectile(PlayerControllerSM player, Vector2 direction)
     {
         Vector2 shotPosition = player.spriteRenderer.flipX ? transform.TransformPoint(new Vector2(-player.gunSpot.localPosition.x, player.gunSpot.localPosition.y)) : player.gunSpot.position;
         GameObject GO = Instantiate(projectile, shotPosition, Quaternion.identity);

@@ -8,12 +8,14 @@ public class StateMachine
     public RunState runState;
     public JumpState jumpState;
     public IdleState idleState;
+    public AttackState attackState;
 
     public StateMachine(PlayerControllerSM player)
     {
         this.runState = new RunState(player);
         this.jumpState = new JumpState(player);
         this.idleState = new IdleState(player);
+        this.attackState = new AttackState(player);  
     }
 
     public void Initialize(IState startingState)

@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Attack:
                 if (!isLocked)
                 {
-                    StartCoroutine(GetComponentInChildren<IAttack>().Attack(this));
+                    //StartCoroutine(GetComponentInChildren<IAttack>().Attack(this));
                 }
                 break;
 

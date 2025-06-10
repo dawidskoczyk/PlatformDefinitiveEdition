@@ -48,6 +48,7 @@ public class JumpState : IState
     {
         // code that runs when we exit the state
         player.GetRigidbody().linearDamping = 5;
+        player.GetRigidbody().linearVelocityX = 0;
         timer = 0;
     }
 

@@ -4,6 +4,7 @@ public class Grenade : MonoBehaviour
 {
     [SerializeField] float explosionRadius = 2f;
     public float explosionForce = 500f;
+    [SerializeField] LayerMask playerLayer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +19,7 @@ public class Grenade : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GetComponent<ParticleSystem>().Play();
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius, ~playerLayer);
 
         foreach (Collider2D collider in hitColliders)
         {

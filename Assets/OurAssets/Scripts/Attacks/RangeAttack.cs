@@ -33,7 +33,12 @@ public class RangeAttack : IAttack
         Quaternion rotation = player.spriteRenderer.flipX ? Quaternion.Euler(0, 0, angle + 180f) : Quaternion.Euler(0, 0, angle);
 
         print("3shots " + CombatManager.PerksHandGun["3shots"]);
-        if (CombatManager.PerksHandGun["grenade"] && player.rightClick)
+        if (CombatManager.PerksHandGun["3grenade"] && player.rightClick)
+        {
+            player.rightClick = false;
+            StartCoroutine(grenade3Attack(shoot1, shotPosition, rotation, shotDir, player));
+        }
+        else if (CombatManager.PerksHandGun["grenade"] && player.rightClick)
         {
             player.rightClick = false;
             grenadeAttack(shoot1, shotPosition, rotation, shotDir, player);
@@ -105,5 +110,31 @@ public class RangeAttack : IAttack
         if (player.spriteRenderer.flipX) sh1.GetComponent<SpriteRenderer>().flipX = true;
 
         Destroy(sh1,3f);
+    }   
+    private IEnumerator grenade3Attack(GameObject shotPrefab, Vector2 shootPos, Quaternion shotRotation, Vector2 shotDir, PlayerControllerSM player)
+    {
+        GameObject sh1 = Instantiate(grenade, shootPos, shotRotation);
+        GameObject sh2 = Instantiate(grenade, shootPos, shotRotation);
+        sh2.SetActive(false);
+        GameObject sh3 = Instantiate(grenade, shootPos, shotRotation);
+        sh3.SetActive(false);
+
+        sh1.GetComponent<Rigidbody2D>().gravityScale = 1; 
+        sh2.GetComponent<Rigidbody2D>().gravityScale = 1; 
+        sh3.GetComponent<Rigidbody2D>().gravityScale = 1;
+
+        sh1.GetComponent<Rigidbody2D>().AddForce(shotDir * shootSpeed*0.2f, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.1f); 
+        sh2.SetActive(true);
+        sh2.GetComponent<Rigidbody2D>().AddForce(shotDir * shootSpeed*0.3f, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.1f);
+        sh3.SetActive(true);
+        sh3.GetComponent<Rigidbody2D>().AddForce(shotDir * shootSpeed*0.4f, ForceMode2D.Impulse);
+        
+        if (player.spriteRenderer.flipX) sh1.GetComponent<SpriteRenderer>().flipX = true;
+
+        Destroy(sh1,3f);
+        Destroy(sh2,3f);
+        Destroy(sh3,3f);
     }
 }

@@ -53,7 +53,11 @@ public class UIPerkButton : MonoBehaviour
         foreach(var keys in CombatManager.Perks.Keys.ToList())
         {
             CombatManager.Perks[keys] = false;
-        }    
+        }
+        foreach (var keys in CombatManager.PerksHandGun.Keys.ToList())
+        {
+            CombatManager.PerksHandGun[keys] = false;
+        }
     }
 
 }

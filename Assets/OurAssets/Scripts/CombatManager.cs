@@ -86,11 +86,13 @@ public class CombatManager : MonoBehaviour
 
     public void LevelUp(string perk)
     {
-        print("3shotsCombatManager " + CombatManager.PerksHandGun["3shots"] + " handgun" + handGun);
+       
         if (handGun)
             PerksHandGun[perk] = true;
         else
             Perks[perk] = true;
+
+        print("perk " + perk + " " + CombatManager.PerksHandGun[perk] + " handgun" + handGun);
     } 
     public void Reset(string perk)
     {

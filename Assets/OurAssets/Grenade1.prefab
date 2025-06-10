@@ -193,6 +193,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionRadius: 2
   explosionForce: 500
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!198 &5844031382947242864
 ParticleSystem:
   m_ObjectHideFlags: 0

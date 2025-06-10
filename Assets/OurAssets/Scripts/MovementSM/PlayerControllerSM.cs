@@ -13,6 +13,9 @@ public class PlayerControllerSM : MonoBehaviour
 
     private StateMachine stateMachine;
 
+    public delegate void PlayerControllerDelegateUITest(Vector2 velocity, IState state );
+    public static PlayerControllerDelegateUITest UIDelegate;
+
     // Input
     private float horizontalInput;
     private bool jumpPressed;
@@ -61,10 +64,11 @@ public class PlayerControllerSM : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Inicjalizacja maszyny stanów z referencj¹ do kontrolera
+        // Inicjalizacja maszyny stanï¿½w z referencjï¿½ do kontrolera
         stateMachine = new StateMachine(this);
 
         stateMachine.Initialize(stateMachine.idleState);
+        
     }
 
     private void Update()
@@ -76,6 +80,9 @@ public class PlayerControllerSM : MonoBehaviour
         stateMachine.Update();
 
         print(stateMachine.CurrentState);
+
+        UIDelegate?.Invoke(rb.linearVelocity, stateMachine.CurrentState);
+
     }
 
     void TakeInput()
@@ -140,7 +147,7 @@ public class PlayerControllerSM : MonoBehaviour
         {
             animator.Play("jump");
 
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prï¿½dkoï¿½ï¿½ pionowï¿½
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             
             jumpCounter = 1;
@@ -153,7 +160,7 @@ public class PlayerControllerSM : MonoBehaviour
         {
             animator.Play("FrontFlip");
 
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prï¿½dkoï¿½ï¿½ pionowï¿½
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 
             jumpCounter++;
@@ -165,7 +172,7 @@ public class PlayerControllerSM : MonoBehaviour
             animator.Play("jump");
 
             rb.gravityScale = 1;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prêdkoœæ pionow¹
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy prï¿½dkoï¿½ï¿½ pionowï¿½
 
             if (horizontalInput == 0)
             {

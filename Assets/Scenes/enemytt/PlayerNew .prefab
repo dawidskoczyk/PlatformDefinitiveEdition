@@ -312,6 +312,8 @@ MonoBehaviour:
   walljumpForce: 30
   dashForce: 0
   leftClick: 0
+  dashTime: 1
+  dashBrakeTime: 1
   isAttacking: 0
   slam: 0
   upAttack: 0

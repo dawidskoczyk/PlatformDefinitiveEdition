@@ -10,7 +10,6 @@ public class PlayerControllerSM : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
-
     private StateMachine stateMachine;
 
     public delegate void PlayerControllerDelegateUITest(Vector2 velocity, IState state );
@@ -21,8 +20,6 @@ public class PlayerControllerSM : MonoBehaviour
     private bool jumpPressed;
     private bool dashPressed;
     private bool attackPressed;
-    // ########################################################3
-
 
     [HideInInspector] public SpriteRenderer spriteRenderer;
 
@@ -32,10 +29,6 @@ public class PlayerControllerSM : MonoBehaviour
 
     [SerializeField] LayerMask whatIsGround;
 
-    //[SerializeField] public bool isLocked = false;
-    //[SerializeField] bool doubleJumpAfterWall;
-    [SerializeField] float boxCastXMiniOffset;
-    //[SerializeField] public GameObject shoot1;
     [SerializeField] public Transform gunSpot;
     [SerializeField] public float walljumpForce = 30;
     [SerializeField] public float dashForce;
@@ -54,9 +47,8 @@ public class PlayerControllerSM : MonoBehaviour
 
     bool canWallSlide = true;
     bool wallJump = false;
-    //bool canChangeState = true;
+    public bool canDash;
 
-    // ########################################################3
 
     private void Start()
     {
@@ -64,7 +56,7 @@ public class PlayerControllerSM : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // Inicjalizacja maszyny stan�w z referencj� do kontrolera
+        // Inicjalizacja maszyny stan�w z referencją do kontrolera
         stateMachine = new StateMachine(this);
 
         stateMachine.Initialize(stateMachine.idleState);
@@ -221,6 +213,7 @@ public class PlayerControllerSM : MonoBehaviour
     public void Dash()
     {
         //Determine dash direction
+        rb.linearDamping = 2;
         Vector2 shootDirection;
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
@@ -242,7 +235,7 @@ public class PlayerControllerSM : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics2D.BoxCast(transform.position - new Vector3(-GetComponent<BoxCollider2D>().offset.x + boxCastXMiniOffset, 0.4f, 0), new Vector2(groundXSize, 0.3f), 0f, Vector2.down, 0.4f, whatIsGround);
+        return Physics2D.BoxCast(transform.position - new Vector3(-GetComponent<BoxCollider2D>().offset.x, 0.4f, 0), new Vector2(groundXSize, 0.3f), 0f, Vector2.down, 0.4f, whatIsGround);
     }
 
     public void SetAnimationTrigger(string trigger)
@@ -294,6 +287,8 @@ public class PlayerControllerSM : MonoBehaviour
     {
         stateMachine.dashState.isLocked = false;
         dashPressed = false;
+        rb.linearVelocity = Vector2.zero;
+        rb.linearDamping = 5;
     }
 
     bool WallCheckRight()

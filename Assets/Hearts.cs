@@ -44,9 +44,10 @@ public class Hearts : MonoBehaviour
 
     public void SubHp(int hp)
     {
+        currentHp -= hp;
         if (currentHp > 0)
         {
-            currentHp -= hp;
+            kontener.transform.GetChild(currentHp).gameObject.SetActive(false);
         }
         else
         {

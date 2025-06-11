@@ -170,7 +170,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -189,3 +189,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501d357ca73c9b649adf039a5d4a46a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  muzzle: {fileID: 1597428183965336373, guid: 3aab95aad9546a547a8edb05f78b13e1, type: 3}

@@ -7,6 +7,8 @@ public class RangeAttack : IAttack
     [SerializeField] private GameObject grenade;
     [SerializeField] private GameObject shoot1;
     [SerializeField] private float shootSpeed;
+    [SerializeField] private GameObject muzzle;
+    [SerializeField] private float fireRate;
    public override IEnumerator Attack( PlayerControllerSM player)
     {
         //player.isLocked = true;
@@ -15,7 +17,7 @@ public class RangeAttack : IAttack
         Vector2 savedVelocity = player.GetRigidbody().linearVelocity;
         player.GetRigidbody().linearVelocity = Vector2.zero;
         player.GetRigidbody().gravityScale = 0;
-        yield return new WaitForSeconds(0.3f);
+
 
         //strza³ ale zmienne bêdzie trzeba uporz¹dkowaæ jak to zacznie dzia³aæ, czyli przenieœæ Serialize Fieldy z playera do broni
         Vector2 shotPosition = player.spriteRenderer.flipX ? transform.TransformPoint(new Vector2(-player.gunSpot.localPosition.x, player.gunSpot.localPosition.y)) : player.gunSpot.position;
@@ -31,7 +33,7 @@ public class RangeAttack : IAttack
             player.spriteRenderer.flipX = false;
 
         Quaternion rotation = player.spriteRenderer.flipX ? Quaternion.Euler(0, 0, angle + 180f) : Quaternion.Euler(0, 0, angle);
-
+        yield return new WaitForSeconds(fireRate);
         print("3shots " + CombatManager.PerksHandGun["3shots"]);
         if (CombatManager.PerksHandGun["3grenade"] && player.rightClick)
         {
@@ -50,7 +52,7 @@ public class RangeAttack : IAttack
             else if (CombatManager.PerksHandGun["3shots"])
                 StartCoroutine(Shoot3Attack(shoot1, shotPosition, rotation, shotDir, player));
             else
-                BaseAttack(shoot1, shotPosition, rotation, shotDir, player);
+                BaseAttack(shoot1, shotPosition, rotation, shotDir.normalized, player);
         }
         player.GetRigidbody().gravityScale = 1;
         player.GetRigidbody().linearVelocity = savedVelocity;
@@ -61,6 +63,7 @@ public class RangeAttack : IAttack
     private void BaseAttack(GameObject shotPrefab, Vector2 shootPos, Quaternion shotRotation, Vector2 shotDir, PlayerControllerSM player)
     {
         GameObject sh1 = Instantiate(shotPrefab, shootPos, shotRotation);
+        PlayMuzzle(muzzle, shootPos);
 
         sh1.GetComponent<Rigidbody2D>().AddForce(shotDir * shootSpeed, ForceMode2D.Impulse);
         if (player.spriteRenderer.flipX) sh1.GetComponent<SpriteRenderer>().flipX = true;
@@ -68,6 +71,7 @@ public class RangeAttack : IAttack
     private IEnumerator Shoot3Attack(GameObject shootPrefab, Vector2 shootPos, Quaternion shootRotation, Vector2 shootDir, PlayerControllerSM player)
     {
         GameObject sh1 = Instantiate(shootPrefab, shootPos, shootRotation);
+        PlayMuzzle(muzzle, shootPos);
         GameObject sh2 = Instantiate(shootPrefab, shootPos + new Vector2(0,0.01f), shootRotation);
         sh2.SetActive(false);
         GameObject sh3 = Instantiate(shootPrefab, shootPos - new Vector2(0, 0.01f), shootRotation); 
@@ -75,9 +79,11 @@ public class RangeAttack : IAttack
         
         sh1.GetComponent<Rigidbody2D>().AddForce(shootDir * shootSpeed, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.1f);
+        PlayMuzzle(muzzle, shootPos);
         sh2.SetActive(true);
         sh2.GetComponent<Rigidbody2D>().AddForce(shootDir * shootSpeed, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.1f);
+        PlayMuzzle(muzzle, shootPos);
         sh3.SetActive(true);
         sh3.GetComponent<Rigidbody2D>().AddForce(shootDir * shootSpeed, ForceMode2D.Impulse);
         if (player.spriteRenderer.flipX)
@@ -89,8 +95,9 @@ public class RangeAttack : IAttack
     }
     private void shotgunAttack(GameObject shotPrefab, Vector2 shootPos, Quaternion shotRotation, Vector2 shotDir, PlayerControllerSM player)
     {
-        GameObject[] sh = new GameObject[9]; 
-        for(int i =0; i<=9; i++)
+        GameObject[] sh = new GameObject[9];
+        PlayMuzzle(muzzle, shootPos);
+        for (int i =0; i<=9; i++)
         {
             float range = ((i / 100) - 0.05f);
             GameObject sh1 = Instantiate(shotPrefab, shootPos + new Vector2(0, range), shotRotation);
@@ -105,6 +112,7 @@ public class RangeAttack : IAttack
     private void grenadeAttack(GameObject shotPrefab, Vector2 shootPos, Quaternion shotRotation, Vector2 shotDir, PlayerControllerSM player)
     {
         GameObject sh1 = Instantiate(grenade, shootPos, shotRotation);
+        PlayMuzzle(muzzle, shootPos);
         sh1.GetComponent<Rigidbody2D>().gravityScale = 1;
         sh1.GetComponent<Rigidbody2D>().AddForce(shotDir * shootSpeed*0.2f, ForceMode2D.Impulse);
         if (player.spriteRenderer.flipX) sh1.GetComponent<SpriteRenderer>().flipX = true;
@@ -123,11 +131,14 @@ public class RangeAttack : IAttack
         sh2.GetComponent<Rigidbody2D>().gravityScale = 1; 
         sh3.GetComponent<Rigidbody2D>().gravityScale = 1;
 
+        PlayMuzzle(muzzle, shootPos);
         sh1.GetComponent<Rigidbody2D>().AddForce(shotDir * shootSpeed*0.2f, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.1f); 
+        yield return new WaitForSeconds(0.1f);
+        PlayMuzzle(muzzle, shootPos);
         sh2.SetActive(true);
         sh2.GetComponent<Rigidbody2D>().AddForce(shotDir * shootSpeed*0.3f, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.1f);
+        PlayMuzzle(muzzle, shootPos);
         sh3.SetActive(true);
         sh3.GetComponent<Rigidbody2D>().AddForce(shotDir * shootSpeed*0.4f, ForceMode2D.Impulse);
         
@@ -136,5 +147,14 @@ public class RangeAttack : IAttack
         Destroy(sh1,3f);
         Destroy(sh2,3f);
         Destroy(sh3,3f);
+    }
+    void PlayMuzzle(GameObject muzzle, Vector2 shootPos)
+    {
+        GameObject muz = Instantiate(muzzle, shootPos, Quaternion.identity);
+        muz.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        muz.transform.SetParent(transform);
+        muz.GetComponent<ParticleSystem>().Play();
+
+        Destroy(muz, 0.1f);
     }
 }

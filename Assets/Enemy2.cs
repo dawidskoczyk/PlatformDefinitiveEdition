@@ -9,11 +9,14 @@ public class Enemy2 : MonoBehaviour
     Enemy1state previousState;
     public float speed = 3f;
     public float attackRange = 3f;
+    public int attackDMG = 1;
     public float Xleft;
     public float Xright;
     [SerializeField] bool startDirRight = true;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] GameObject player;
+
+    [SerializeField] GameObject explosionPlayer;
 
     private int direction;
 
@@ -109,6 +112,18 @@ public class Enemy2 : MonoBehaviour
                 direction *= -1;
             }
         }
+
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+
+        if (collision.transform.tag == "Player")
+        {
+            player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position) * 100f, ForceMode2D.Impulse);
+            player.GetComponent<Hearts>().SubHp(attackDMG);
+            //po tym gracz musi przechodziæ w stan getDamage gdzie stanie siê nietykalny przez chwile lub dostanie stuna
+        }
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //to dzia³a œrednio, bo player musi byæ stunowany na chwile, ¿eby nie da³o sie nim biec podczas odepchniêcia
     }
 
 
@@ -149,6 +164,9 @@ public class Enemy2 : MonoBehaviour
         print("Wróg zgin¹³!");
         enemyHealth.OnDeath -= PlayDeathAnimation;
         gameObject.SetActive(false);
+
+        var exp = Instantiate(explosionPlayer, transform.position, Quaternion.identity);
+        exp.GetComponent<ParticleSystem>().Play();
     }
 
 }

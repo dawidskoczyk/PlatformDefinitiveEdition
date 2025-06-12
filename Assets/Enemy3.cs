@@ -8,6 +8,7 @@ public class Enemy3 : MonoBehaviour
     Enemy1state previousState;
     public float speed = 3f;
     public float attackRange = 3f;
+    public int attackDMG = 1;
     public float Xleft;
     public float Xright;
     //[SerializeField] bool startDirRight = true;
@@ -127,6 +128,8 @@ public class Enemy3 : MonoBehaviour
         if (collision.transform.tag == "Player")
         {
             player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position) * 100f, ForceMode2D.Impulse);
+            player.GetComponent<Hearts>().SubHp(attackDMG);
+            //po tym gracz musi przechodziæ w stan getDamage gdzie stanie siê nietykalny przez chwile lub dostanie stuna
         }
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -148,11 +151,11 @@ public class Enemy3 : MonoBehaviour
     {
         currentState = Enemy1state.Idle;
     }
-    public void GetDamage(int valueDMG)
-    {
-        currentState = Enemy1state.GetDamage;
-        GetComponent<Hearts>().SubHp(valueDMG);
-    }
+    //public void GetDamage(int valueDMG)
+    //{
+    //    currentState = Enemy1state.GetDamage;
+    //    GetComponent<Hearts>().SubHp(valueDMG);
+    //}
 
     void NormalSpeed()
     {

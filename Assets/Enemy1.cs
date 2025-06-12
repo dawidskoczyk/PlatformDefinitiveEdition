@@ -3,10 +3,12 @@ using UnityEngine;
 public class Enemy1 : MonoBehaviour
 {
     public float speed = 3f;
+    public int attackDMG = 1;
     public float Xleft;
     public float Xright;
     [SerializeField] bool startDirRight = true;
     [SerializeField] LayerMask playerLayer;
+    [SerializeField] GameObject player;
 
     private float timer;
     private int direction;
@@ -14,6 +16,11 @@ public class Enemy1 : MonoBehaviour
     bool canChangeDir = true;
 
     Rigidbody2D rb;
+
+    [SerializeField] GameObject explosionPlayer;
+
+
+    Hearts enemyHealth;
 
 
     void Start()
@@ -24,6 +31,10 @@ public class Enemy1 : MonoBehaviour
             direction = 1;
         else
             direction = -1;
+
+        enemyHealth = GetComponent<Hearts>();
+
+        enemyHealth.OnDeath += PlayDeathAnimation;
     }
 
     void Update()
@@ -57,13 +68,25 @@ public class Enemy1 : MonoBehaviour
             Vector2 newPos = new Vector2(Random.Range(playersX - 5, playersX + 5), Random.Range(playersY, playersY + 2));
             transform.position = newPos;
 
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1f);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1f, ~playerLayer);
             if(colliders.Length <= 0)
                 safeTp = true;
             foreach (Collider2D collider in colliders)
                 print(collider.name);
             
         }
+
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+
+        if (collision.transform.tag == "Player")
+        {
+            player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position) * 100f, ForceMode2D.Impulse);
+            player.GetComponent<Hearts>().SubHp(attackDMG);
+            //po tym gracz musi przechodziæ w stan getDamage gdzie stanie siê nietykalny przez chwile lub dostanie stuna
+        }
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //to dzia³a œrednio, bo player musi byæ stunowany na chwile, ¿eby nie da³o sie nim biec podczas odepchniêcia
     }
 
 
@@ -108,5 +131,15 @@ public class Enemy1 : MonoBehaviour
     void CanChangeTrue()
     {
         canChangeDir = true;
+    }
+    public void PlayDeathAnimation()
+    {
+        print("Wróg zgin¹³!");
+        enemyHealth.OnDeath -= PlayDeathAnimation;
+
+        var exp = Instantiate(explosionPlayer, transform.position, Quaternion.identity);
+        exp.GetComponent<ParticleSystem>().Play();
+
+        gameObject.SetActive(false);
     }
 }

@@ -13,7 +13,7 @@ public class Hearts : MonoBehaviour
     {
         if (kontener != null)
         {
-            kontener.GetComponent<RectTransform>().sizeDelta = new Vector2(45 * maxHp, 50);
+            //kontener.GetComponent<RectTransform>().sizeDelta = new Vector2(45 * maxHp, 50);
             RefreshUI();
         }
     }
@@ -51,6 +51,7 @@ public class Hearts : MonoBehaviour
         }
         else
         {
+            kontener.transform.GetChild(0).gameObject.SetActive(false);
             OnDeath?.Invoke();
         }
 

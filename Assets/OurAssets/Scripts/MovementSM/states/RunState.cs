@@ -16,6 +16,8 @@ public class RunState : IState
         player.GetAnimator().Play("Run_Animation");
 
         player.jumpCounter = 0;
+        player.canDash = true;
+        player.IsGrounded();
 
     }
     public void Update()
@@ -28,15 +30,16 @@ public class RunState : IState
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().idleState);
         }
-        else if (player.IsJumpPressed() || player.GetRigidbody().linearVelocityY < -1)
+        else if (player.IsJumpPressed() || (player.GetRigidbody().linearVelocityY < -1 && !player.IsGrounded()))
         {
+            Debug.Log("from run to jump stateeeee");
             player.GetStateMachine().TransitionTo(player.GetStateMachine().jumpState);
         }
         else if (player.leftClick || player.rightClick)
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().attackState);
         }
-        else if (player.IsDashPressed())
+        else if (player.IsDashPressed() && player.canDash)
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().dashState);
         }
@@ -46,5 +49,6 @@ public class RunState : IState
     public void Exit()
     {
         // code that runs when we exit the state
+        
     }
 }

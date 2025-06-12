@@ -6,6 +6,7 @@ public class PlayerControllerSM : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
+    public float moveSpeedAir = 5f;
     public float jumpForce = 8f;
 
     private Rigidbody2D rb;
@@ -24,26 +25,25 @@ public class PlayerControllerSM : MonoBehaviour
     [HideInInspector] public SpriteRenderer spriteRenderer;
 
     [SerializeField] float maxSpeed = 1f;
+    [SerializeField] float maxSpeedAir = 1f;
     [SerializeField] float distanceToWall = 0.5f;
     [SerializeField] float groundXSize = 0.6f;
-
     [SerializeField] LayerMask whatIsGround;
-
     [SerializeField] public Transform gunSpot;
     [SerializeField] public float walljumpForce = 30;
     [SerializeField] public float dashForce;
     [SerializeField] public bool leftClick = false;
     [SerializeField] float dashTime = 1;
     [SerializeField] float dashBrakeTime = 1;
-   
     [SerializeField] public bool isAttacking;
     [SerializeField] public bool slam;
     [SerializeField] public bool upAttack;
     [SerializeField] public bool rightClick;
-
     [SerializeField] public int jumpCounter;
-
     [SerializeField] int maxJumpNumber;
+
+    public bool isCoyoteGrounded;
+    [SerializeField] float coyoteTime;
 
     bool canWallSlide = true;
     bool wallJump = false;
@@ -74,7 +74,6 @@ public class PlayerControllerSM : MonoBehaviour
         print(stateMachine.CurrentState);
 
         UIDelegate?.Invoke(rb.linearVelocity, stateMachine.CurrentState);
-
     }
 
     void TakeInput()
@@ -135,7 +134,7 @@ public class PlayerControllerSM : MonoBehaviour
 
         rb.linearDamping = 2;
 
-        if (jumpPressed && jumpCounter == 0 && IsGrounded()) // pierwszy skok
+        if (jumpPressed && jumpCounter == 0 && isCoyoteGrounded) // IsGrounded()) // pierwszy skok
         {
             animator.Play("jump");
 
@@ -148,8 +147,18 @@ public class PlayerControllerSM : MonoBehaviour
             Invoke(nameof(UnlockWallSlide), 0.4f);  
         }
         // kolejne skoki w powietrzu:
-        else if (jumpPressed && jumpCounter > 0 && jumpCounter < maxJumpNumber && !(WallCheckLeft() || WallCheckRight())) 
+        else if (jumpPressed && !isCoyoteGrounded && jumpCounter < maxJumpNumber && !(WallCheckLeft() || WallCheckRight())) 
         {
+            if(jumpCounter == 0) // jesli gracz jest w powietrzu ale jeszcze nie wykonal skoku
+            {
+                jumpCounter = 1;
+                if ((jumpCounter >= maxJumpNumber))
+                {
+                    jumpPressed = false;
+                    return;
+                }       
+            }
+
             animator.Play("FrontFlip");
 
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); // Zerujemy pr�dko�� pionow�
@@ -193,8 +202,8 @@ public class PlayerControllerSM : MonoBehaviour
         else
         {
             rb.gravityScale = 1;
-            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * 100, 0), ForceMode2D.Force);
-            float clampedVelocity = Mathf.Clamp(rb.linearVelocityX, -maxSpeed, maxSpeed);
+            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeedAir * Time.deltaTime, 0), ForceMode2D.Force);
+            float clampedVelocity = Mathf.Clamp(rb.linearVelocityX, -maxSpeedAir, maxSpeedAir);
             rb.linearVelocityX = clampedVelocity;
 
             if (slam)
@@ -235,8 +244,20 @@ public class PlayerControllerSM : MonoBehaviour
 
     public bool IsGrounded()
     {
+        bool grounded = Physics2D.BoxCast(transform.position - new Vector3(-GetComponent<BoxCollider2D>().offset.x, 0.4f, 0), new Vector2(groundXSize, 0.3f), 0f, Vector2.down, 0.4f, whatIsGround);
+        if (grounded)
+            isCoyoteGrounded = true;
+        else
+            Invoke(nameof(CoyoteTimeEnded), coyoteTime);
+
+        return grounded;
+    }
+
+    public bool JustIsGrounded()
+    {
         return Physics2D.BoxCast(transform.position - new Vector3(-GetComponent<BoxCollider2D>().offset.x, 0.4f, 0), new Vector2(groundXSize, 0.3f), 0f, Vector2.down, 0.4f, whatIsGround);
     }
+
 
     public void SetAnimationTrigger(string trigger)
     {
@@ -283,12 +304,16 @@ public class PlayerControllerSM : MonoBehaviour
         wallJump = false;
     }
 
+    void CoyoteTimeEnded()
+    {
+        if(!JustIsGrounded())
+            isCoyoteGrounded = false;
+    }
+
     void EndofDash()
     {
         stateMachine.dashState.isLocked = false;
         dashPressed = false;
-        rb.linearVelocity = Vector2.zero;
-        rb.linearDamping = 5;
     }
 
     bool WallCheckRight()

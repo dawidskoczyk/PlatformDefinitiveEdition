@@ -31,6 +31,8 @@ public class DashState : IState
     }
     public void Exit()
     {
-        // code that runs when we exit the state
+        player.GetRigidbody().linearVelocity = Vector2.zero;
+        player.GetRigidbody().linearDamping = 5;
+        player.canDash = false;
     }
 }

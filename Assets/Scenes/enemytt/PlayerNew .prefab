@@ -307,7 +307,6 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  boxCastXMiniOffset: 0
   gunSpot: {fileID: 0}
   walljumpForce: 30
   dashForce: 0
@@ -320,6 +319,7 @@ MonoBehaviour:
   rightClick: 0
   jumpCounter: 0
   maxJumpNumber: 2
+  canDash: 0
 --- !u!1 &7996599440951041630
 GameObject:
   m_ObjectHideFlags: 0

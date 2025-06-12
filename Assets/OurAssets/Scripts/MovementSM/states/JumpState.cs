@@ -26,6 +26,7 @@ public class JumpState : IState
         {
             if (player.GetHorizontalInput() != 0 && player.IsGrounded())
             {
+                Debug.Log("changed to runnnnnnnnnnn");
                 player.GetStateMachine().TransitionTo(player.GetStateMachine().runState);
             }
             else if (player.GetHorizontalInput() == 0 && player.IsGrounded())
@@ -36,7 +37,7 @@ public class JumpState : IState
             {
                 player.GetStateMachine().TransitionTo(player.GetStateMachine().attackState);
             }
-            else if (player.IsDashPressed())
+            else if (player.IsDashPressed() && player.canDash)
             {
                 player.GetStateMachine().TransitionTo(player.GetStateMachine().dashState);
             }

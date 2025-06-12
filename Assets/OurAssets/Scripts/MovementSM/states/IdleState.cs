@@ -23,6 +23,8 @@ public class IdleState : IState
         player.GetAnimator().Play("idle-Animation");
 
         player.jumpCounter = 0;
+        player.canDash = true;
+        player.IsGrounded();
 
     }
     public void Update()
@@ -42,7 +44,7 @@ public class IdleState : IState
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().attackState);
         }
-        else if (player.IsDashPressed())
+        else if (player.IsDashPressed() && player.canDash)
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().dashState);
         }

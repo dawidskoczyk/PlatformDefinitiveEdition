@@ -507,6 +507,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   player: {fileID: 0}
+  pushForce: 0
   explosionPlayer: {fileID: 5809150850099875958, guid: ffd49f7e63f2dd44a9edf25e160fb19d, type: 3}
 --- !u!114 &4079264915805486408
 MonoBehaviour:
@@ -523,6 +524,8 @@ MonoBehaviour:
   maxHp: 3
   currentHp: 3
   kontener: {fileID: 2445899220535547868}
+  invincibleTime: 0
+  pingFrequency: 0
 --- !u!1 &5427218505126059578
 GameObject:
   m_ObjectHideFlags: 0

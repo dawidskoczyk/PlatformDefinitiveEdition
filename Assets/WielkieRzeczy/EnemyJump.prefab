@@ -615,6 +615,8 @@ MonoBehaviour:
   maxHp: 3
   currentHp: 3
   kontener: {fileID: 4118495947728001997}
+  invincibleTime: 0
+  pingFrequency: 0
 --- !u!1 &8904394594513081127
 GameObject:
   m_ObjectHideFlags: 0

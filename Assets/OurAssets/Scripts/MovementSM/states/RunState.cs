@@ -43,8 +43,12 @@ public class RunState : IState
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().dashState);
         }
+        else if (player.isGettingDmg)
+        {
+            player.GetStateMachine().TransitionTo(player.GetStateMachine().damageState);
+        }
 
-        
+
     }
     public void Exit()
     {

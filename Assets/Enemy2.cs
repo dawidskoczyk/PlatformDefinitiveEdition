@@ -15,6 +15,7 @@ public class Enemy2 : MonoBehaviour
     [SerializeField] bool startDirRight = true;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] GameObject player;
+    [SerializeField] float pushForce;
 
     [SerializeField] GameObject explosionPlayer;
 
@@ -117,8 +118,9 @@ public class Enemy2 : MonoBehaviour
 
         if (collision.transform.tag == "Player")
         {
-            player.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position) * 100f, ForceMode2D.Impulse);
+            Vector2 pushDirForce = (player.transform.position - transform.position) * pushForce;
             player.GetComponent<Hearts>().SubHp(attackDMG);
+            player.GetComponent<PlayerControllerSM>().GetDamageTrue(0.2f, pushDirForce);
             //po tym gracz musi przechodziæ w stan getDamage gdzie stanie siê nietykalny przez chwile lub dostanie stuna
         }
         rb.constraints = RigidbodyConstraints2D.None;

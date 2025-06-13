@@ -299,9 +299,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  moveSpeedAir: 5
   jumpForce: 60
   spriteRenderer: {fileID: 0}
   maxSpeed: 8
+  maxSpeedAir: 1
   distanceToWall: 0.35
   groundXSize: 0.5138651
   whatIsGround:
@@ -319,6 +321,8 @@ MonoBehaviour:
   rightClick: 0
   jumpCounter: 0
   maxJumpNumber: 2
+  isCoyoteGrounded: 0
+  coyoteTime: 0
   canDash: 0
 --- !u!1 &7996599440951041630
 GameObject:
@@ -384,3 +388,5 @@ MonoBehaviour:
   grenade: {fileID: 8734017430371138061, guid: c6dbac17b5deaf243b7f2853d8a27d4f, type: 3}
   shoot1: {fileID: 0}
   shootSpeed: 0
+  muzzle: {fileID: 0}
+  fireRate: 0

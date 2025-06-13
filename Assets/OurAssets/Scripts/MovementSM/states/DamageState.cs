@@ -1,32 +1,32 @@
+
 using System.Threading;
 using UnityEngine;
 
-public class JumpState : IState
+public class DamageState : IState
 {
     private PlayerControllerSM player;
-    bool isLocked = true;
     float timer = 0;
 
-    public JumpState(PlayerControllerSM player)
+    public DamageState(PlayerControllerSM player)
     {
         this.player = player;
     }
 
     public void Enter()
     {
-        //player.Jump();
-        UnityEngine.Debug.Log("started jump state");
-        
+        player.GetRigidbody().linearVelocity = Vector2.zero;
+        player.GetRigidbody().AddForce(player.GetPushForce(), ForceMode2D.Impulse);
+
     }
     public void Update()
     {
         timer += Time.deltaTime;
 
-        if(timer > 0.2f) // opoznienie, bo inaczej od razu po wyskoku gracz jest jeszcze grounded i przez to zmienia stan zanim wyskoczy
+        if (timer >= player.GetStunTime())
         {
+
             if (player.GetHorizontalInput() != 0 && player.IsGrounded())
             {
-                Debug.Log("changed to runnnnnnnnnnn");
                 player.GetStateMachine().TransitionTo(player.GetStateMachine().runState);
             }
             else if (player.GetHorizontalInput() == 0 && player.IsGrounded())
@@ -41,24 +41,19 @@ public class JumpState : IState
             {
                 player.GetStateMachine().TransitionTo(player.GetStateMachine().dashState);
             }
-            else if (player.isGettingDmg)
+            else if (!player.IsGrounded())
             {
-                player.GetStateMachine().TransitionTo(player.GetStateMachine().damageState);
+                player.GetStateMachine().TransitionTo(player.GetStateMachine().jumpState);
             }
         }
 
-        player.Jump();
+
+    
     }
     public void Exit()
     {
         // code that runs when we exit the state
-        player.GetRigidbody().linearDamping = 5;
-        player.GetRigidbody().linearVelocityX = 0;
         timer = 0;
-    }
-
-    void UnlockStateDetaction()
-    {
-        isLocked = false;
+        player.isGettingDmg = false;
     }
 }

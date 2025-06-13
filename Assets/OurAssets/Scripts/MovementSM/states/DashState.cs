@@ -22,9 +22,17 @@ public class DashState : IState
         {
             //UnityEngine.Debug.Log("unlocked switch");
             if (!player.IsGrounded())
+            {
                 player.GetStateMachine().TransitionTo(player.GetStateMachine().jumpState);
+            }
+            else if (player.isGettingDmg)
+            {
+                player.GetStateMachine().TransitionTo(player.GetStateMachine().damageState);
+            }
             else
+            {
                 player.GetStateMachine().TransitionTo(player.GetStateMachine().idleState);
+            }
         }
 
 

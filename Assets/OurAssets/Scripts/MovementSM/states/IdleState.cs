@@ -48,6 +48,10 @@ public class IdleState : IState
         {
             player.GetStateMachine().TransitionTo(player.GetStateMachine().dashState);
         }
+        else if (player.isGettingDmg)
+        {
+            player.GetStateMachine().TransitionTo(player.GetStateMachine().damageState);
+        }
 
         player.GetAnimator().Play("idle-Animation");
 

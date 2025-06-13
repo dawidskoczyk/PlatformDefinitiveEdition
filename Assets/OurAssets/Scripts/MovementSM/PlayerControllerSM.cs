@@ -48,6 +48,9 @@ public class PlayerControllerSM : MonoBehaviour
     bool canWallSlide = true;
     bool wallJump = false;
     public bool canDash;
+    public bool isGettingDmg;
+    float stunTime;
+    Vector2 pushDirForce;
 
 
     private void Start()
@@ -253,6 +256,18 @@ public class PlayerControllerSM : MonoBehaviour
         return grounded;
     }
 
+    public void GetDamageTrue(float stunTime, Vector2 pushDirForce)
+    {
+        isGettingDmg = true;
+        this.stunTime = stunTime;
+        this.pushDirForce = pushDirForce;
+    }
+
+    public void GetDamage()
+    {
+
+    }
+
     public bool JustIsGrounded()
     {
         return Physics2D.BoxCast(transform.position - new Vector3(-GetComponent<BoxCollider2D>().offset.x, 0.4f, 0), new Vector2(groundXSize, 0.3f), 0f, Vector2.down, 0.4f, whatIsGround);
@@ -330,9 +345,11 @@ public class PlayerControllerSM : MonoBehaviour
 
 
     public float GetHorizontalInput() => horizontalInput;
+    public float GetStunTime() => stunTime;
     public bool IsJumpPressed() => jumpPressed;
     public bool IsDashPressed() => dashPressed;
     public bool IsAttackPressed() => attackPressed;
+    public Vector2 GetPushForce() => pushDirForce;
 
     public Rigidbody2D GetRigidbody() => rb;
     public Animator GetAnimator() => animator;

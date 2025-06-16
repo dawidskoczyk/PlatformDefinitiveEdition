@@ -40,7 +40,7 @@ public class PlayerControllerSM : MonoBehaviour
     [SerializeField] public bool upAttack;
     [SerializeField] public bool rightClick;
     [SerializeField] public int jumpCounter;
-    [SerializeField] int maxJumpNumber;
+    [SerializeField] public int maxJumpNumber;
 
     public bool isCoyoteGrounded;
     [SerializeField] float coyoteTime;
@@ -51,6 +51,7 @@ public class PlayerControllerSM : MonoBehaviour
     public bool isGettingDmg;
     float stunTime;
     Vector2 pushDirForce;
+    bool isWallSliding;
 
 
     private void Start()
@@ -85,7 +86,7 @@ public class PlayerControllerSM : MonoBehaviour
             leftClick = Input.GetKeyDown(KeyCode.Mouse0);
         if (!rightClick)
             rightClick = Input.GetKeyDown(KeyCode.Mouse1);
-        if (!dashPressed)
+        if (!dashPressed && canDash)
             dashPressed = Input.GetKeyDown(KeyCode.LeftShift);
         if (!jumpPressed)
             jumpPressed = Input.GetKeyDown(KeyCode.Space);
@@ -127,15 +128,25 @@ public class PlayerControllerSM : MonoBehaviour
     public void Jump()
     {
         if (stateMachine.CurrentState != stateMachine.jumpState)
-            return;
-
-        if (rb.linearVelocityY < -2)
         {
-            animator.Play("fall");
-            rb.linearDamping = 3;
+            return;  
         }
 
+        print("is jumping in funcccccc");
+        IsGrounded();
+
         rb.linearDamping = 2;
+
+        if (rb.linearVelocityY < -2 && !isWallSliding)
+        {
+            animator.Play("fall");
+            rb.linearDamping = 1;
+
+            float clampedVelocity = Mathf.Clamp(rb.linearVelocityY, -9f, 10f);
+            rb.linearVelocityY = clampedVelocity;
+        }
+
+        
 
         if (jumpPressed && jumpCounter == 0 && isCoyoteGrounded) // IsGrounded()) // pierwszy skok
         {
@@ -173,6 +184,7 @@ public class PlayerControllerSM : MonoBehaviour
         // skoki na scianach
         else if (jumpPressed && (WallCheckLeft() || WallCheckRight())) 
         {
+            wallJump = true;
             animator.Play("jump");
 
             rb.gravityScale = 1;
@@ -187,9 +199,9 @@ public class PlayerControllerSM : MonoBehaviour
             }
 
             if ((horizontalInput == -1 && WallCheckLeft()) || (horizontalInput == 1 && WallCheckRight()))
-                rb.AddForce(new Vector2(horizontalInput * -walljumpForce, jumpForce), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(horizontalInput * -walljumpForce, jumpForce * 1.1f), ForceMode2D.Impulse);
             else
-                rb.AddForce(new Vector2(horizontalInput * walljumpForce, jumpForce), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(horizontalInput * walljumpForce, jumpForce * 1.1f), ForceMode2D.Impulse);
 
             Invoke(nameof(ChangeWallJumpFalse), 0.2f);
 
@@ -201,13 +213,17 @@ public class PlayerControllerSM : MonoBehaviour
             animator.Play("WallSlide");
             rb.gravityScale = 2f;
             rb.linearVelocity = new Vector2(0, 0);
+
+            isWallSliding = true;
         }
-        else
+        else if (!wallJump)
         {
+            isWallSliding = false;
             rb.gravityScale = 1;
-            rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeedAir * Time.deltaTime, 0), ForceMode2D.Force);
-            float clampedVelocity = Mathf.Clamp(rb.linearVelocityX, -maxSpeedAir, maxSpeedAir);
-            rb.linearVelocityX = clampedVelocity;
+            //rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeedAir * Time.deltaTime, 0), ForceMode2D.Force);
+            //float clampedVelocity = Mathf.Clamp(rb.linearVelocityX, -maxSpeedAir, maxSpeedAir);
+            //rb.linearVelocityX = clampedVelocity;
+            rb.linearVelocity = new Vector2(moveSpeed * GetHorizontalInput(), rb.linearVelocityY);
 
             if (slam)
             {
@@ -240,15 +256,17 @@ public class PlayerControllerSM : MonoBehaviour
                 shootDirection = Vector2.right;
         }
 
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
         rb.AddForce(shootDirection * dashForce, ForceMode2D.Impulse);
-        print("dashing");
+
+
         Invoke(nameof(EndofDash), dashTime);
     }
 
     public bool IsGrounded()
     {
         bool grounded = Physics2D.BoxCast(transform.position - new Vector3(-GetComponent<BoxCollider2D>().offset.x, 0.4f, 0), new Vector2(groundXSize, 0.3f), 0f, Vector2.down, 0.4f, whatIsGround);
-        if (grounded)
+        if (grounded && (rb.linearVelocityY < 0.5f))
             isCoyoteGrounded = true;
         else
             Invoke(nameof(CoyoteTimeEnded), coyoteTime);

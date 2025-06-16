@@ -32,7 +32,6 @@ public class RunState : IState
         }
         else if (player.IsJumpPressed() || (player.GetRigidbody().linearVelocityY < -1 && !player.IsGrounded()))
         {
-            Debug.Log("from run to jump stateeeee");
             player.GetStateMachine().TransitionTo(player.GetStateMachine().jumpState);
         }
         else if (player.leftClick || player.rightClick)

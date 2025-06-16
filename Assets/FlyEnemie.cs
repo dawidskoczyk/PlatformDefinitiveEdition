@@ -20,6 +20,8 @@ public class FlyEnemie : MonoBehaviour
         enemyHealth = GetComponent<Hearts>();
         enemyHealth.OnDeath += PlayDeathAnimation;
         currentDir = Vector2.one;
+
+        timer = Random.Range(0, changeDirTime - 0.01f);
     }
 
 

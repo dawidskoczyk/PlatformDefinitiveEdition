@@ -14,19 +14,17 @@ public class JumpState : IState
 
     public void Enter()
     {
-        //player.Jump();
-        UnityEngine.Debug.Log("started jump state");
+
         
     }
     public void Update()
     {
         timer += Time.deltaTime;
 
-        if(timer > 0.2f) // opoznienie, bo inaczej od razu po wyskoku gracz jest jeszcze grounded i przez to zmienia stan zanim wyskoczy
+        if(timer > 0.3f) // opoznienie, bo inaczej od razu po wyskoku gracz jest jeszcze grounded i przez to zmienia stan zanim wyskoczy
         {
             if (player.GetHorizontalInput() != 0 && player.IsGrounded())
             {
-                Debug.Log("changed to runnnnnnnnnnn");
                 player.GetStateMachine().TransitionTo(player.GetStateMachine().runState);
             }
             else if (player.GetHorizontalInput() == 0 && player.IsGrounded())

@@ -526,6 +526,8 @@ MonoBehaviour:
   kontener: {fileID: 2445899220535547868}
   invincibleTime: 0
   pingFrequency: 0
+  UIActive: 0
+  hpPrefab: {fileID: 0}
 --- !u!1 &5427218505126059578
 GameObject:
   m_ObjectHideFlags: 0

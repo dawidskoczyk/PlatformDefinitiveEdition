@@ -12,6 +12,8 @@ public class PerkButtonManager : MonoBehaviour
     [SerializeField] GameObject panel3;
     [SerializeField] GameObject stan;
     [SerializeField] GameObject velocityPanel;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject doublejumpText;
     //[SerializeField] PlayerControllerSM player;   
     void Start()
     {
@@ -39,5 +41,16 @@ public class PerkButtonManager : MonoBehaviour
     {
         this.velocityPanel.GetComponent<TextMeshProUGUI>().text = velocity.ToString();
         stan.GetComponent<TextMeshProUGUI>().text = state.ToString();
+        if (player != null)
+        {
+            if(doublejumpText == null)
+                return;
+
+            if (player.GetComponent<PlayerControllerSM>().jumpCounter < player.GetComponent<PlayerControllerSM>().maxJumpNumber)
+                doublejumpText.GetComponent<TextMeshProUGUI>().color = Color.green;
+            else
+                doublejumpText.GetComponent<TextMeshProUGUI>().color = Color.red;
+
+        }
     }
 }

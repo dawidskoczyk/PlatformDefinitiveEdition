@@ -15,6 +15,8 @@ public class DashState : IState
         // code that runs when we first enter the state
         isLocked = true;
         player.Dash();
+        player.canDash = false;
+
     }
     public void Update()
     {
@@ -41,6 +43,7 @@ public class DashState : IState
     {
         player.GetRigidbody().linearVelocity = Vector2.zero;
         player.GetRigidbody().linearDamping = 5;
-        player.canDash = false;
+        //dash pressed = false -> jest na koncu Dash()
+        
     }
 }

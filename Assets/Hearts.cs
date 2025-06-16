@@ -14,13 +14,24 @@ public class Hearts : MonoBehaviour
     float timer;
     SpriteRenderer spriteRenderer;
     [SerializeField] float pingFrequency;
+    [SerializeField] bool UIActive;
+    [SerializeField] GameObject hpPrefab;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (kontener != null)
         {
-            //kontener.GetComponent<RectTransform>().sizeDelta = new Vector2(45 * maxHp, 50);
+            if (UIActive)
+            {
+                kontener.GetComponent<RectTransform>().sizeDelta = new Vector2(55 * maxHp, 50);
+                for (int i = 0; i < maxHp; i++)
+                {
+                    var UIObject = Instantiate(hpPrefab, kontener.transform);
+                    UIObject.transform.localPosition += new Vector3(-(50 * maxHp)/2 + (i * 50f), 0, 0); 
+                    UIObject.transform.localPosition += new Vector3(5*maxHp, 0, 0);
+                }
+            }
             RefreshUI();
         }
     }

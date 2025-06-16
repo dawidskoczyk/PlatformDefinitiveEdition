@@ -34,6 +34,9 @@ public class RangeAttack : IAttack
 
         Quaternion rotation = player.spriteRenderer.flipX ? Quaternion.Euler(0, 0, angle + 180f) : Quaternion.Euler(0, 0, angle);
         yield return new WaitForSeconds(fireRate);
+        shotDir = mousePosition - shotPosition;
+
+        //angle = Mathf.Atan2(shotDir.y, shotDir.x) * Mathf.Rad2Deg;
         print("3shots " + CombatManager.PerksHandGun["3shots"]);
         if (CombatManager.PerksHandGun["3grenade"] && player.rightClick)
         {
@@ -89,8 +92,8 @@ public class RangeAttack : IAttack
         if (player.spriteRenderer.flipX)
         {
             sh1.GetComponent<SpriteRenderer>().flipX = true;
-            sh1.GetComponent<SpriteRenderer>().flipX = true;
-            sh1.GetComponent<SpriteRenderer>().flipX = true;
+            sh2.GetComponent<SpriteRenderer>().flipX = true;
+            sh3.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
     private void shotgunAttack(GameObject shotPrefab, Vector2 shootPos, Quaternion shotRotation, Vector2 shotDir, PlayerControllerSM player)

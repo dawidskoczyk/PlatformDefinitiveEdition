@@ -117,7 +117,7 @@ public class RangeAttack : IAttack
         GameObject sh1 = Instantiate(grenade, shootPos, shotRotation);
         PlayMuzzle(muzzle, shootPos);
         sh1.GetComponent<Rigidbody2D>().gravityScale = 1;
-        sh1.GetComponent<Rigidbody2D>().AddForce(shotDir * shootSpeed*0.2f, ForceMode2D.Impulse);
+        sh1.GetComponent<Rigidbody2D>().AddForce(shotDir * shootSpeed*0.1f, ForceMode2D.Impulse);
         if (player.spriteRenderer.flipX) sh1.GetComponent<SpriteRenderer>().flipX = true;
 
         Destroy(sh1,3f);

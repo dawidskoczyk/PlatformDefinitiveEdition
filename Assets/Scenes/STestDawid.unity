@@ -12589,6 +12589,8 @@ MonoBehaviour:
   panel3: {fileID: 713405979}
   stan: {fileID: 1492918606}
   velocityPanel: {fileID: 885916832}
+  player: {fileID: 0}
+  doublejumpText: {fileID: 0}
 --- !u!1 &991799039
 GameObject:
   m_ObjectHideFlags: 0

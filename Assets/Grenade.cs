@@ -6,16 +6,16 @@ public class Grenade : MonoBehaviour
     public float explosionForce = 500f;
     [SerializeField] LayerMask playerLayer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    //void Start()
+    //{
 
-    }
+    //}
 
-    // Update is called once per frame
-    void Update()
-    {
+    //// Update is called once per frame
+    //void Update()
+    //{
 
-    }
+    //}
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GetComponent<ParticleSystem>().Play();
@@ -44,16 +44,17 @@ public class Grenade : MonoBehaviour
             //to napisa³ chat wiêc pewnie Ÿle ale sam pomys³, ¿eby odpychaæ i zadawaæ obra¿enia na podstawie odleg³oœci od centrum wybuchu jest ciekawy
         }
 
-        void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        Destroy(gameObject,0.05f);
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
 
-            // Dodatkowe gizmo - wype³niony okr¹g z przezroczystoœci¹
-            Color fillColor = Color.red;
-            fillColor.a = 0.2f;
-            Gizmos.color = fillColor;
-            Gizmos.DrawSphere(transform.position, explosionRadius);
-        }
+        // Dodatkowe gizmo - wype³niony okr¹g z przezroczystoœci¹
+        Color fillColor = Color.red;
+        fillColor.a = 0.2f;
+        Gizmos.color = fillColor;
+        Gizmos.DrawSphere(transform.position, explosionRadius);
     }
 }

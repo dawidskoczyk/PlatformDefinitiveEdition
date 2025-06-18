@@ -28,8 +28,8 @@ public class Hearts : MonoBehaviour
                 for (int i = 0; i < maxHp; i++)
                 {
                     var UIObject = Instantiate(hpPrefab, kontener.transform);
-                    UIObject.transform.localPosition += new Vector3(-(50 * maxHp)/2 + (i * 50f), 0, 0); 
-                    UIObject.transform.localPosition += new Vector3(5*maxHp, 0, 0);
+                    UIObject.transform.localPosition += new Vector3(i * 55f, 0, 0); 
+                    UIObject.transform.localPosition += new Vector3((-55f * maxHp)/2 + (55f/maxHp), 0, 0);
                 }
             }
             RefreshUI();
